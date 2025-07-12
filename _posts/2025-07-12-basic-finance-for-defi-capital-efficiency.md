@@ -11,7 +11,9 @@ author: IV
 This post attempts to organize some basic financial concepts that arise in DeFi surrounding capital efficiency.
 
 Capital efficiency is an ordinal property of markets that measures how efficiently capital generates economic outputs such as liquidity and yield.
+
 # Liquidity
+
 Liquidity is an ordinal property of markets, and is crucial for capital efficiency. Folklore intuition can be summed up in one line:
 > A market is highly liquid if it can quickly execute trades with minimal price changes.
 
@@ -35,13 +37,17 @@ Spread is a threshold cost which dominates small trades. Beyond the threshold, t
 
 Before diving a bit deeper, we record a common unit of measurement in finance:
 **Definition.** A basis point (plural bps) is a hundredth of a percent $0.01％=\frac 1{10,000}$.
+
 ## Spread
+
 Assuming the market price is within spread interval, a taker must pay a premium to immediately initiate a trade. Wider spread → higher premium.
 
 $$ [\text{highest bid},\text{lowest ask}] $$
 
 A narrow spread thus increases capital efficiency, especially for small trades. A spread of 10 bps means the highest bid and lowest ask differ by $0.10％$.
+
 ## Depth
+
 High depth around an exchange rate leads to price stability: even large trades will not cause volatility. The statement "there's 10K USD of BTC buy-side depth per bp at the current price" means you can buy 10K USD-worth of BTC and incur a price change of at most one basis point, i.e $0.01％$.
 
 The depth of liquidity in a price interval should be thought of as the supply of capital deployed there. High depth at exorbitantly high/low prices is wasted capital. We'll unpack this later for [constant-product AMMs](###Depth-analysis).
@@ -49,28 +55,40 @@ The depth of liquidity in a price interval should be thought of as the supply of
 Depth is crucial also for stable capital-efficient loan markets because it ensures liquidations are profitable to liquidators. We illustrate the opposite extreme: how shallow depth triggers a liquidation death spiral. The loan market in question is borrowing USD against BTC collateral.
 * Suppose Alice loaned 1M USD to Bob against 10 BTC. Suppose Bob defaults, so that Alice seizes 10 BTC. Now suppose Alice wishes to liquidate the loan i.e. sell the BTC for USD. If the BTC/USD market in question has shallow liquidity, the exchange rate would dip against Alice: she may sell 1 BTC at a good price, but any larger amount would sell at an increasing loss to her. In case of an over-collateralized loan, Alice can make a quick profit even if she sells some of her BTC underpriced. Such a sale would lower the BTC/USD exchange rate against BTC, potentially triggering more liquidations.
 * Depth is the dampener of liquidations, defending against chain-reactions and death spirals.
+
 ## Slippage
+
 Products sold in stores typically have posted prices, which trivialize economic calculation. The naive approach to buying some amount of an asset would be to multiply its market price-per-unit by the amount.
 
 If the market price is a 1 USD/unit, I naively expect 100 USD to buy me 100 units. *Slippage* is any deviation from this expected outcome. Such deviations are determined entirely by trade size, spread, and depth. Slippage of this form can be addressed at the application level, e.g. via aggregators and routers which traverse multiple markets.
 
 There is another, subtler type of slippage. Even if I have perfect knowledge of the market mechanism (e.g. AMM curve) and its current state, I do not know the market state at the execution of my order. Despite my ability to perfectly simulate my trade, I cannot predict the market conditions at execution: reality can differ from my expectations, resulting again in *slippage*. Such slippage can be honest, e.g. competitors pay higher priority fees and overtake me, or manipulative, e.g. sequencers manipulating ordering.
+
 # Market-makers
+
 Markets are not in a constant state of equilibrium, and organic activity (or lack thereof) can result in occasional wide spreads.
 1. Buyers and sellers need not show up together. There can be waves of one-sided demand, in terms of both time and volume.
 2. Price discovery takes time: buyers would initially post low bids and sellers would initially post high asks.
 3. Liquidity may not arise organically, due to wide spreads or shallow depth.
 
 Market makers (henceforth MMs) streamline market operations by providing supply & demand counterparties and optimizing price discovery.
+
 ## Order-book market-makers
+
 In order-book markets, MMs act by posting trades that bring the market closer to equilibrium. The naive business model is simple: manufacture spread and profit off it. Specifically, MMs manufacture spread by maintaining a gap between their highest bids and lowest asks. They aim for a narrow spread when competition is high and risk is low, and conversely.
+
 ## AMMs (automatic market makers)
+
 An AMM is an implementation of a market that:
 1. Automatically computes exchange rates based on its state.
 2. Automatically distributes supply across the exchange-rate curve to create liquidity.
+
 # Worked example: constant-product AMMs
+
 We now illustrate the abstract nonsense above in the setting of a constant-product AMM. We start out **without fees**, and address them later.
+
 ## Basics
+
 Fix two assets $X,Y$ and denote by $x,y$  their respective supplies. The AMM curve is $xy=k$  for some constant $k$. Evidently the curve is symmetric in $x,y$. As a function of $x$, we see $y=\tfrac kx$ is not only monotone decreasing but also *subadditive*, which enforces diminishing marginal utility. Conceptually, this is the only required property of an AMM curve. In our constant-product case, marginal diminution is visualized by the hyperbola curve: As the supply $x$ grows, a fixed change of supply $\Delta x$ causes a diminishing change of supply $\Delta y$.
 
 Let us quantify supply changes. Suppose the present state of AMM supply is $x,y$. How does a change in supply $\Delta x$  affect the supply of $Y$? By definition, the next state of the AMM supply is $x+\Delta x, y+\Delta y$, so the invariant constraint gives us
@@ -90,7 +108,9 @@ $$\frac{y}{x}=\frac{k}{x^2}\longrightarrow\frac{y+\Delta y}{x+\Delta x}=\frac{k}
 Note the $Y$-price of a unit of $X$ obeys an inverse square law w.r.t to the supply of $X$: price decays quadratically as supply grows. This super-linear decay also exhibits diminishing marginal utility.
 
 Prices are not encoded by the AMM equation, but rather discovered by the market. The equation merely constrains the supplies to satisfy diminishing marginal utility, which is necessary for price discovery. (Play around with a constant-sum equation and see how the resulting market is severely misbehaved.)
+
 ## Depth analysis
+
 We can express supply $x$ as a function of the $Y$-price per unit of $X$: $p=\frac yx$.
 
 $$x^2p=k\implies x(p)=\sqrt \frac{k}{p}. $$
@@ -108,7 +128,9 @@ $$\text{Depth}[\alpha^2 p_1,\alpha^2 p_2]=\frac 1\alpha \text{Depth}[p_1, p_2].$
 > Constant-product AMM depth decays slowly as $\frac1\surd$.
 
 Equipped with the depth formula, we can analyze the capital efficiency of constant-product AMMs. Specifically, we'll analyze how the constant product curve causes supply to be inefficiently allocated to price bands with low trading activity.
+
 ### Depth on the tail
+
 Assume a current supply of $x_0$ at a price-per-unit of $p_0$. This supply is distributed over the price range $[p_0,\infty)$ precisely according to depth.
 * A divergent increasing sequence of prices $p_0<p_1<p_2<\cdots$  partitions the interval $[p_0,\infty)$.
 * Current supply is partitioned by the depths of the associated price bands. (The infinite sum makes sense because $x(p)\overset{p\to \infty}{\longrightarrow}0$.)
@@ -132,13 +154,17 @@ D_{\text{ETH}}(\mathrm{\$}10\mathrm{K} \to \infty) &\approx 1000 \text{ ETH} &\a
 D_{\text{ETH}}(\mathrm{\$}5\mathrm{K} \to \infty) &\approx 1414 \text{ ETH} &\approx 77％
 \end{aligned}$$
 
+
 ### Depth in general
+
 How to interpret $D_X(p_1\to p_2)$ if the current price $p_\text{now}$ satisfies $p_\text{now}>p_1$? In this case, reaching $p_1$ would require an increase in supply, so we can't use the partition trick above. Or can we? Math shows the way. The equation
 
 $$D_X(p_1\to p_2)=D_X(p_1\to p_\text{now})+D_X(p_\text{now}\to p_2)$$
 
 interprets the LHS as the amount of supply required for a price increase $p_1\nearrow p_\text{now}$, plus the (familiar) depth starting from the current price.
+
 ### Depth concentration
+
 We can write an explicit formula for the relative depth concentration in a price band within a larger band $[p_1,p_2]\subset [p_\perp,p_\top]$, notably independent of the constant $k$.
 
 $$\underset{[p_1,p_2]\subset[p_\perp,p_\top]}{\text{Concentration}}=\frac{\text{Depth}[p_1,p_2]}{\text{Depth}[p_\perp,p_\top]}=\frac{\sqrt\frac 1{p_1}-\sqrt\frac 1{p_2}}{\sqrt\frac 1{p_\perp}-\sqrt\frac 1{p_\top}}$$
@@ -153,7 +179,9 @@ $$\begin{aligned}
 So assuming the entire market lives within a 10% band, merely 10% of capital is allocated to trading within a %1 band, and merely 1% is allocated to trading within a basis point!
 ## What about fees?
 Percentage fees are crucial for LP revenue. They slightly increase slippage, especially for larger trades.
+
 # Concentrated liquidity
+
 Classically, there is a clear distinction between capitalists, who passively provide capital, and those who actively employ capital (often delegated to them). In DeFi terminology, capitalists are the *passive* liquidity providers. However, *active* liquidity providers are superior market makers, who have strong potential to enhance capital efficiency capital efficiency. We illustrate this with a case study: Uniswap v2 vs Uniswap v3.
 
 Uniswap v2 is a constant-product AMM. LP UX is roughly: choose pair → deposit assets → receive LP token → earn fees → exit. LPs must supply equal value of both tokens (to preserve pool price). Since LP positioned are fully determined by deposited capital, LP tokens are just fungible ERC-20 tokens.
