@@ -34,15 +34,15 @@ Liquidity is measurable by a few key metrics:
 Spread is a threshold cost which dominates small trades. Beyond the threshold, the trade begins to consume depth. As trade size increases, depth begins to dominate its cost.
 
 Before diving a bit deeper, we record a common unit of measurement in finance:
-**Definition.** A basis point (plural bps) is a hundredth of a percent $0.01\%=\frac 1{10,000}$.
+**Definition.** A basis point (plural bps) is a hundredth of a percent $0.01％=\frac 1{10,000}$.
 ## Spread
 Assuming the market price is within spread interval, a taker must pay a premium to immediately initiate a trade. Wider spread → higher premium.
 
 $$ [\text{highest bid},\text{lowest ask}] $$
 
-A narrow spread thus increases capital efficiency, especially for small trades. A spread of 10 bps means the highest bid and lowest ask differ by $0.10\%$.
+A narrow spread thus increases capital efficiency, especially for small trades. A spread of 10 bps means the highest bid and lowest ask differ by $0.10％$.
 ## Depth
-High depth around an exchange rate leads to price stability: even large trades will not cause volatility. The statement "there's $10K of BTC buy-side depth per bp at the current price" means you can buy $10K-worth of BTC and incur a price change of at most one basis point, i.e $0.01\%$.
+High depth around an exchange rate leads to price stability: even large trades will not cause volatility. The statement "there's $10K of BTC buy-side depth per bp at the current price" means you can buy $10K-worth of BTC and incur a price change of at most one basis point, i.e $0.01％$.
 
 The depth of liquidity in a price interval should be thought of as the supply of capital deployed there. High depth at exorbitantly high/low prices is wasted capital. We'll unpack this later for [constant-product AMMs](###Depth-analysis).
 
@@ -146,8 +146,8 @@ $$\underset{[p_1,p_2]\subset[p_\perp,p_\top]}{\text{Concentration}}=\frac{\text{
 Let's analyze the capital efficiency of a constant-product AMM for a **stable pair** USDC/USDT. by looking at the relative concentration of a bp interval vs a 1% interval (factor of 100)
 
 $$\begin{aligned}
-\underset{[0.9999,1.0001]\subset[0.9,1.1]}{\text{Concentration}} &\approx 0.0994\% \\
-\underset{[0.99,1.01]\subset[0.9,1.1]}{\text{Concentration}} &\approx 9.94\%
+\underset{[0.9999,1.0001]\subset[0.9,1.1]}{\text{Concentration}} &\approx 0.0994％ \\
+\underset{[0.99,1.01]\subset[0.9,1.1]}{\text{Concentration}} &\approx 9.94％
 \end{aligned}$$
 
 So assuming the entire market lives within a 10% band, merely 10% of capital is allocated to trading within a %1 band, and merely 1% is allocated to trading within a basis point!
