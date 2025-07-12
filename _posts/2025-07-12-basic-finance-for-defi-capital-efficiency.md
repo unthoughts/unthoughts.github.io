@@ -8,9 +8,7 @@ mathjax: true
 author: IV
 ---
 
-This post attempts to organize some basic financial concepts that arise in DeFi surrounding capital efficiency.
-
-Capital efficiency is an ordinal property of markets that measures how efficiently capital generates economic outputs such as liquidity and yield.
+Capital efficiency is an ordinal property of markets that measures how efficiently capital generates economic outputs such as liquidity and yield. This post attempts to organize basic financial concepts related to it that arise in DeFi.
 
 # Liquidity
 
