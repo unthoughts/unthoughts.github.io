@@ -42,17 +42,17 @@ $$ [\text{highest bid},\text{lowest ask}] $$
 
 A narrow spread thus increases capital efficiency, especially for small trades. A spread of 10 bps means the highest bid and lowest ask differ by $0.10％$.
 ## Depth
-High depth around an exchange rate leads to price stability: even large trades will not cause volatility. The statement "there's $10K of BTC buy-side depth per bp at the current price" means you can buy $10K-worth of BTC and incur a price change of at most one basis point, i.e $0.01％$.
+High depth around an exchange rate leads to price stability: even large trades will not cause volatility. The statement "there's 10K USD of BTC buy-side depth per bp at the current price" means you can buy 10K USD-worth of BTC and incur a price change of at most one basis point, i.e $0.01％$.
 
 The depth of liquidity in a price interval should be thought of as the supply of capital deployed there. High depth at exorbitantly high/low prices is wasted capital. We'll unpack this later for [constant-product AMMs](###Depth-analysis).
 
 Depth is crucial also for stable capital-efficient loan markets because it ensures liquidations are profitable to liquidators. We illustrate the opposite extreme: how shallow depth triggers a liquidation death spiral. The loan market in question is borrowing USD against BTC collateral.
-* Suppose Alice loaned $1M to Bob against 10 BTC. Suppose Bob defaults, so that Alice seizes 10 BTC. Now suppose Alice wishes to liquidate the loan i.e. sell the BTC for USD. If the BTC/USD market in question has shallow liquidity, the exchange rate would dip against Alice: she may sell 1 BTC at a good price, but any larger amount would sell at an increasing loss to her. In case of an over-collateralized loan, Alice can make a quick profit even if she sells some of her BTC underpriced. Such a sale would lower the BTC/USD exchange rate against BTC, potentially triggering more liquidations.
+* Suppose Alice loaned 1M USD to Bob against 10 BTC. Suppose Bob defaults, so that Alice seizes 10 BTC. Now suppose Alice wishes to liquidate the loan i.e. sell the BTC for USD. If the BTC/USD market in question has shallow liquidity, the exchange rate would dip against Alice: she may sell 1 BTC at a good price, but any larger amount would sell at an increasing loss to her. In case of an over-collateralized loan, Alice can make a quick profit even if she sells some of her BTC underpriced. Such a sale would lower the BTC/USD exchange rate against BTC, potentially triggering more liquidations.
 * Depth is the dampener of liquidations, defending against chain-reactions and death spirals.
 ## Slippage
-Products sold in stores typically have posted prices, which trivialize economic calculation. The the naive approach to buying some amount of an asset would be to multiply its market price-per-unit by the amount.
+Products sold in stores typically have posted prices, which trivialize economic calculation. The naive approach to buying some amount of an asset would be to multiply its market price-per-unit by the amount.
 
-If the market price is a 1 USD/unit, I naively expect $100 to buy me 100 units. *Slippage* is any deviation from this expected outcome. Such deviations are determined entirely by trade size, spread, and depth. Slippage of this form can be addressed at the application level, e.g. via aggregators and routers which traverse multiple markets.
+If the market price is a 1 USD/unit, I naively expect 100 USD to buy me 100 units. *Slippage* is any deviation from this expected outcome. Such deviations are determined entirely by trade size, spread, and depth. Slippage of this form can be addressed at the application level, e.g. via aggregators and routers which traverse multiple markets.
 
 There is another, subtler type of slippage. Even if I have perfect knowledge of the market mechanism (e.g. AMM curve) and its current state, I do not know the market state at the execution of my order. Despite my ability to perfectly simulate my trade, I cannot predict the market conditions at execution: reality can differ from my expectations, resulting again in *slippage*. Such slippage can be honest, e.g. competitors pay higher priority fees and overtake me, or manipulative, e.g. sequencers manipulating ordering.
 # Market-makers
