@@ -8,7 +8,7 @@ mathjax: true
 author: IV
 ---
 
-This post attempts to organize a basic understanding of liquidity, oriented at DeFi. We'll define liquidity and its key metrics, and analyze it for constant-product AMMs. We'll end with a brief overview of concentrated liquidity and impermanent loss.
+This post attempts to organize a basic understanding of liquidity, oriented at DeFi. We'll define liquidity and its key metrics, and analyze it for constant-product AMMs. We'll touch on impermanent loss and end with a brief overview of concentrated liquidity.
 
 # Liquidity
 
