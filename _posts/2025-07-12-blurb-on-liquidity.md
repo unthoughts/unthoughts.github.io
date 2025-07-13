@@ -97,7 +97,7 @@ To emphasize - impermanent loss is only defined with respect to an initial depos
 Impermanent loss is so-called because it may be transient. It is caused by arbitrage traders reacting to market shifts:
 1. One of the assets appreciates outside the AMM, affecting the exchange rates.
 2. Arbitrage traders buy the appreciate asset from the AMM for cheaper than on the external market.
-3. The AMM supply of the appreciated asset is smaller.
+3. The AMM supply of the appreciated asset decreases until the AMM discovers market price.
 4. If an LP redeems their share of each asset, they end up with a smaller amount of the appreciated asset than they deposited.
 
 # Worked example: constant-product AMMs
@@ -199,7 +199,7 @@ So assuming the entire market lives within a 10% band, merely 10% of capital is 
 
 ## Impermanent loss
 
-Consider an ETH/USDC pool with initial supply of 100 ETH and 100K USDC, so initial ETH price is 1000 USDC and the constant is $k=10^7$. Now assume ETH price doubled to 2000 USDC. We compute ETH reserves:
+Consider an ETH/USDC pool with initial supply of 100 ETH and 100K USDC, so initial ETH price is 1000 USDC and the constant is $k=10^7$. Now assume ETH price doubled to 2000 USDC. Traders flock in to buy the underpriced ETH from the AMM. We compute the ETH reserves at the end of price discovery, when the AMM price has stabilized at 2000 USDC per ETH:
 
 $$
 x(p)=\sqrt\frac kp=\sqrt \frac{10^7}{2000}=\sqrt{5000}\approx 70.71.
