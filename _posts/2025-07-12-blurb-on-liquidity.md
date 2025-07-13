@@ -199,7 +199,7 @@ So assuming the entire market lives within a 10% band, merely 10% of capital is 
 
 ## Impermanent loss
 
-Consider an ETH/USDC pool with initial supply of 100 ETH and 100K USDC, so initial ETH price is 1000 USDC and the constant is $k=10^7$. Now assume ETH price doubled to 2000 USDC. Traders flock in to buy the underpriced ETH from the AMM. We compute the ETH reserves at the end of price discovery, when the AMM price has stabilized at 2000 USDC per ETH:
+Consider an ETH/USDC pool with initial supply of 100 ETH and 100K USDC, so initial ETH price is 1000 USDC and the constant is $k=10^7$. Now assume ETH price doubled to 2000 USD on the outside. Traders flock in to buy the underpriced ETH from the AMM. We compute the ETH reserves at the end of price discovery, when the AMM price has stabilized at 2000 USDC per ETH:
 
 $$
 x(p)=\sqrt\frac kp=\sqrt \frac{10^7}{2000}=\sqrt{5000}\approx 70.71.
