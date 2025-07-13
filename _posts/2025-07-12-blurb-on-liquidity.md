@@ -8,7 +8,7 @@ mathjax: true
 author: IV
 ---
 
-This post attempts to organize a basic understanding of liquidity, oriented at DeFi.
+This post attempts to organize a basic understanding of liquidity, oriented at DeFi. We'll define liquidity and its key metrics, and analyze it for constant-product AMMs. We'll end with a brief overview of concentrated liquidity and impermanent loss.
 
 # Liquidity
 
@@ -34,6 +34,7 @@ Liquidity is measurable by a few key metrics:
 Spread is a threshold cost which dominates small trades. Beyond the threshold, the trade begins to consume depth. As trade size increases, depth begins to dominate its cost.
 
 Before diving a bit deeper, we record a common unit of measurement in finance:
+
 **Definition.** A basis point (plural bps) is a hundredth of a percent $0.01％=\frac 1{10,000}$.
 
 ## Spread
@@ -73,13 +74,31 @@ Market makers (henceforth MMs) streamline market operations by providing supply 
 
 ## Order-book market-makers
 
-In order-book markets, MMs act by posting trades that bring the market closer to equilibrium. The naive business model is simple: manufacture spread and profit off it. Specifically, MMs manufacture spread by maintaining a gap between their highest bids and lowest asks. They aim for a narrow spread when competition is high and risk is low, and conversely.
+In order-book markets, MMs act by posting trades that bring the market closer to equilibrium. The naive business model is simple: manufacture spread and profit off it. Specifically, MMs manufacture spread by maintaining a gap between their highest bids and lowest asks. They aim for a narrow spread when competition is high and risk is low, and conversely. Let's make this a bit more explicit. Assume Alice and Bob are competing MMs. If Alice quotes (posts orders) slightly tighter than Bob, then her orders are more attractive to traders, and they'll get executed first. This is obviously good if she profits, but a volatile market may actually cause tight spread to incur losses.
 
-## AMMs (automatic market makers)
+Although MMs profit off of wider spread, a competitive market also incentivizes them to provide *depth* around their *tightest* quotes. Indeed, once demand depletes Alice's tightest quotes, she no longer has any competitive advantage over Bob. The more depth she provides, the more orders she will be able to capture from Bob at her tighter spread (despite profiting less per unit exchanged).
+
+To summarize, order-book market-makers are precisely liquidity providers!
+
+## AMMs (automatic market makers); impermanent loss
 
 An AMM is an implementation of a market that:
 1. Automatically computes exchange rates based on its state.
 2. Automatically distributes supply across the exchange-rate curve to create liquidity.
+
+Since AMMs automatically manage capital, the only *required* making is the deployment of capital. It so happens that AMM terminology refers to these capitalists as liquidity providers. As we shall see below, more refined AMM designs actually involve makers who choose where to deploy capital, i.e. where to create depth. In this sense, they are indeed liquidity providers as opposed to "mere capitalists".
+
+Before continuing, we'll define an important concept that is often overcomplicated by only looking at examples.
+
+**Definition.** A pair (LP position, initial deposit) is at *impermanent loss* if the current the value of the LP position is lower than the value of the initial deposit.
+
+To emphasize - impermanent loss is only defined with respect to an initial deposit; it's not an intrinsic property of an LP position.
+
+Impermanent loss is so-called because it may be transient. It is caused by arbitrage traders reacting to market shifts:
+1. One of the assets appreciates outside the AMM, affecting the exchange rates.
+2. Arbitrage traders buy the appreciate asset from the AMM for cheaper than on the external market.
+3. The AMM supply of the appreciated asset is smaller.
+4. If an LP redeems their share of each asset, they end up with a smaller amount of the appreciated asset than they deposited.
 
 # Worked example: constant-product AMMs
 
@@ -108,6 +127,8 @@ Note the $Y$-price of a unit of $X$ obeys an inverse square law w.r.t to the sup
 Prices are not encoded by the AMM equation, but rather discovered by the market. The equation merely constrains the supplies to satisfy diminishing marginal utility, which is necessary for price discovery. (Play around with a constant-sum equation and see how the resulting market is severely misbehaved. Hint: the exchange ratio must be 1:1, so no diminishing marginal utility and therefore no price discovery and the pool is easy to drain.)
 
 ## Depth analysis
+
+In this section we'll quantitatively analyze the depth in constant-product AMMs. Our goal is to answer questions like "what percent of the supply is employed for trading within a given price range".
 
 We can express supply $x$ as a function of the $Y$-price per unit of $X$: $p=\frac yx$.
 
@@ -175,6 +196,19 @@ $$\begin{aligned}
 \end{aligned}$$
 
 So assuming the entire market lives within a 10% band, merely 10% of capital is allocated to trading within a %1 band, and merely 1% is allocated to trading within a basis point!
+
+## Impermanent loss
+
+Consider an ETH/USDC pool with initial supply of 100 ETH and 100K USDC, so initial ETH price is 1000 USDC and the constant is $k=10^7$. Now assume ETH price doubled to 2000 USDC. We compute ETH reserves:
+
+$$
+x(p)=\sqrt\frac kp=\sqrt \frac{10^7}{2000}=\sqrt{5000}\approx 70.71.
+$$
+
+Suppose Alice initially owned 10% of the pool.
+* Her initial deposit was 10 ETH and 10K USDC. Value = 30,000 USD.
+* Her current LP position is 7.071 ETH and 14,142 USDC. Value ≈ 28,284 USD.
+
 ## What about fees?
 Percentage fees are crucial for LP revenue. They slightly increase slippage, especially for larger trades.
 
@@ -186,4 +220,6 @@ Uniswap v2 is a constant-product AMM. LP UX is roughly: choose pair → deposit 
 
 Uniswap v3 is a "piecewise-constant-product" AMM. LP UX is roughly: choose pair → choose fee tier → choose price range → deposit assets → receive LP token → earn fees → reposition/exit. Each pool partitions the allowed price range via *ticks*, via which LPs can specify their desired price bands for deploying capital (adding depth). Due to the added complexity of the liquidity position, LP tokens are (currently) NFTs, encoding more than the ERC-20 standard allows.
 
-The ability to concentrate capital in a chosen price range precisely means LPs are free to choose where to provide depth. Let's illustrate how beneficial this design is for capital efficiency by examining a stable pair, e.g. USDC/USDT (I wonder how well this will age). The vast majority of LPs will choose to provide depth in a narrow band about the 1:1 rate, so liquidity will be very deep in the center and very shallow at depegged exchange rates. If Alice deposits in tick range $[t_1,t_3]$ and Bob deposits in $[t_2,t_4]$, both are active in $[t_2,t_3]$, and both provide liquidity to the constant-product AMM associated to this small interval. The locality of each piece in Uniswap v3 mitigates the slow $\frac1\surd$ decay of depth in constant-product AMMs to small intervals.
+The ability to concentrate capital in a chosen price range precisely means LPs are free to choose where to provide depth. Let's illustrate how beneficial this design is for capital efficiency by examining a stable pair, e.g. USDC/USDT (I wonder how well this will age). The vast majority of LPs will choose to provide depth in a narrow band about the 1:1 rate, so liquidity will be very deep in the center and very shallow at de-pegged exchange rates. If Alice deposits in tick range $[t_1,t_3]$ and Bob deposits in $[t_2,t_4]$, both are active in $[t_2,t_3]$, and both provide liquidity to the constant-product AMM associated to this small interval. The locality of each piece in Uniswap v3 mitigates the slow $\frac1\surd$ decay of depth in constant-product AMMs to small intervals.
+
+In a sense, piecewise-constant-product AMMs interpolate between a constant-product AMM on one end, and an order-book in the other: liquidity providers act as market makers by choosing where to deploy capital. Concentrated liquidity assists price discovery due to aligned incentives: LPs earn trading fees when their deployed capital is used, so they naturally want to provide depth near market prices. Order-books still have some advantages: market-makers have room for more capital efficient strategies, and they're not exposed to impermanent loss!
