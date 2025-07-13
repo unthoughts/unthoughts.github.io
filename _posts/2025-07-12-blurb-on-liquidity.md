@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Basic Finance for DeFi: Capital Efficiency"
+title: "Blurb on Liquidity"
 date: 2025-07-12
 tags: [finance, liquidity, DeFi, AMM]
 comments: true
@@ -8,13 +8,11 @@ mathjax: true
 author: IV
 ---
 
-Capital efficiency is an ordinal property of markets that measures how efficiently capital generates economic outputs such as liquidity and yield.
-
-This post attempts to organize basic financial concepts related to it that arise in DeFi.
+This post attempts to organize a basic understanding of liquidity, oriented at DeFi.
 
 # Liquidity
 
-Liquidity is an ordinal property of markets, and is crucial for capital efficiency. Folklore intuition can be summed up in one line:
+Liquidity is a property of markets, crucial for capital efficiency. Folklore intuition can be summed up in one line:
 > A market is highly liquid if it can quickly execute trades with minimal price changes.
 
 For example, major stock exchanges are liquid markets for commonly traded stocks.
@@ -107,7 +105,7 @@ $$\frac{y}{x}=\frac{k}{x^2}\longrightarrow\frac{y+\Delta y}{x+\Delta x}=\frac{k}
 
 Note the $Y$-price of a unit of $X$ obeys an inverse square law w.r.t to the supply of $X$: price decays quadratically as supply grows. This super-linear decay also exhibits diminishing marginal utility.
 
-Prices are not encoded by the AMM equation, but rather discovered by the market. The equation merely constrains the supplies to satisfy diminishing marginal utility, which is necessary for price discovery. (Play around with a constant-sum equation and see how the resulting market is severely misbehaved.)
+Prices are not encoded by the AMM equation, but rather discovered by the market. The equation merely constrains the supplies to satisfy diminishing marginal utility, which is necessary for price discovery. (Play around with a constant-sum equation and see how the resulting market is severely misbehaved. Hint: the exchange ratio must be 1:1, so no diminishing marginal utility and therefore no price discovery and the pool is easy to drain.)
 
 ## Depth analysis
 
@@ -182,7 +180,7 @@ Percentage fees are crucial for LP revenue. They slightly increase slippage, esp
 
 # Concentrated liquidity
 
-Classically, there is a clear distinction between capitalists, who passively provide capital, and those who actively employ capital (often delegated to them). In DeFi terminology, capitalists are the *passive* liquidity providers. However, *active* liquidity providers are superior market makers, who have strong potential to enhance capital efficiency capital efficiency. We illustrate this with a case study: Uniswap v2 vs Uniswap v3.
+Classically, there is a clear distinction between capitalists, who passively provide capital, and those who actively employ capital (often delegated to them). In DeFi terminology, capitalists are the *passive* liquidity providers. However, *active* liquidity providers are superior market makers, who have strong potential to enhance capital efficiency. We illustrate this with a case study: Uniswap v2 vs Uniswap v3.
 
 Uniswap v2 is a constant-product AMM. LP UX is roughly: choose pair → deposit assets → receive LP token → earn fees → exit. LPs must supply equal value of both tokens (to preserve pool price). Since LP positioned are fully determined by deposited capital, LP tokens are just fungible ERC-20 tokens.
 
