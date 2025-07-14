@@ -8,7 +8,7 @@ mathjax: true
 author: IV
 ---
 
-This post attempts to organize a basic understanding of liquidity, oriented at DeFi. We'll define liquidity and its key metrics, and analyze it for constant-product AMMs. We'll touch on impermanent loss and end with a brief overview of concentrated liquidity.
+This post attempts to organize a basic understanding of liquidity, oriented at DeFi. We'll define liquidity and its key metrics, and analyze it for constant-product AMMs. Then we'll touch on impermanent loss and end with a brief overview of concentrated liquidity.
 
 # Liquidity
 
@@ -92,13 +92,18 @@ Before continuing, we'll define an important concept that is often overcomplicat
 
 **Definition.** A pair (LP position, initial deposit) is at *impermanent loss* if the current the value of the LP position is lower than the current value of the initial deposit (i.e. at current exchange rates).
 
-To emphasize - impermanent loss is only defined with respect to an initial deposit; it's not an intrinsic property of an LP position.
+To emphasize - impermanent loss is only defined with respect to an initial deposit; it's not an intrinsic property of an LP position. Put succinctly, impermanent loss is the opportunity cost of being an LP instead of holding on to the capital in a wallet. This opportunity cost if offset by expected profit from trading fees.
 
 Impermanent loss is so-called because it may be transient. It is caused by arbitrage traders reacting to market shifts:
-1. One of the assets appreciates outside the AMM, affecting the exchange rates.
-2. Arbitrage traders buy the appreciate asset from the AMM for cheaper than on the external market.
+1. The market outside the AMM shifts, affecting the market exchange rate between the AMM assets.
+2. Arbitrage traders buy the appreciated asset from the AMM for cheaper than on the external market.
 3. The AMM supply of the appreciated asset decreases until the AMM discovers market price.
-4. If an LP redeems their share of each asset, they end up with a smaller amount of the appreciated asset than they deposited.
+4. If an LP redeems their share of each asset, they end up with a smaller amount of the appreciated asset than they deposited, but a larger amount of the depreciated asset.
+5. The current value of the redeemed LP position is lower than the current value of the original deposit.
+
+Risk of impermanent loss vanishes once AMM exchange rates return to the neighborhood of the initial deposit. For this reason, it is customary for volatile pair LPs to charge higher fees.
+
+The above formulation should make it clear there is no "impermanent gain" - arbitrage traders buy whichever asset is undervalued by the AMM.
 
 # Worked example: constant-product AMMs
 
