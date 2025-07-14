@@ -80,7 +80,7 @@ Although MMs profit off of wider spread, a competitive market also incentivizes 
 
 To summarize, order-book market-makers are precisely liquidity providers!
 
-## AMMs (automatic market makers); impermanent loss
+## AMMs; impermanent loss
 
 An AMM is an implementation of a market that:
 1. Automatically computes exchange rates based on its state.
@@ -90,7 +90,7 @@ Since AMMs automatically manage capital, the only *required* making is the deplo
 
 Before continuing, we'll define an important concept that is often overcomplicated by only looking at examples.
 
-**Definition.** A pair (LP position, initial deposit) is at *impermanent loss* if the current the value of the LP position is lower than the value of the initial deposit.
+**Definition.** A pair (LP position, initial deposit) is at *impermanent loss* if the current the value of the LP position is lower than the current value of the initial deposit (i.e. at current exchange rates).
 
 To emphasize - impermanent loss is only defined with respect to an initial deposit; it's not an intrinsic property of an LP position.
 
@@ -159,7 +159,7 @@ x_0 &=[x(p_0)-x(p_1)]+[x(p_1)-x(p_2)]+\cdots \\
  &=D_X(p_0\to p_1)+D_X(p_1\to p_2)+\cdots 
 \end{aligned}$$
 
-> The partition of total current supply by depth specifies the amount of current supply allocated to each price band. 
+> The partition of total current supply by depth specifies the amount of current supply allocated to each price band.
 
 How much supply is "wasted" on exorbitantly high prices? Consider a $\overbrace{\text{USDC}}^Y/\overbrace{\text{ETH}}^X$ pool with $k=10^{10}$. As of July 2025, 1 ETH ≈ 3000 USD, so $p_0=3000$ whence $x_0=\sqrt\frac{10^{10}}{3000}\approx 1825$. A high USD-price of ETH is denoted $p_\top$. The depth formula gives
 
@@ -206,7 +206,7 @@ x(p)=\sqrt\frac kp=\sqrt \frac{10^7}{2000}=\sqrt{5000}\approx 70.71.
 $$
 
 Suppose Alice initially owned 10% of the pool.
-* Her initial deposit was 10 ETH and 10K USDC. Value = 30,000 USD.
+* Her initial deposit was 10 ETH and 10K USDC. Current value = 30,000 USD.
 * Her current LP position is 7.071 ETH and 14,142 USDC. Value ≈ 28,284 USD.
 
 ## What about fees?
