@@ -121,7 +121,7 @@ This section is dedicated to common types of derivatives. Apart from forwards, h
 
 |                 | Futures     | Options   |
 |-----------------|-------------|-----------|
-| **Expiring**.   |             |           |
+| **Expiring**    |             |           |
 | **Perpetual**   |             |           |
 
 ### Expiring derivatives
@@ -241,6 +241,7 @@ Expiry causes liquidity fragmentation over various expiration dates. Typically, 
 
 **Definition.** A perpetual futures contract is a MtM contract without expiry, specifying a sequence of trades at specified dates and with specified notional and payoff structure, but whose effective exchange rates are determined dynamically at each MtM. PnL is settled via specified variation margin logic.
 
+```
 PerpetualFuturesPosition
   // Core agreement
   owner                   // Position holder
@@ -268,5 +269,6 @@ PerpetualFuturesPosition
   // Liquidation and risk
   insurance coverage      // Portion covered by protocol insurance fund (if any)
   oracle index.           // Price feed used for MtM and funding
+```
 
 Check out [this post by Paradigm](https://www.paradigm.xyz/2021/03/the-cartoon-guide-to-perps) for some mental models of perps.
