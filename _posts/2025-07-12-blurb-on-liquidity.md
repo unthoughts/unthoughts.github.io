@@ -13,7 +13,7 @@ This post attempts to organize a basic understanding of liquidity, oriented at D
 # Liquidity
 
 Liquidity is a property of markets, crucial for capital efficiency. Folklore intuition can be summed up in one line:
-> A market is highly liquid if it can quickly execute trades with minimal price changes.
+> A market is liquid if it can quickly execute trades with minimal price changes.
 
 For example, major stock exchanges are liquid markets for commonly traded stocks.
 
@@ -25,13 +25,14 @@ For some history see [e.g. this stackexchange answer](https://economics.stackexc
 
 Liquidity is measurable by a few key metrics:
 
-| Metric   | Meaning                                                               | Consequence                               | Cause                                                                                                                                       |
-| -------- | --------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| Spread   | Lowest sell price (best ask) minus highest buy price (best bid).      | Wide spread → high cost to initiate trade | Insufficient market-making                                                                                                                  |
-| Depth    | What asset amount can be traded within some price range?              | Shallow depth → volatility                | Insufficient supply                                                                                                                         |
-| Slippage | What I expected when placing my trade vs what I got when it executed. | High slippage → I get less                | App-level: depth & spread<br><br>Core-level: market state discrepancy between simulation & execution, e.g. due to competition, latency, MEV |
+| Metric       | Meaning                                                               | Consequence                               | Cause                                                                                                      |
+| ------------ | --------------------------------------------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Spread       | Lowest sell price (best ask) minus highest buy price (best bid).      | Wide spread → high cost to initiate trade | Insufficient market-making                                                                                 |
+| Depth        | What asset amount can be traded within some price range?              | Shallow depth → volatility                | Insufficient supply                                                                                        |
+| Price impact | How does my trade impact the current market state?                    | High price impact → I get less            | App-level: depth & spread                                                                                  |
+| Slippage     | What I expected when placing my trade vs what I got when it executed. | High slippage → I get less                | Core-level: market state discrepancy between simulation & execution, e.g. due to competition, latency, MEV |
 
-Spread is a threshold cost which dominates small trades. Beyond the threshold, the trade begins to consume depth. As trade size increases, depth begins to dominate its cost.
+Spread is a threshold cost which dominates small trades. Larger trades begin to consume depth, which outweighs the initial spread.
 
 Before diving a bit deeper, we record a common unit of measurement in finance:
 
@@ -55,13 +56,15 @@ Depth is crucial also for stable capital-efficient loan markets because it ensur
 * Suppose Alice loaned 1M USD to Bob against 10 BTC. Suppose Bob defaults, so that Alice seizes 10 BTC. Now suppose Alice wishes to liquidate the loan i.e. sell the BTC for USD. If the BTC/USD market in question has shallow liquidity, the exchange rate would dip against Alice: she may sell 1 BTC at a good price, but any larger amount would sell at an increasing loss to her. In case of an over-collateralized loan, Alice can make a quick profit even if she sells some of her BTC underpriced. Such a sale would lower the BTC/USD exchange rate against BTC, potentially triggering more liquidations.
 * Depth is the dampener of liquidations, defending against chain-reactions and death spirals.
 
-## Slippage
+## Price impact
 
 Products sold in stores typically have posted prices, which trivialize economic calculation. The naive approach to buying some amount of an asset would be to multiply its market price-per-unit by the amount.
 
-If the market price is a 1 USD/unit, I naively expect 100 USD to buy me 100 units. *Slippage* is any deviation from this expected outcome. Such deviations are determined entirely by trade size, spread, and depth. Slippage of this form can be addressed at the application level, e.g. via aggregators and routers which traverse multiple markets.
+If the market price is a 1 USD/unit, I naively expect 100 USD to buy me 100 units. *Price impact* is any deviation from this expected outcome. Such deviations are deterministic in the current market state, and determined entirely by trade size, spread, and depth. Price impact can be mitigated at the application level, e.g. via aggregators and routers which traverse multiple markets.
 
-There is another, subtler type of slippage. Even if I have perfect knowledge of the market mechanism (e.g. AMM curve) and its current state, I do not know the market state at the execution of my order. Despite my ability to perfectly simulate my trade, I cannot predict the market conditions at execution: reality can differ from my expectations, resulting again in *slippage*. Such slippage can be honest, e.g. competitors pay higher priority fees and overtake me, or manipulative, e.g. sequencers manipulating ordering.
+## Slippage
+
+Even if I have perfect knowledge of the market mechanism (e.g. AMM curve) and its current state, I do not know the future market state at the execution of my order. Despite my ability to perfectly simulate my trade, I cannot predict the market conditions at execution: reality can differ from my expectations, resulting in *slippage*. Such slippage can be honest, e.g. competitors pay higher priority fees and overtake me, or manipulative, e.g. sequencers manipulating ordering.
 
 # Market-makers
 
@@ -215,7 +218,7 @@ Suppose Alice initially owned 10% of the pool.
 * Her current LP position is 7.071 ETH and 14,142 USDC. Value ≈ 28,284 USD.
 
 ## What about fees?
-Percentage fees are crucial for LP revenue. They slightly increase slippage, especially for larger trades.
+Percentage fees are crucial for LP revenue. They slightly increase price impact, especially for larger trades.
 
 # Concentrated liquidity
 
@@ -225,6 +228,8 @@ Uniswap v2 is a constant-product AMM. LP UX is roughly: choose pair → deposit 
 
 Uniswap v3 is a "piecewise-constant-product" AMM. LP UX is roughly: choose pair → choose fee tier → choose price range → deposit assets → receive LP token → earn fees → reposition/exit. Each pool partitions the allowed price range via *ticks*, via which LPs can specify their desired price bands for deploying capital (adding depth). Due to the added complexity of the liquidity position, LP tokens are (currently) NFTs, encoding more than the ERC-20 standard allows.
 
-The ability to concentrate capital in a chosen price range precisely means LPs are free to choose where to provide depth. Let's illustrate how beneficial this design is for capital efficiency by examining a stable pair, e.g. USDC/USDT (I wonder how well this will age). The vast majority of LPs will choose to provide depth in a narrow band about the 1:1 rate, so liquidity will be very deep in the center and very shallow at de-pegged exchange rates. If Alice deposits in tick range $[t_1,t_3]$ and Bob deposits in $[t_2,t_4]$, both are active in $[t_2,t_3]$, and both provide liquidity to the constant-product AMM associated to this small interval. The locality of each piece in Uniswap v3 mitigates the slow $\frac1\surd$ decay of depth in constant-product AMMs to small intervals.
+The ability to concentrate capital in a chosen price range precisely means LPs are free to choose where to provide depth. Let's illustrate how beneficial this design is for capital efficiency by examining a stable pair, e.g. USDC/USDT (I wonder how well this will age). The vast majority of LPs will choose to provide depth in a narrow band about the 1:1 rate, so liquidity will be deep in the center and shallow at de-pegged exchange rates. If Alice deposits in tick range $[t_1,t_3]$ and Bob deposits in $[t_2,t_4]$, both are active in $[t_2,t_3]$, and both provide liquidity to the constant-product AMM associated to this small interval. The locality of each piece in Uniswap v3 mitigates the slow $\frac1\surd$ decay of depth in constant-product AMMs to small intervals.
+
+Unfortunately the piecewise design has a significant drawback: it exacerbates the risk of impermanent loss. For example, assume Alice concentrates her capital at in the range $[2900,3100]$ USD per ETH. Suppose ETH begins tp appreciate with respect to USD in the outside market. As usual, arbitrage traders buy the strong asset (ETH) from the pool. However, since Alice concentrated all her capital in this narrow range, if ETH appreciates beyond the interval, her entire initial deposit of ETH would be depleted and exchange for USD due to arbitrage. In other words, the narrow price range makes Alice more susceptible to impermanent loss. As usual, if the price moves back in range, the impermanent loss vanishes, and Alice can continue her plans for world domination.
 
 In a sense, piecewise-constant-product AMMs interpolate between a constant-product AMM on one end, and an order-book in the other: liquidity providers act as market makers by choosing where to deploy capital. Concentrated liquidity assists price discovery due to aligned incentives: LPs earn trading fees when their deployed capital is used, so they naturally want to provide depth near market prices. Order-books still have some advantages: market-makers have room for more capital efficient strategies, and they're not exposed to impermanent loss!
