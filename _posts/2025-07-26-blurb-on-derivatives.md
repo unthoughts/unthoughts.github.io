@@ -47,7 +47,7 @@ Let's illustrate how derivatives are vehicles for trading risk.
 
 * Evidently Alice wants USD because that is her denomination for the forwards contract.
 * Instead of writing and selling the forward contract, Alice could hang on to her 1 BTC. But waiting incurs a *risk*: she does not know the future BTC/USD exchange rate. Her 1 BTC may be worth less than 100K USD at the expiration date.
-* Alice wishes to transfer this risk to another party at some cost. She is willing to sell the contract for 1000 USD. A buyer is someone who is willing to pay 1000 USD upfront due to a belief that BTC will sufficiently appreciate relative to USD at strike price. What does "sufficiently" mean? At least enough to justify the opportunity cost of paying the 1000 USD upfront.
+* Alice wishes to transfer this risk to another party at some cost. She is willing to sell the contract. A buyer is willing to pay due to a belief that BTC will sufficiently appreciate relative to USD at strike price. What does "sufficiently" mean? At least enough to justify any opportunity costs involved.
 * Note Alice need not require 100K USD upfront. Such terms would impose severe opportunity cost on buyers, since they'd be parting from their 100K USD long before the expiration date.
 
 One should not confuse facilitators of the risk market with its participants.
@@ -62,13 +62,13 @@ Alice can write an IOU ("I owe you"): "Alice promises to redeem this note for on
 
 The word "fraud" in the context of fractional reserves is ill-received since this practice is standard in the banking industry. Bankers and financial engineers accept the "disadvantage" of insolvency and consequent collapse in case of bank runs. There are many interesting discussions about this "fine line", its risks and uncertainties, and its morality. For instance, some say the public is a voluntary participant in this engineering, and the engineers do not strictly commit to instant redemptions nor to much else. There is also the delicate question of "is it really fraud if we avoid insolvency"? We avoid these worthwhile topics - at least in this post - but we hint at the dormant fury of the author.
 
-The point of the rant is that regardless of their complexity, financial derivatives must obey the same reserve rules: issuers must have the assets to fulfill their obligation. If Alice writes and sells a forward contract to buy 1 BTC for 100K USD, she must hold 1 BTC at expiry; otherwise she is committing fraud. The same holds if Alice writes sells an option to buy her own forward contract: she must hold the forward at expiry.
+The point of the rant is that regardless of their complexity, financial derivatives must obey the same reserve rules: issuers must have the assets to fulfill their obligation. If Alice writes and sells a forward contract to buy 1 BTC for 100K USD, she must hold 1 BTC at expiry; otherwise she is committing fraud. The same holds if Alice writes and sells an option to buy her own forward contract: she must hold the forward at expiry.
 
 ## Some jargon: denomination, mark-to-market, margin, leverage
 
 **Definition.** A contract is said to be denominated in asset $X$ if all associated PnL (profit & loss) accounting and settlement (unless otherwise specified) are denominated in asset $X$.
 
-**Example.** BTC/USD forward: Alice is obligated to buy 1 BTC for 100K USD at a specified expiry. If the contract is BTC-denominated then Alice will receive 1 BTC. If it's USD-denominated, the 1 BTC will be converted into USD, which will then by paid to Alice.
+**Example.** BTC/USD forward: Alice is obligated to buy 1 BTC for 100K USD at a specified expiry. If the contract is BTC-denominated then Alice will receive 1 BTC. If it's USD-denominated, the 1 BTC will be converted into USD, which will then be paid to Alice.
 
 The forward contract above is unaware of market conditions until expiry. Often people want financial devices with more frequent accounting.
 
@@ -76,13 +76,13 @@ The forward contract above is unaware of market conditions until expiry. Often p
 
 **Definition.** A contract has mark-to-market (MtM) if the value of each party's position is periodically re-evaluated based on current market prices (e.g. some index), with consequent settlement according to contract terms.
 
-**Example.** Futures contracts typically have mark-to-market. Consider a BTC/USD futures between Alice long on BTC and Bob short on BTC. Once a day, their positions are re-evaluated according to the BTC/USD exchange rate. Suppose the rate moves in favor of BTC, i.e in favor of Alice. If the contract is BTC-denominated, Bob will pay Alice on this day.
+**Example.** Futures contracts typically have mark-to-market. Consider a BTC/USD futures between Alice long on BTC and Bob short on BTC. Once a day, their positions are re-evaluated according to the BTC/USD exchange rate. Suppose the rate moves in favor of BTC, i.e. in favor of Alice. If the contract is BTC-denominated, Bob will pay Alice on this day.
 
-**Example.** In an *interest rate swap* (IRS), two parties exchange interest payments on some notional amount (but without moving money). The sides of the trade are called *legs*. A *fixed* leg involves a fixed interest on the notional amount, with a *floating* legs denoted a variable interest rate, typically index-linked. A fixed/floating index-linked IRS is an MtM derivative; same for floating/floating IRS.
+**Example.** In an *interest rate swap* (IRS), two parties exchange interest payments on some notional amount (but without moving money). The sides of the trade are called *legs*. A *fixed* leg involves a fixed interest on the notional amount, while a *floating* leg denotes a variable interest rate, typically index-linked. A fixed/floating index-linked IRS is an MtM derivative; same for floating/floating IRS.
 
 MtM contracts without collateral are possible when counterparty risk is accepted. Otherwise, MtM typically enforces solvency and triggers liquidations.
 
-**Definition.** A contract may have *margin requirements* that specify how much collateral/margin all sides must provide enter the contract and maintain keep the position open without liquidation. A contract is said to be *margined* in asset $X$ if:
+**Definition.** A contract may have *margin requirements* that specify how much collateral/margin all sides must provide to enter the contract and maintain to keep the position open without liquidation. A contract is said to be *margined* in asset $X$ if:
 1. PnL accounting & settlement are denominated in $X$;
 2. $X$ is used as collateral;
 3. Margin accounting & settlement are denominated in $X$.
@@ -126,7 +126,7 @@ This section is dedicated to common types of derivatives. Apart from forwards, h
 
 ### Expiring derivatives
 
-Here we focus on with expiration dates for a trade (either right or obligation).
+Here we focus on derivatives with expiration dates for a trade (either right or obligation).
 
 As we approach expiry, risk diminishes since there is less room for a gap between the position and market conditions at expiry. Thus the market price of an expiring derivative converges to a limit which becomes clearer toward expiry.
 
@@ -235,7 +235,7 @@ Funding accounts for only *part* of the variation margin in perps. On one hand t
   * If the perp market is aligned with the underlying, no funding rate is paid and that's the end of the story.
   * If most of the perp market is long, Alice will need to pay a funding rate which will diminish her profits.
 
-Expiry causes liquidity fragmentation over various expiration dates. Typically, liquidity improves as expiry nears due to lessened risk. Perpetuals benefit from greater liquidity in this regard.
+Expiry causes liquidity fragmentation over various expiration dates. Typically, liquidity improves as expiry nears due to lessened risk and also the need to "roll over" to the next expiration date. Perpetuals benefit from greater liquidity in this regard.
 
 #### Perpetual futures
 
