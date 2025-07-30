@@ -76,7 +76,7 @@ The forward contract above is unaware of market conditions until expiry. Often p
 
 **Definition.** A contract has mark-to-market (MtM) if the value of each party's position is periodically re-evaluated based on current market prices (e.g. some index), with consequent settlement according to contract terms.
 
-**Example.** Futures contracts typically have mark-to-market. Consider a BTC/USD futures between Alice long on BTC and Bob short on BTC. Once a day, their positions are re-evaluated according to the BTC/USD exchange rate. Suppose the rate moves in favor of BTC, i.e. in favor of Alice. If the contract is BTC-denominated, Bob will pay Alice on this day.
+**Example.** Futures contracts typically have mark-to-market. Consider a BTC/USD futures between Alice long on BTC and Bob short on BTC. Once a day, their positions are re-evaluated according to the BTC/USD exchange rate. Suppose the rate moves in favor of BTC, i.e. in favor of Alice. If the contract is BTC-denominated, she will receive payment in BTC.
 
 **Example.** In an *interest rate swap* (IRS), two parties exchange interest payments on some notional amount (but without moving money). The sides of the trade are called *legs*. A *fixed* leg involves a fixed interest on the notional amount, while a *floating* leg denotes a variable interest rate, typically index-linked. A fixed/floating index-linked IRS is an MtM derivative; same for floating/floating IRS.
 

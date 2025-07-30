@@ -126,7 +126,11 @@ $$\Delta y=\frac{k-y(x+\Delta x)}{x+\Delta x}=\frac{k}{x+\Delta x}-y=\frac{-y\De
 
 Thus we see how $\Delta y$ inversely depends on the initial supply $x$.
 
-The exchange rate (price) charged by the AMM is just the ratio of supplies. The fraction $\frac{y}{x}$ is the supply of $Y$ fitting into a unit supply of $X$. That is, the $Y$-price of a unit of $X$. Price change is easily computable:
+We'll now compute the marginal/instantaneous $Y$-price per unit of $X$. We want to compute $dy/dx$ over the hyperbola. This is standard calculus. Consider the map $f(x,y)=xy$. By definition, its gradient $\nabla f=(y,x)$ at $p$ is perpendicular to the fiber over $fp$. In other words $\nabla f\cdot (dx,dy)=0$. Thus $\frac{dy}{dx}=-\frac yx$, so the exchange rate (price) charged by the AMM is just the ratio of supplies.
+
+**Remark.** The equality between infinitesimal supply ratios and global supply ratios is the exception rather than the norm. For instance, taking the asymmetric curve $x^\alpha y^{1-\alpha}=k$ produces a marginal price of $\frac{\alpha}{1-\alpha}\frac yx$ as opposed to the naive supply ratio $\frac yx$.
+
+Price change is easily computable:
 
 $$\frac{y}{x}=\frac{k}{x^2}\longrightarrow\frac{y+\Delta y}{x+\Delta x}=\frac{k}{(x+\Delta x)^2}. $$
 
