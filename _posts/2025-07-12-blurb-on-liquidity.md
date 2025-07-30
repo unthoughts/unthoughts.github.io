@@ -13,7 +13,7 @@ This post attempts to organize a basic understanding of liquidity, oriented at D
 # Liquidity
 
 Liquidity is a property of markets, crucial for capital efficiency. Folklore intuition can be summed up in one line:
-> A market is liquid if it can quickly execute trades with minimal price changes.
+> A market is liquid if it can quickly execute trades at good prices with minimal price changes.
 
 For example, major stock exchanges are liquid markets for commonly traded stocks.
 
