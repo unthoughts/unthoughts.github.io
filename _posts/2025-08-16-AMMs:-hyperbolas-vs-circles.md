@@ -56,7 +56,7 @@ The key takeaway is simple: our quarter circle looks like a compactified version
 
 ## Derivation
 
-Let's recall the derivation of marginal prices for constant function AMMs. Assume Alice wishes to trade $X_i\to X_j$ i.e. sell token $X_i$ in exchange for token $X_j$. The marginal $X_j$-price per unit of $X_i$ with respect to $f$ is geometric in nature. Specifically, if we take a tangent to the fiber in question $(dx_1,\dots ,dx_n)\in \mathrm T_pf^\leftarrow(fp)$ then the marginal price is precisely the rate of change $\frac{dx_j}{dx_i}$. It is easy computed using the gradient, which is perpendicular to the fibers by definition $\nabla f|_p\perp \mathrm T_pf^\leftarrow(fp)$. Indeed $\nabla f(x)\cdot dx=0$, so if we fix all directions besides $i,j$ we find $\partial _if\cdot dx_i+\partial _jf\cdot dx_j=0$. The implicit function theorem ensures
+Let's recall the derivation of marginal prices for constant function AMMs. Assume Alice wishes to trade $X_i\to X_j$ i.e. sell token $X_i$ in exchange for token $X_j$. The marginal $X_j$-price per unit of $X_i$ with respect to $f$ is geometric in nature. Specifically, if we take a tangent to the fiber in question $(dx_1,\dots ,dx_n)\in \mathrm T_pf^\leftarrow(fp)$ then the marginal price is precisely the rate of change $\frac{dx_j}{dx_i}$. It is easy computed using the gradient, which is perpendicular to the fibers by definition $\nabla f\mid _p\perp \mathrm T_pf^\leftarrow(fp)$. Indeed $\nabla f(x)\cdot dx=0$, so if we fix all directions besides $i,j$ we find $\partial _if\cdot dx_i+\partial _jf\cdot dx_j=0$. The implicit function theorem ensures
 
 $$\frac{dx_j}{dx_i}=-\frac{\partial _if}{\partial _jf}.$$
 
