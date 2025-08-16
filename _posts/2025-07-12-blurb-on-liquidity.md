@@ -77,7 +77,9 @@ Market makers (henceforth MMs) streamline market operations by providing supply 
 
 ## Order-book market-makers
 
-In order-book markets, MMs act by posting trades that bring the market closer to equilibrium. The naive business model is simple: manufacture spread and profit off it. Specifically, MMs manufacture spread by maintaining a gap between their highest bids and lowest asks. They aim for a narrow spread when competition is high and risk is low, and conversely. Let's make this a bit more explicit. Assume Alice and Bob are competing MMs. If Alice quotes (posts orders) slightly tighter than Bob, then her orders are more attractive to traders, and they'll get executed first. This is obviously good if she profits, but a volatile market may actually cause tight spread to incur losses.
+In order-book markets, MMs act by posting trades that bring the market closer to equilibrium. The naive business model is simple: manufacture spread and profit off it. Specifically, MMs manufacture spread by maintaining a gap between their highest bids and lowest asks. Profit happens by "completing cycles" e.g. buying a potatoes for 1 USD and selling them for 2 USD.
+
+Market makers aim for a narrow spread when competition is high and risk is low, and conversely. Let's make this a bit more explicit. Assume Alice and Bob are competing MMs. If Alice quotes (posts orders) slightly tighter than Bob, then her orders are more attractive to traders, and they'll get executed first. This is obviously good if she profits, but a volatile market may actually cause tight spread to incur losses.
 
 Although MMs profit off of wider spread, a competitive market also incentivizes them to provide *depth* around their *tightest* quotes. Indeed, once demand depletes Alice's tightest quotes, she no longer has any competitive advantage over Bob. The more depth she provides, the more orders she will be able to capture from Bob at her tighter spread (despite profiting less per unit exchanged).
 

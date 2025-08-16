@@ -1,0 +1,269 @@
+---
+layout: 
+title: "Sphere AMM"
+date: 2025-07-26
+tags: [DeFi, AMM, liquidity]
+comments: true
+mathjax: true
+author: IV
+---
+
+This is my take on the excellent [Orbital post](https://www.paradigm.xyz/2025/06/orbital) by Paradigm. 
+
+# Circles and Hyperbolas
+
+[We've looked](https://unthoughts.github.io/2025-07-12-blurb-on-liquidity/) at the constant-product AMM defined by fibers of $f(x,y)=xy$. Let's compare them to a different geometry: circles!
+
+## Circle AMM
+
+A circle centered about the origin makes little sense economically since it allows for negative supplies. Instead, let's take the circle centered about some $(a,b)\in \mathbb R^2$ in the positive quadrant. Our circles are fibers of the Euclidean distance from it, and we'll only look those of sufficiently small radius $r\leq\|(a,b)\|_2$ to avoid negative supplies.
+
+$$
+f(x,y)=d_2((x,y),(a,b))=\sqrt{(x-a)^2+(y-b)^2}
+$$
+
+So what now?
+
+First of all, circles are compact (in stark contrast to the unbounded hyperbolas from constant-product AMMs). Thus, supply of each asset is capped. We'll unpack the financial meaning of this global difference in geometry in the next section.
+
+Second, we should note that the symmetry of the circle actually makes trades ambiguous and undefined. Let's explain. Starting from an initial market state $(x,y)$ suppose Alice wishes to sell $\Delta x$ in exchange for $\Delta y$, i.e. shes wishes to execute a trade $(x,y)\rightarrow (x+\Delta x,y+\Delta y)$. If the AMM constraint is nice enough we can express what Alice will receive $\Delta y$ as a function of what she sells $\Delta x$. We [solved this exercise](https://unthoughts.github.io/2025-07-12-blurb-on-liquidity/) for the hyperbola $xy=k^2$ and found
+
+$$
+\Delta y=\frac{k^2-y(x+\Delta x)}{x+\Delta x}=\frac{k^2}{x+\Delta x}-y=\frac{-y\Delta x}{x+\Delta x}.
+$$
+
+Repeating for the circle constraint we find that $\Delta x,\Delta y$ are related by a quadratic polynomial. Hence are two allowed returns $\Delta y$ for any sold amount $\Delta x$ (and vice versa):
+
+$$
+\Delta y=-(y-b)\pm \sqrt{(y-b)^2-[2(x-a)\Delta x+(\Delta x)^2]}.
+$$
+
+So which increment should Alice receive in exchange for her $\Delta x$? The peculiarity becomes especially obvious when we take $\Delta x=0$, i.e. Alice gives nothing. Plugging into our formula we find $\Delta y\in \lbrace 0,-2(y-b) \rbrace$. So if the initial market state had $y<b$ then $-2(y-b)>0$ meaning it's possible for Alice to give nothing and receive something - for free!
+
+This is obviously madness, and we will stay clear of it by restricting ourselves to the lower left quarter slice of the sphere, where $x\leq a,y\leq b$. This slice of the sphere intersects each horizontal/vertical line at most once, ensuring trades are unambiguous and preventing any free arbitrage. Another solution would simply be to always return the lowest value of $\Delta y$, but restricting the curve is more convenient.
+
+Lastly, our choice of radius determines both minimal and maximal supply of both assets $X,Y$. Having our circle tangent to the axes precisely means each asset has a minimal supply of zero. Moreover, this minimal supply is attained precisely when the other asset attains a maximal supply, which is easily computed to be $x_\text{max}=a, y_\text{max}=b$. Regardless of radius and the value of the minimal supply, the marginal $Y$-price per unit $X$ will explode as $X$ approaches this minimum; it is a design question whether the AMM should maintain some positive minimal reserve threshold for whatever reason.
+
+## Side-by-side
+
+Enough words, time for pictures. Below are three superimposed plots: the hyperbola $xy=k^2$ (green), the circle $(x-k)^2+(y-k)^2=k^2$ (blue), and the normalized circle (red) that has been scaled and moved to have the same equal supply point as the hyperbola.
+
+The key takeaway is simple: our quarter circle looks like a compactified version of the hyperbola: the axes are now tangents at finite points instead of only asymptotically.
+
+<iframe src="https://www.geogebra.org/graphing/gze6tau4?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
+
+## Price and supply
+
+### Derivation
+
+Let's recall the derivation of marginal prices for constant function AMMs. Assume Alice wishes to trade $X_i\to X_j$ i.e. sell token $X_i$ in exchange for token $X_j$. The marginal $X_j$-price per unit of $X_i$ with respect to $f$ is geometric in nature. Specifically, if we take a tangent to the fiber in question $(dx_1,\dots ,dx_n)\in \mathrm T_pf^\leftarrow(fp)$ then the marginal price is precisely the rate of change $\frac{dx_j}{dx_i}$. It is easy computed using the gradient, which is perpendicular to the fibers by definition $\nabla f|_p\perp \mathrm T_pf^\leftarrow(fp)$. Indeed $\nabla f(x)\cdot dx=0$, so if we fix all directions besides $i,j$ we find $\partial _if\cdot dx_i+\partial _jf\cdot dx_j=0$. The implicit function theorem ensures
+
+$$\frac{dx_j}{dx_i}=-\frac{\partial _if}{\partial _jf}.$$
+
+#### Hyperbola
+
+In the constant-product case $f(x,y)=xy=k^2$ and the gradient is $\nabla f=(y,x)$ and the marginal $Y$-price per unit of $X$ is
+
+$$
+p=\frac{dy}{dx}=-\frac yx=-\frac {k^2}{x^2}.
+$$
+
+Thus we have the characterizing feature of constant-product AMMs: marginal price equals global supply ratio. Furthermore,
+
+$$
+|p|\overset{x\to 0}{\longrightarrow}\infty,\quad |p|\overset{y\to 0}{\longrightarrow}0.
+$$
+
+We can also extract supply as a function of price:
+
+$$
+x(p)=\sqrt{-\frac {k^2}p}.
+$$
+
+#### Circle
+
+If we look at our circles $f(x,y)=(x-a)^2+(y-b)^2$, the gradient is $\nabla f=2(x-a,y-b)$. Hence we have formulas for the marginal price. As usual, we have ambiguity since each $y$-value has two $x$-values. Since negative price means an actual exchange of quantities, we take the $+$-branch, which is negative for $x\in [0,a)$.
+
+$$
+p=\frac{dy}{dx}=-\frac{x-a}{y-b}=\pm\frac{x-a}{\sqrt{r^2-(x-a)^2}}.
+$$
+
+Here the lines $y=b,x=a$ are critical, behaving analogously to $x=0,y=0$ in the constant-product case: 
+
+$$
+|p|\overset{y\to b}{\longrightarrow}\infty,\quad |p|\overset{x\to a}{\longrightarrow}0.
+$$
+
+We can extract supply as a function of price: squaring gives us
+
+$$\begin{aligned}
+0 &=p^2(r^2-(x-a)^2)-(x-a)^2 \\
+ &= p^2r^2-(p^2+1)(x-a)^2,
+\end{aligned}$$
+
+whence we have the following formula. We take the lower branch to remain in the first quadrant $x<a$.
+
+$$
+x(p)=a\pm\frac{rp}{ \sqrt{1+p^2} }.
+$$
+
+## Comparison: price and depth
+
+Equipped with all formulas of interest we are in a position to compare hyperbolas and circles as AMMs.
+
+### Price comparison
+
+Need pictures. Below are the price graphs for three AMMs: the hyperbola $xy=k^2$, the circle $(x-k)^2+(y-k)^2=k^2$, and another circle, merely normalized to have the same equal price point as the hyperbola.
+
+<iframe src="https://www.geogebra.org/graphing/paearf63?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
+
+Observe that marginal utility diminishes much faster for the circles: a price of zero is reached at a finite supply instead of asymptotically at infinite supply.
+
+### Depth comparison around equal-price point
+
+
+
+# Le Sphere
+
+The constant-product AMM defined by $f(x,y)=xy$ is well-known. It's easy to generalize to a vector of assets $(X_1,\dots,X_n)$ with associated supplies $x_i$ via $f(x_1,\dots ,x_n)=x_1\cdots x_n$. Now we want to introduce a different geometry: spheres. We'll do some comparing and then look into concentrated liquidity.
+
+Consider the embedded $(n-1)$-sphere of radius $r$ centered about $p\in \mathbb R^n$ (with respect to the Euclidean metric). The variable $x$ represents a vector of supplies $(x_1,\dots ,x_n)$ of assets $(X_1,\dots ,X_n)$.
+
+$$r= d(x,p)$$
+
+For $p=(r,\dots,r)$, this is the sphere inscribed in the standard cube of side-length $2r$. It is tangent to the cube at the points with exactly one coordinate equal to zero, and the rest all equal to $r$.
+
+Any supply state $x$ with a coordinate larger than $r$ is open to arbitrage. Thus, assuming normal market conditions, we may restrict attention to the spherical cap lying within the unit cube.
+
+To explain this, we begin with the special case of the circle embedded in the plane and centered at $(r,r)$. Draw the diameter perpendicular to the y-axis. Symmetry with respect to it exhibits the points $(x_1,r-d),(x_1,r+d)$ as reflections: indeed $(r-(r-d))^2=d^2=(r-(r+d))^2$. This means that without changing the supply of $x_1$ at all, the circle is willing to give up $2d$-worth of asset $X_2$ for free. By symmetry we can apply the same argument to the diameter perpendicular to the $x$-axis. Restricting to the bottom-left quarter of the circle removes the hassle. This quarter slice is precisely the intersection of the circle with the unit square. In $n$-dimensions the same computation holds.
+
+# Price as a function of supply
+
+Let's recall the derivation of marginal prices for constant function AMMs. Assume a trader wishes to trade $X_i\to X_j$ i.e. sell token $X_i$ in exchange for token $X_j$. The marginal $X_j$-price per unit of $X_i$ with respect to $f$ is geometric in nature. Specifically, if we take a tangent to the fiber in question $(dx_1,\dots ,dx_n)\in \mathrm T_pf^\leftarrow(fp)$ then the marginal price is precisely the rate of change $\frac{dx_j}{dx_i}$. It is easy computed using the gradient, which is perpendicular to the fibers by definition $\nabla f|_p\perp \mathrm T_pf^\leftarrow(fp)$. Indeed $\nabla f(x)\cdot dx=0$, so if we fix all directions besides $i,j$ we find $\partial _if\cdot dx_i+\partial _jf\cdot dx_j=0$. The implicit function theorem ensures
+
+$$\frac{dx_j}{dx_i}=-\frac{\partial _if}{\partial _jf}.$$
+
+In the constant-product case $f(x,y)=xy$ and the gradient is $\nabla f=(y,x)$ and the marginal price is $\frac{dy}{dx}=-\frac yx$. Thus we have the characterizing feature of constant-product AMMs: marginal price equals supply ratio. More generally for $f(x_1,\dots ,x_n)=x_1\cdots x_n$ we have $\frac{dx_j}{dx_i}=-\frac{x_j}{x_j}$.
+
+If we look at a circle $f(x,y)=(x-a)^2+(y-b)^2$, the gradient is $\nabla f=2(x-a,y-b)$. Hence the marginal price is $\frac{dy}{dx}=-\frac{x-a}{y-b}$. Prices would remain the same if we took the square root to obtain the Euclidean distance from $(a,b)\in \mathbb R^2$. More generally for the Euclidean distance $f(x)=d(x,a)$ from some fixed $a\in \mathbb R^n$, fibers are spheres centered about $a$. Since $\nabla \| x \|_2 =\frac{x}{\|x\|_2}$, the gradient is just $\nabla f =\frac{x}{d(x,a)}.$ Hence the marginal price is $\frac{dx_j}{dx_i}=-\frac{a_i-x_i}{a_j-x_j}$. Taking $a=(r,\dots,r)$ we have $\frac{dx_j}{dx_i}=-\frac{r-x_i}{r-x_j}$. Here the value $r$ is critical, behaving analogously to $\infty$ in the constant-product case: 
+
+$$
+\frac{dx_j}{dx_i}\overset{x_i\to r}{\longrightarrow}0,\quad \frac{dx_j}{dx_i}\overset{x_j\to r}{\longrightarrow}\infty.
+$$
+
+# Supply as a function of price
+
+We wrote formulas for pairwise exchange rates as a function of supply. We'd really like to have the reverse formula too: supply as a function of all pairwise exchange rates.
+
+Let's start from the constant-product example. Recall the bivariate case $x(p)=\sqrt{\frac{k}{p}}$. The implicit function theorem relations give
+
+$$
+\frac{dx_j}{dx_i}=-\frac{\partial _if}{\partial _jf}=-\frac{\prod _{j\neq i}x_j}{\prod _{i\neq j}x_i}=-\frac{x_j}{x_i}.$$
+
+Plugging the resulting relation $x_j=-x_i\cdot \frac{dx_j}{dx_i}$ into $f(x)=x_1\cdots x_n$ gives the closed formula
+
+$$
+x_i=\sqrt[n]{\frac{f(x)}{(-1)^{n-1}\prod_{j\neq i}\frac{dx_j}{dx_i}}}.
+$$
+
+Restricting to a fiber $f^\leftarrow (k)$, we arrive at the formula for $x_i$ as a function of the marginal $X_j$-price price per unit of $X_i$. In the bivariate case we recover the familiar formula 
+
+$$
+x(p)=\sqrt\frac{k}{p}.
+$$
+
+Moving on to the sphere, we'll start centered about the origin with $f(x)=\|x\|_2$ given by the Euclidean norm. The implicit function theorem relations give
+
+$$
+\frac{dx_j}{dx_i}=-\frac{\partial _if}{\partial _jf}=-\frac{x_i}{x_j}.$$
+
+Plugging the resulting relation $x_j=-x_i\cdot \frac{dx_i}{dx_j}$ into $f(x)=\|x\|$ gives the closed formula
+
+$$
+x_i=\frac{f(x)}{\sqrt{1+\sum_{j\neq i}\frac{1}{(dx_j/dx_i)^2}}}.
+$$
+
+Modifying for a sphere centered about some $a\in \mathbb R^n$ is straightforward, since the new constraint is just $f(x)=d(x,a)=\|x-a\|_2$. The modified formula is
+
+$$
+x_i=a_i\pm \frac{f(x)}{\sqrt{1+\sum_{j\neq i}\frac{1}{(dx_j/dx_i)^2}}}.
+$$
+
+As usual, we take the lower value to avoid the "free arbitrage zone". In the bivariate case this reduces to
+
+$$
+x(p)=a-\frac{r}{\sqrt{1+1/p^2}}.
+$$
+
+In both examples above - constant product and constant norm - the key to isolating a single supply as a function of other prices was a relation of the form $
+\frac{dx_j}{dx_i}=-\frac{\partial _if}{\partial _jf}=-\left(\frac{x_j}{x_i}\right)^k$ for $k=\pm 1$, that allowed us to express $x_j$ in terms of $x_i$ and its marginal price. We could isolate $x_i$ for any $k\in \mathbb Z$. In fact one could conceive much more intricate relations $
+\frac{dx_j}{dx_i}=g(x_i,x_j)$ from which you can still isolate $x_i$.
+
+Both $x_1\cdots x_n,x_1^2+\cdots+x_n^2$ are homogeneous. In the $d$-homogeneous case, a relation of the form $x_j=h_j(p)x_i$ (where $h_j(p)$ is some function of prices) furnishes an explicit formula. Assuming for convenience $i=1$:
+
+$$\begin{aligned}
+f(x) &=f(x_1,h_2(p)x_1,\dots,h_n(p)x_n) \\
+ &= x_1^df(1,h_2(p),\dots,h_n(p)).
+\end{aligned}$$
+
+Hence $x_1=\sqrt[d]{\frac{f(x)}{f(1,h_2(p),\dots,h_n(p))}}$ and similarly for the other indices.
+
+
+# Capital efficiency
+
+In the bivariate case we analyze capital efficiency of an asset $X$, and our price space is one dimensional: just the marginal price denominated by the other asset $Y$. Depth in a price interval $[p_1,p_2]$ equals the difference $x(p_1)-x(p_2)$ which is really the integral 
+
+$$
+\int_{[p_1,p_2]}  \left| \frac{\mathrm dx}{\mathrm dp}\right| \mathrm dp.
+$$
+
+Let's compare the constant product and the circle $xy,x^2+y^2$ in the case of a stable pair, e.g. USDC/USDT.
+
+First recall the formulas for supply as a function of price:
+
+$$\begin{aligned}
+x_\text{hyperbola}(p) &=\sqrt\frac{k}{p}, \\
+x_\text{circle}(p) &= r-\frac{r}{\sqrt{1+1/p^2}}.
+\end{aligned}$$
+
+
+
+We'll compute depth in a 1％ band about equilibrium, assuming initial supplies $x_0=y_0=10^9$ so $k=10^{18}$. Similarly $r=\sqrt{10^{18}+10^{18}}=\sqrt 2 \cdot10^9$.
+
+$$\begin{aligned}
+x(0.99)-x(1.01) & = \sqrt{\frac{10^{18}}{0.99}}-\sqrt{\frac{10^{18}}{1.01}} &\approx 10\text M \\
+x(0.99)-x(1.01) & = -\frac{\sqrt 2 \cdot10^9}{\sqrt{1+1/0.99^2}} + \frac{\sqrt 2 \cdot10^9}{\sqrt{1+1/1.01^2}} &\approx 10\text M \\
+\end{aligned}$$
+
+Thus it turns out both geometries have similarly horrific depth around equilibrium: only 1％ of the supply (10M out of 1B) lies within a 1％ interval about equilibrium. Taking a much narrower interval of a basis point in each direction, both have an almost identical depth of 100K: only a basis point of the total supply.
+
+Despite local (!) similarity about equilibrium, the global pictures are very different. For one, the circle is compact, and so is the "no arbitrage cap" given by its lower left quarter. On the other hand, the parabola is unbounded, with a supply tail trailing off to infinity.
+
+For $n$ assets we analyze $X_i$ and the price space is $(n-1)$-dimensional, comprised of its marginal price denominated in the other assets $X_j$. The depth of $x_i$ over a price region $U\subset \mathbb R^{n-1}$ equals
+
+$$
+\int_U  \left\| \mathrm Dx_i(p) \right\|_\mathrm{op} \mathrm dp = \int_U  \left\| \nabla x_i(p) \right\|_2 \mathrm dp.
+$$
+
+We won't pursue nice patches in price-space that make these integrals tractable.
+
+# The sphere AMM
+
+## A bunch of stablecoins
+
+The formulas above show that pairwise exchange rates equal one precisely when all tokens are in equal supply. In the stablecoin case, market equilibrium thus occurs when all supplies are equal. This equilibrium point is a multiple of $(1,\dots,1)$ whose distance from $(r,\dots,r)$ equals $r$. It is straightforward to compute: the solutions to the quadratic
+
+$$r^2=\|c (1,\dots,1)-(r,\dots,r)\|^2=n(c-r)^2$$
+
+give two antipodal points on our sphere $c=r(1\pm\frac{1}{\sqrt n}$). We'll take $c=r(1-\frac{1}{\sqrt n })<r$ to remain in the first orthant, out of the "free arbitrage zone". If we plot the AMM state as a function of time, we'd expect a curve that moves about the equilibrium point, generally not straying too far away unless there is some depeg.
+
+## Concentrated liquidity
+
+j
+
+![image](../assets/img/foliation-of-sphere-by-tilted-circles.png)
+
+
+Recall the Pythagorean theorem (whose converse holds for symmetric inner products, so e.g. over the reals) $$v\perp w\implies \|v\|^2+\|w\|^2=\|v+w\|^2.$$
+
+We can use it to simplify 
