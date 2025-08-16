@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AMMs: Hyperbolas vs Circles"
-date: 2025-07-26
+date: 2025-08-16
 tags: [DeFi, AMM, liquidity]
 comments: true
 mathjax: true
