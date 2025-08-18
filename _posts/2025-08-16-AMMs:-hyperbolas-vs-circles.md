@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AMMs: Hyperbolas vs Circles"
+title: "Constant Function AMMs: Hyperbolas vs Circles"
 date: 2025-08-16
 tags: [DeFi, AMM, liquidity]
 comments: true
@@ -14,7 +14,7 @@ Too busy with your perpetual motion machine? Here's a quick summary: the circle 
 
 # Circle AMM
 
-A circle centered about the origin makes little sense economically since it allows for negative supplies. Instead, let's take the circle centered about some $(a,b)\in \mathbb R^2$ in the positive quadrant. Our circles are fibers of the Euclidean distance from it, and we'll only look those of sufficiently small radius $r\leq\|(a,b)\|_2$ to avoid negative supplies.
+A circle centered about the origin makes little sense economically since it allows for negative supplies. Instead, let's take the circle centered about some $(a,b)\in \mathbb R^2$ in the positive quadrant. Our circles are fibers of the Euclidean distance from it, and we'll only look those of sufficiently small radius $r\leq\Vert(a,b)\Vert _2$ to avoid negative supplies.
 
 $$
 f(x,y)=d_2((x,y),(a,b))=\sqrt{(x-a)^2+(y-b)^2}
@@ -30,7 +30,7 @@ $$
 \Delta y=\frac{k^2-y(x+\Delta x)}{x+\Delta x}=\frac{k^2}{x+\Delta x}-y=\frac{-y\Delta x}{x+\Delta x}.
 $$
 
-Repeating for the circle constraint we find that $\Delta x,\Delta y$ are related by a quadratic polynomial. Hence are two allowed returns $\Delta y$ for any sold amount $\Delta x$ (and vice versa):
+Repeating for the circle constraint we find that $\Delta x,\Delta y$ are related by a quadratic polynomial. Hence there are two allowed returns $\Delta y$ for any sold amount $\Delta x$ (and vice versa):
 
 $$
 \Delta y=-(y-b)\pm \sqrt{(y-b)^2-[2(x-a)\Delta x+(\Delta x)^2]}.

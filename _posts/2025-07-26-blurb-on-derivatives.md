@@ -10,7 +10,7 @@ author: IV
 
 # Risk and Knightian Uncertainty
 
-We don't know the future. This statement is true, but a bit too coarse - there are two distinct ways in which we don't know things:
+We don't know the future. True, but a bit coarse. There are two distinct ways in which we don't know things:
 
 1. We don't know the results of a fair coin toss, but we know the associated probability distribution. Hence we can quantify risk and reason about these quantities.
 2. We don't know anything about a biased coin without explicit information about its bias. We are unable to quantify our uncertainty.
