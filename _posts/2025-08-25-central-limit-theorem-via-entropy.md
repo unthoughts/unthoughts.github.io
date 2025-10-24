@@ -123,7 +123,7 @@ Fix a set $X$. Recall functions from $X$ are in canonical bijection with indexed
 
 In more earthly terms, the distribution is the multiset of cell masses (multiset because different cells can have equal mass). Upon indexing/labeling a partition we arrive at the common visualization of distributions as histograms, where the $x$-axis ticks are labels of cells, the $y$-axis denotes probability, and the rectangle areas sum to the total measure of the space. Partitions $\mathscr P_i$ of measure spaces $(X_i,\mathscr A_i,\mu_i)$ have isomorphic distributions precisely iff the induced measure spaces are isomorphic $(\mathscr P_i,\pi_{i\ast}\mathscr A_i,\pi_{i\ast}\mu_i)$, iff the restrictions $\mathscr P_i\overset{\mu\;\mid_{\mathscr{P_i}}}{\longrightarrow}[0,\infty]$ are isomorphic iff they have equals multisets of cell masses. This means both partitions can be represented by the same histogram.
 
-**Remark.** The astute reader may have noticed the restriction of the measure to partition cells is actually the Radon-Nikodym derivative of the pushforward with respect to the counting measure on $\mathscr P$, i.e. $\mu \;\mid_\mathscr{P}=\frac{\mathrm d\pi_\ast \mu}{\mathrm d\#}$. While every measure is absolutely continuous w.r.t the counting measure, the derivative only exists when the atomic support of $\pi_\ast \mu$ is countable. This observation, and the key role played by the counting measure, will be explored later.
+**Remark.** The astute reader may have noticed the restriction of the measure to partition cells is actually the Radon-Nikodym derivative of the pushforward with respect to the counting measure on $\mathscr P$, i.e. $\mu \;\mid_\mathscr{P}=\frac{\mathrm d\pi_\ast \mu}{\mathrm d \#}$. While every measure is absolutely continuous w.r.t the counting measure, the derivative only exists when the atomic support of $\pi_\ast \mu$ is countable. This observation, and the key role played by the counting measure, will be explored later.
 
 **Definition.** Fix a probability space $(\Omega,\mathscr F,P)$. The information content of a partition $\Omega \overset{\pi}{\twoheadrightarrow} \mathscr P$ is the random variable on $(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$ given by information content of the cells:
 
@@ -135,7 +135,7 @@ Note $\log$ is strictly monotone whence injective, so the fibers of information 
 
 1. A fair coin toss has just two measurements, both equiprobable, so its distribution is $(\tfrac 12, \tfrac 12)$. Hence the information distribution is $\mathbf 1_{\tfrac 12}$. (Indeed the information content function is constant.)
 
-2. Consider a biased five-sided die with distribution $(0.1,0.1,0.1,0.1,0.6)$. The information distribution is $0.4\cdot \mathbf 1_{0.1}+0.6\cdot \mathbf 1_{0.6}$.
+2. Consider a biased five-sided die with distribution $(0.1,0.1,0.1,0.1,0.6)$. The information distribution is $0.4\cdot \mathbf{1}_{0.1}+0.6\cdot \mathbf{1}_{0.6}$.
 
 3. Consider a four-ticket lottery with distribution $(0.1,0.2,0.2,0.5)$. The information distribution is $0.1 \mathbf  \cdot 1_{ 0.1}+0.4\cdot \mathbf 1_{0.2}+0.5\cdot \mathbf 1_{0.5}$.
 
