@@ -1,0 +1,57 @@
+Bitcoin is purposely impractical for general computation. This post aims at a high level summary (of what I understand) of BitVM and the recent optimization using garbled circuits.
+
+I'll disregard distinctions between various versions of BitVM because I haven't been in the trenches.
+
+# BitVM
+
+BitVM is an optimistic protocol for computation within the Bitcoin protocol. In practice the computed program is a verifier for some proof system (maybe SNARK, preferably STARK). This facilitates general computation with a relatively (!) fixed setup.
+
+## Overview of overview
+
+Suppose Alice and Bob are end users.
+
+1. Alice sends a `deposit` transaction to the bridge.
+2. Stuff happens on the target chain and eventually the BTC reaches Bob, who wants to return to the Bitcoin network. Bob sends a withdrawal request to one of the bridge operators. An operator will fulfill Bob's withdrawal request out-of-pocket.
+
+At this point Alice and Bob are both satisfied. However, the operator who handled Bob's withdrawal is at a loss.
+
+The BitVM protocol is design to allow an honest operator to `claim` Alice's deposit to cover the out-of-pocket fulfillment of Bob's withdrawal.
+
+The protocol comes into play already at the deposit, where the BitVM orchestration layer prepares - for each operator - transactions required to cover out-of-pocket costs.
+
+BitVM relies on several functions. For clarity, we'll assign a separate party to each function.
+1. Signers are joint custodians of the funds??
+2. Capitalists supply funds to quickly fulfill user withdrawals out-of-pocket.
+3. Operators claim user deposits  handle withdrawal requests. They are responsible for liveness.
+
+## Improving UX with capitalists
+
+Here's the big picture for a BitVM bridge:
+1. Alice sends an off-chain deposit request to the orchestration layer.
+2. The signers generate - for each operator - a tree of transactions that will allow the operator to initiate a `claim` of Alice's deposit. The transactions are disseminated among the operators but not sent on-chain.
+3. Alice sends a `deposit`/`PegIn` transaction to the bridge treasury: the UTXO is locked behind a multisig of signers.
+4. Stuff happens on the target chain and eventually the BTC reaches Bob, who wants to return to the Bitcoin network. Bob sends an off-chain withdrawal request to the bridge operators.
+5. Bob and an operator jointly create a `withdrawal`/`PegOut` transaction with two inputs and one output. Bob provides one empty input as evidence of his intent to withdraw. The operator provides the other input as an out-of-pocket reimbursement. Bob has the UTXO. [WHAT IF TWO OPERATORS REIMBURSE BOB?]
+
+As remarked above, Alice and Bob have now finished their part. Now we want to make sure the operator who fulfilled the withdrawal can `claim` it, and understand the cost of malicious interference with the claim process.
+
+4. Without 
+
+Participants and security model
+
+Atomic swaps - role of operators...
+
+Bridge - can operators steal???
+
+# Garbling
+
+The costliest parts of BitVM are `assert` and `refute`.
+* `assert` - someone posts a partition of the verifier's execution trace for others to `refute`.
+* `refute` - someone runs the verifier on the fraudulent portion of the execution trace.
+
+Garbling defers essentially all computation off-chain, reducing the off-chain footprint to revealing some hashes. The cost is substantial off-chain computation - beyond merely running the verifier.
+
+Why must label preimages remain secret... ?
+
+Who posts hashes?
+Why signers is very bad (Lior)

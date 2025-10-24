@@ -1,0 +1,12 @@
+---
+layout: post
+title: "Perpetual Options"
+date: 2025-08-20
+tags: [DeFi, Derivatives, Options, Perpetuals]
+comments: true
+mathjax: true
+author: IV
+---
+
+* In DeFi, expiring derivatives require overcollateralization. 
+* I think Perpetuals don't require such a high collateral, and can operate at a similar capital efficiency to TradFi. VERIFY THIS!!
