@@ -140,17 +140,17 @@ Note $\log$ is strictly monotone whence injective, so the fibers of information 
 
 ### Of a measure
 
-Every set has a canonical partition into its constituent singletons. The structure map $X\overset{x\mapsto \lbrace x\rbrace}{\longrightarrow} \lbrace \lbrace x\rbrace:x\in X\rbrace $ is canonically isomorphic to the identity by omitting curly braces. Hence the information content of a probability space $(\Omega,\mathscr F,P)$ is the random variable given by information content of points. As previously remarked, if $P$ has countable atomic support then the density function $\omega\mapsto P\lbrace \omega \rbrace$ is none other than the Radon-Nikodym derivative with respect to counting measure $\frac{\mathrm dP}{\mathrm d\#}$:
+Every set has a canonical partition into its constituent singletons. The structure map $X\overset{x\mapsto \lbrace x\rbrace}{\longrightarrow} \lbrace \lbrace x\rbrace:x\in X\rbrace $ is canonically isomorphic to the identity by omitting curly braces. Hence the information content of a probability space $(\Omega,\mathscr F,P)$ is the random variable given by information content of points. As previously remarked, if $P$ has countable atomic support then the density function $\omega\mapsto P\lbrace \omega \rbrace$ is none other than the Radon-Nikodym derivative with respect to counting measure $\frac{\mathrm dP}{\mathrm d\text{\#}}$:
 
 **Definition/Lemma.** The information content of a probability measure $P$ equals the composite
 $$
-\Omega \overset{\frac{\mathrm dP}{\mathrm d\#}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty].
+\Omega \overset{\frac{\mathrm dP}{\mathrm d\text{\#}}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty].
 $$
 
 Fix a partition $\Omega\overset{\pi}{\twoheadrightarrow}\mathscr P$. The information content of $(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$ is then $A\mapsto -\log P(A)$, equal to the definition of the information content of the partition $\mathscr P$. Moreover, we observe that the restriction of $P$ to the partition is itself the Radon-Nikodym derivative of its pushforward with respect to counting measure.
 
 $$
-\mathscr P \overset{P\;\mid_\mathscr{P}=\frac{\mathrm d\pi_\ast P}{\mathrm d\#}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty].
+\mathscr P \overset{P\;\mid_\mathscr{P}=\frac{\mathrm d\pi_\ast P}{\mathrm d\text{\#}}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty].
 $$
 
 Thus the information content of a partition $\mathscr P$ of a probability space $(\Omega,\mathscr F,P)$ equals the information content of the probability space $(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$.
@@ -164,19 +164,19 @@ Shannon entropy is average information content. More precisely, it is average in
 For a countable measurable space $(\Omega,\mathscr F)$ we define the Shannon entropy of a probability measure $\nu$ as follows:
 
 $$\begin{aligned}
-h(\nu\mid \#) &=- \mathbb E \left[ \log \frac{\mathrm d\nu}{\mathrm d\#} \right] \\
-& =-\int_\Omega \frac{\mathrm d\nu}{\mathrm d\#} \log \frac{\mathrm d\nu}{\mathrm d\#} \mathrm d\# \\
+h(\nu\mid \text{\#}) &=- \mathbb E \left[ \log \frac{\mathrm d\nu}{\mathrm d\text{\#}} \right] \\
+& =-\int_\Omega \frac{\mathrm d\nu}{\mathrm d\text{\#}} \log \frac{\mathrm d\nu}{\mathrm d\text{\#}} \mathrm d\text{\#} \\
 &= -\sum_\omega \nu \lbrace \omega \rbrace \log \nu\lbrace \omega\rbrace.
 \end{aligned}$$
 
 For an $S$-valued random variable $X$ we therefore have the famous formula
 
 $$\begin{aligned}
-h(X\mid \#) &=-\int_S \frac{\mathrm dP_X}{\mathrm d\#} \log \frac{\mathrm dP_X}{\mathrm d\#} \mathrm d\# \\
+h(X\mid \text{\#}) &=-\int_S \frac{\mathrm dP_X}{\mathrm d\text{\#}} \log \frac{\mathrm dP_X}{\mathrm d\text{\#}} \mathrm d\text{\#} \\
 &= -\sum_{x\in S} P\lbrace X=x\rbrace \log P\lbrace X=x\rbrace
 \end{aligned}.$$
 
-**Remark.** The determined reader may try to avoid countability assumptions by using the function $P_\mathscr{P}$ without assuming it realizes the derivative $\frac{\mathrm d\nu}{\mathrm d \#}$. This does allow for a general definition, but it suffers from the same issue: continuous random variables would still have infinite information content whence infinite Shannon entropy.
+**Remark.** The determined reader may try to avoid countability assumptions by using the function $P_\mathscr{P}$ without assuming it realizes the derivative $\frac{\mathrm d\nu}{\mathrm d \text{\#}}$. This does allow for a general definition, but it suffers from the same issue: continuous random variables would still have infinite information content whence infinite Shannon entropy.
 
 We previously remarked that partitions with many equiprobable sets have more concentrated information distributions. Nevertheless, concentration of the information distribution holds no bearing on entropy.
 
@@ -186,7 +186,7 @@ There is ample literature concerning characterizations of Shannon entropy from f
 
 ## Relative information content
 
-The information content of a probability measure $\nu$ relative to the counting measure is $\Omega \overset{\frac{\mathrm d\nu}{\mathrm d\#}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty]$, acting by $\omega\mapsto -\log \nu\lbrace \omega\rbrace $. It captures the information content of the points of $\Omega$.
+The information content of a probability measure $\nu$ relative to the counting measure is $\Omega \overset{\frac{\mathrm d\nu}{\mathrm d\text{\#}}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty]$, acting by $\omega\mapsto -\log \nu\lbrace \omega\rbrace $. It captures the information content of the points of $\Omega$.
 
 The presence of the counting measure suggests relativizing with respect to other measures $\nu \ll \mu$. In this section we will try to clarify the epistemology in two morally distinct cases:
 
@@ -218,7 +218,7 @@ So when do we need to add weights for observing macrostates?
 * If faces are colored one black, two gray, three white, then the weights should explicitly reflect this, to preserve the extra information probabilities and avoid an (incorrect) uniform distribution on the colors.
 
 
-Evidently $-\log \frac{\mathrm d\nu}{c\cdot\mathrm d\#}=-\log \frac{\mathrm d\nu}{\mathrm d\#}+\log c$. This function increases with $c$. For positive integer $c$ it's always a positive quantity, which represents precisely the information that would have been lost upon coarse-graining by identifying the $c$ microstates comprising each macrostate. A similar but more delicate phenomenon occurs with non-uniform weights.
+Evidently $-\log \frac{\mathrm d\nu}{c\cdot\mathrm d\text{\#}}=-\log \frac{\mathrm d\nu}{\mathrm d\text{\#}}+\log c$. This function increases with $c$. For positive integer $c$ it's always a positive quantity, which represents precisely the information that would have been lost upon coarse-graining by identifying the $c$ microstates comprising each macrostate. A similar but more delicate phenomenon occurs with non-uniform weights.
 
 The case of a finite microstate-counting measure can be normalized to a probability measure, causing just a constant offset. For an infinite microstate-counting measure e.g. counting on infinite spaces or Lebesgue on Euclidean space, normalization is unavailable.
 
@@ -226,7 +226,7 @@ Information content relative to continuous microstate-counting measures can be n
 
 Firstly note $-\log \frac{\mathrm d\nu}{\mathrm d\mu}<0\iff \frac{\mathrm d\nu}{\mathrm d\mu}>1$ so the whole discussion is about densities take on values greater than one. 
 
-In the discrete case it's natural to compute entropy relative to a microstate-counter that takes positive integral values. Hence the quotient $\frac{\mathrm d\nu}{\mathrm d\mu}(\omega)=\frac{\nu\lbrace \omega \rbrace}{\mu \lbrace \omega\rbrace}\leq \nu \lbrace \omega\rbrace \leq 1$ always takes values in the unit interval. In such cases, information content is always non-negative. Note we could artificially take $\frac{\mathrm d\nu}{\varepsilon\cdot \mathrm d\#}$ for some tiny $\varepsilon \ll1$ and find ourselves with negative information content, but this is very contrived.
+In the discrete case it's natural to compute entropy relative to a microstate-counter that takes positive integral values. Hence the quotient $\frac{\mathrm d\nu}{\mathrm d\mu}(\omega)=\frac{\nu\lbrace \omega \rbrace}{\mu \lbrace \omega\rbrace}\leq \nu \lbrace \omega\rbrace \leq 1$ always takes values in the unit interval. In such cases, information content is always non-negative. Note we could artificially take $\frac{\mathrm d\nu}{\varepsilon\cdot \mathrm d\text{\#}}$ for some tiny $\varepsilon \ll1$ and find ourselves with negative information content, but this is very contrived.
 
 In the continuous case, this without contrivance because densities naturally take values higher than one. Our simplest example involves a probability distribution $\nu$ over the real lines and its density relative to Lebesgue measure. If $\nu$ is highly concentrated in a small region then the density $\frac{\mathrm d\nu}{\mathrm d\lambda}$  relative to Lebesgue measure within this region will be higher than one. For instance consider the uniform distribution on an interval $[a,b]$. The density is $\frac{\mathrm d\nu}{\mathrm d\lambda}=\frac{1}{b-a}\mathbf 1_{[a,b]}$, which blows up for small intervals. For another example consider a very concentrated (low variance) Gaussian: the peak of the bell blows up as it narrows down, to preserve unit integral.
 
@@ -279,10 +279,10 @@ $$
 
 If $\nu,\mu$ are mutually absolutely continuous then they have reciprocal Radon-Nikodym derivatives, so the definition is consistent.
 
-Perhaps the most familiar formula for entropy is $h(\nu\mid \mu)=-\int \frac{\mathrm d\nu}{\mathrm d\mu} \log \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\mu$. Typically, $\nu$ is a probability measure. When $\mu=\#$ is counting measure then $\frac{\mathrm d\nu}{\mathrm d\#}(\omega)=\nu \lbrace \omega \rbrace$ is density and we recover Shannon entropy
+Perhaps the most familiar formula for entropy is $h(\nu\mid \mu)=-\int \frac{\mathrm d\nu}{\mathrm d\mu} \log \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\mu$. Typically, $\nu$ is a probability measure. When $\mu=\text{\#}$ is counting measure then $\frac{\mathrm d\nu}{\mathrm d\text{\#}}(\omega)=\nu \lbrace \omega \rbrace$ is density and we recover Shannon entropy
 
 $$\begin{aligned}
-h(\nu\mid \#) &=-\int \nu \lbrace \omega \rbrace \log \nu \lbrace \omega \rbrace \mathrm d\# \\
+h(\nu\mid \text{\#}) &=-\int \nu \lbrace \omega \rbrace \log \nu \lbrace \omega \rbrace \mathrm d\text{\#} \\
 &= -\sum \nu \lbrace \omega \rbrace \log \nu\lbrace \omega\rbrace.
 \end{aligned}$$
 
@@ -338,7 +338,7 @@ In 1957 Jaynes published his seminal, two part work *Information Theory and Stat
 One is naturally led to relativize this principle with respect to a prior *model*, given by a reference *probability distribution* $\mu$. Here mild care is needed with signs. Shannon entropy and entropy relative to the uniform distribution differ by a constant, so they reach maximum jointly.
 
 $$
-h(\nu \mid U_n)=h(\nu\mid \#_n)-\log n
+h(\nu \mid U_n)=h(\nu\mid \text{\#}_n)-\log n
 $$
 
 More generally, we are maximizing the non-positive $h(\nu\mid \mu)\leq 0$.
@@ -450,8 +450,9 @@ L_{\mathcal F \preceq P} f=\sum_{F\in \mathcal F}\mathbf 1_F\min_Ff,
 $$
 where $\mathcal F\preceq \mathcal P$ denotes a choice of finite subset of each cell in $P$. These operators are continuous due to the *finite* minima. A straightforward verification shows
 $$
-L_\mathcal{P}= \sup_{\mathcal F\preceq \mathcal P}L_{\mathcal F\preceq \mathcal P}$. Thus $\int = \sup_\mathcal{P}\sup_{\mathcal F\preceq \mathcal P}L_{\mathcal F\preceq \mathcal P},
+L_\mathcal{P}= \sup_{\mathcal F\preceq \mathcal P}L_{\mathcal F\preceq \mathcal P}.
 $$
+Thus $\int = \sup_\mathcal{P}\sup_{\mathcal F\preceq \mathcal P}L_{\mathcal F\preceq \mathcal P}$,
 establishing lower semicontinuity. Now suppose the sequence $f_n$ is merely bounded-from-below by $M$. Then we can apply Fatou's lemma to $f_n+M\geq 0$. The result follows by linearity of the integral. To be a bit more explicit, consider the commutative square starting at the subset of functions bounded-from-below by $-M$. The horizontal edges are translations by $M$ while the vertical edges are integration, and commutativity is by linearity of integration. For the last assertion, lower semicontinuity is closed under composition.
 
 Led by Fatou-style intuition that mass can only drift off in the limit (but not appear), intuition suggests similar behavior of expected information gain $D(\nu\mid\mu)=\int \frac{\mathrm d\nu}{\mathrm d\mu}\log \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\mu$. Upon inspection we implicitly consider densities (the standard visualiation of histograms) and not the distributions themselves.
@@ -590,12 +591,12 @@ Since stochastic matrices are $L^1$-contractions and the simplex is compact (!),
 
 For a doubly-stochastic chain with positive entries we therefore anticipate very simple limit dynamics: a single attractive fixed point given by the uniform distribution. Intuitively: "pure mixing" approaches the distribution with maximal Shannon entropy, regardless of circulation. In the disconnected case, we expect componentwise convergence to uniform distributions (think of a block-diagonal doubly-stochastic matrix as separate collections of cups with stuff). Moreover, we expect monotone convergence and monotone entropy increase: every mixing step increases entropy. In discrete time, monotonicty of entropy for arbitrary state spaces is actually an easy consequence of Jensen's inequality via the so-called data-processing inequality. We will revisit this soon.
 
-Larger state spaces accomodate richer dynamics. Thankfully, the limit points are controlled entirely by the spectrum of $P$ as a linear operator on Euclidean space. This is essentially a consequence of the fact $P$ is an $L^1$-contraction, whence its (possibly complex) eigenvalues have at most unit absolute value $\left|\lambda \right|\leq 1$. We'll analyze the limit behavior of Jordan blocks, first inside the circle and then on it. Recall Jordan normal form gives $P=VJV^{-1}$ with $J$ block diagonal comprised of Jordan blocks $J_\lambda=\lambda (I+N_\lambda),N_\lambda^{m(\lambda)=0}$ where $m(\lambda)$ is the algebraic multiplicity of $\lambda$ in the characteristic polynomial. For $n>m(\lambda)$ we shall use the expansion $J_\lambda ^n=\lambda ^n(I+N_\lambda)^n=\lambda ^n\sum_{k=0}^{m(\lambda)-1}\binom{n}{k}N_\lambda^k$.
+Larger state spaces accomodate richer dynamics. Thankfully, the limit points are controlled entirely by the spectrum of $P$ as a linear operator on Euclidean space. This is essentially a consequence of the fact $P$ is an $L^1$-contraction, whence its (possibly complex) eigenvalues have at most unit absolute value $\mid\lambda \;\mid\leq 1$. We'll analyze the limit behavior of Jordan blocks, first inside the circle and then on it. Recall Jordan normal form gives $P=VJV^{-1}$ with $J$ block diagonal comprised of Jordan blocks $J_\lambda=\lambda (I+N_\lambda),N_\lambda^{m(\lambda)=0}$ where $m(\lambda)$ is the algebraic multiplicity of $\lambda$ in the characteristic polynomial. For $n>m(\lambda)$ we shall use the expansion $J_\lambda ^n=\lambda ^n(I+N_\lambda)^n=\lambda ^n\sum_{k=0}^{m(\lambda)-1}\binom{n}{k}N_\lambda^k$.
 
-* For $|\lambda|<1$ we have $\lambda^n \binom{n}{k}\overset{n\to \infty}{\longrightarrow}0$ for any $0\leq k<m(\lambda)$. We deduce the effects of eigenvalues $|\lambda|<1$ diminish and die in the limit. Thus we are left with eigenvalues on the unit circle $|\lambda |=1$.
-* For $|\lambda |=1$, an $L^1$-contraction must satisfy $m(\lambda)=1$. ontraction. To see this, choose $v\in V\setminus \operatorname{Ker}N^{m(\lambda)-1}$ and consider its resulting linearly independent Jordan chain $v,N_\lambda v,\dots,N_\lambda ^{m(\lambda)-1}v$. Then $J_\lambda ^n v=\lambda ^n\sum_{k=0}^{m(\lambda)-1}\binom{n}{k}N_\lambda^k v$. Using linear independence we can compute the norm in coordinates given by the Jordan chain, and thus bound the $L^1$-norm from below by $\binom{n}{m(\lambda)-1}$. But our map must be a contraction, whence $m(\lambda)=1$.
+* For $\mid\lambda \;\mid<1$ we have $\lambda^n \binom{n}{k}\overset{n\to \infty}{\longrightarrow}0$ for any $0\leq k<m(\lambda)$. We deduce the effects of eigenvalues of sub-unit magnitude diminish and die in the limit. Thus we are left with eigenvalues on the unit circle.
+* For eigenvalues on the unit circle, an $L^1$-contraction must satisfy $m(\lambda)=1$. ontraction. To see this, choose $v\in V\setminus \operatorname{Ker}N^{m(\lambda)-1}$ and consider its resulting linearly independent Jordan chain $v,N_\lambda v,\dots,N_\lambda ^{m(\lambda)-1}v$. Then $J_\lambda ^n v=\lambda ^n\sum_{k=0}^{m(\lambda)-1}\binom{n}{k}N_\lambda^k v$. Using linear independence we can compute the norm in coordinates given by the Jordan chain, and thus bound the $L^1$-norm from below by $\binom{n}{m(\lambda)-1}$. But our map must be a contraction, whence $m(\lambda)=1$.
 
-In summary, the limit dynamics of $P^\mathbb N$ are determined by the peripheral spectrum of $P$: the eigenvalues lying on the unit circle $|\lambda|=1$. If $\lambda=1$ is the only eigenvalue then it remains to study its eigenspace. Additional eigenvalues on the circle introduce cycles: periodic limit points (these are never attractive). Stationary distributions are attractive iff there are no cycles. Lastly, the Perron-Frobenius theorem asserts that a *closed* strongly connected chain admits $\lambda = 1$ as a simple eigenvalue. The unique stationary distribution is the unique eigenvector in the one-dimensional eigenspace whose coordinates sum to one. We can globalize. For each component consider the face of $\Delta^{n-1}$ defined by distributions supported only on the component (spanned by the relevant deltas). By Perron-Frobenius, there's unique stationary distribution on each component, i.e. on each face. Each such fixed point is attractive on *its face* iff that face admits no cycles.
+In summary, the limit dynamics of $P^\mathbb N$ are determined by the peripheral spectrum of $P$: the eigenvalues lying on the unit circle. If $\lambda=1$ is the only eigenvalue then it remains to study its eigenspace. Additional eigenvalues on the circle introduce cycles: periodic limit points (these are never attractive). Stationary distributions are attractive iff there are no cycles. Lastly, the Perron-Frobenius theorem asserts that a *closed* strongly connected chain admits $\lambda = 1$ as a simple eigenvalue. The unique stationary distribution is the unique eigenvector in the one-dimensional eigenspace whose coordinates sum to one. We can globalize. For each component consider the face of $\Delta^{n-1}$ defined by distributions supported only on the component (spanned by the relevant deltas). By Perron-Frobenius, there's unique stationary distribution on each component, i.e. on each face. Each such fixed point is attractive on *its face* iff that face admits no cycles.
 
 The spectral analyis justifies our interpretation of time-symmetric mixing as "pure": if $P$ is symmetric stochastic then its spectrum is real, lying in the interval $[-1,1]$. Hence it can have period of at most two. In the aperiodic (circulation-free) case, e.g. with strictly positive entries, the unique dominating eigenvalue is $\lambda=1$.
 
@@ -606,10 +607,10 @@ So far we defined mixing operators as those with stochastic matrix representatio
 Row-mixing notation $\nu\mapsto \nu P=\sum_i \nu_iP_i$ implicitly performs the "canonical" identification of finite distributions with their density relative to counting measure. Extra precision reveals the action on an initial distribution $\nu$ as the $\nu$-expectation of the family of distributions encoded by the transition matrix.
 
 $$\begin{aligned}
-\frac{\mathrm d\nu}{\mathrm d\#}\frac{\mathrm dP}{\mathrm d\#}& = \sum_i \frac{\mathrm d\nu}{\mathrm d\#}(i)\frac{\mathrm dP}{\mathrm d\#}(i) \\
-& = \int \frac{\mathrm d\nu}{\mathrm d\#}\frac{\mathrm dP}{\mathrm d\#}\mathrm d\# \\
-& =\int \frac{\mathrm dP}{\mathrm d\#}\mathrm d\nu \\
-& =\mathbb E_\nu \left[\frac{\mathrm dP}{\mathrm d\#}\right] 
+\frac{\mathrm d\nu}{\mathrm d\text{\#}}\frac{\mathrm dP}{\mathrm d\text{\#}}& = \sum_i \frac{\mathrm d\nu}{\mathrm d\text{\#}}(i)\frac{\mathrm dP}{\mathrm d\text{\#}}(i) \\
+& = \int \frac{\mathrm d\nu}{\mathrm d\text{\#}}\frac{\mathrm dP}{\mathrm d\text{\#}}\mathrm d\text{\#} \\
+& =\int \frac{\mathrm dP}{\mathrm d\text{\#}}\mathrm d\nu \\
+& =\mathbb E_\nu \left[\frac{\mathrm dP}{\mathrm d\text{\#}}\right] 
 \end{aligned}$$
 
 Thus a stochastic matrix is just a family of densities relative to counting measure, indexed by a finite state space. Removing the word 'finite' and dealing with distributions directly gives rise to *Markov kernels*: linear mixing operators between general spaces. Formally, a Markov kernel between measurable spaces $(X,\mathscr A)\overset{P}{\longrightarrow}(Y,\mathscr B)$ is a measurable function $(X,\mathscr A)\overset{P}{\longrightarrow}\mathcal P(Y,\mathscr B)$ to the space of probability distributions (equipped with the $\sigma$-algebra generated by the set of evaluations $\lbrace\operatorname{ev}_B,B\in \mathscr B\rbrace$). A Markov kernel canonically lifts to act on distributions $\mathcal P(X,\mathscr A)\overset{P}{\longrightarrow} \mathcal P(Y,\mathscr B)$ via $\nu P=\mathbb E_\nu P$, i.e. $P$ mixes $\nu$ into the $\nu$-expectation of the family. (Formally, the expectation is a Bochner integral, but I'm in favor of disregarding pedantry in our context.)
@@ -666,7 +667,15 @@ D(\nu \otimes P\mid \mu \otimes  Q) &= \mathbb E_{\nu\otimes  P}\left[\log \frac
 
 The LHS in the chain rule depends only on the joint distribution while the RHS looks at a particular disintegration: by $\nu$ in the first coordinate. By taking the disintegration by $\nu P$ in the first coordinate, the chain rule will provide an account of how $P$ affects information gain.
 
-Starting with a finite state space, the disintegration is $\nu_i P_{ij}=(\nu P)_j\frac{\nu_i P_{ij}}{(\nu P)_j}$ where the quotient is the *posterior* probability of present state $i$ conditioned on next state $j$. Note we condition on the outcome (notably assuming the original chain ran with initial distribution $\nu$). The marginal $\nu P$ thus integrates into the joint distribution via the stochastic matrix $P^\dagger[\nu]_{ji}=\frac{\nu_i P_{ij}}{(\nu P)_j}$. Geometrically, this *posterior kernel* is measuring *incoming* probabilities instead of outgoing ones.
+Starting with a finite state space, the disintegration is
+$$
+\nu_i P_{ij}=(\nu P)_j\frac{\nu_i P_{ij}}{(\nu P)_j},
+$$
+where the quotient is the *posterior* probability of present state $i$ conditioned on next state $j$. Note we condition on the outcome (notably assuming the original chain ran with initial distribution $\nu$). The marginal $\nu P$ thus integrates into the joint distribution via the stochastic matrix 
+$$
+P^\dagger[\nu]_{ji}=\frac{\nu_i P_{ij}}{(\nu P)_j}.
+$$
+Geometrically, this *posterior kernel* is measuring *incoming* probabilities instead of outgoing ones.
 
 ⚠️ $P_{ij}$ are independent of the initial distribution $\nu$, but the posterior probabilities depend on it very strongly. Specifically, if $\nu$ was concentrated at $i$, meaning most of the stuff started in cup $i$, then the posterior probability $\frac{\nu_i P_{ij}}{(\nu P)_j}$ will be high. Since $P^\dagger[\nu]_{ji}=\frac{\nu_i P_{ij}}{(\nu P)_j}$, posterior dynamics behaves "reversely":
 
@@ -888,11 +897,19 @@ $$\begin{aligned}
 
 Hence a positive/negative second derivative means the average is higher/lower. The second derivative is thus proportional to "displacement from the infinitesimal average". With this in mind, the 1D heat equation $\partial_tu=\frac 12 \partial_{xx}u$ describes mixing essentially by definition: it says temperature $u$ evolves precisely according to the average of nearby points: point $x$ gets hotter/colder as long as the average temperature of its neighbors is higher/lower. For computing the exponential we have the general machinery of the Fourier transform, which we'll get to.
 
-In higher dimensions the Laplacian $\Delta = \sum_i \partial_{x_ix_i}$ has a similar characterization: it's proportional to the limit of averaging operators $\Delta \propto \lim_{r\searrow 0}L_rf(x)=\lim_{r\searrow 0}\frac{1}{|\partial B_r|}\int_{\partial B_r(x)}(fy-fx)\mathrm dy$, and also describes mixing. The heat equation $\partial_tu\propto \Delta$ simply generalizes the 1D idea.
+In higher dimensions the Laplacian $\Delta = \sum_i \partial_{x_ix_i}$ has a similar characterization: it's proportional to the limit of averaging operators
+$$
+\Delta \propto \lim_{r\searrow 0}L_rf(x)=\lim_{r\searrow 0}\frac{1}{|\partial B_r|}\int_{\partial B_r(x)}(fy-fx)\mathrm dy,
+$$
+and also describes mixing. The heat equation $\partial_tu\propto \Delta$ simply generalizes the 1D idea.
 
 *Remark.* Some sources use averaging over balls instead of spheres. For harmonic functions, where the value is *equal* to the average but independent of $r$, both approaches are equivalent. This is a really nice "exercise". I think you need to write the ball average as an integral over $r$ of sphere averages and then differentiate w.r.t $r$ to get some ODE that you can reason with.
 
-Incidentally the above example also produces a natural class of *non-local* mixing operators: averaging over a non-infinitesimal neighborhood $L_rf(x)=\frac{1}{|\partial B_r|}\int_{\partial B_r(x)}(fy-fx)\mathrm dy$. The exponential of this operator represents a Markov kernel that can suddenly *jump* to a uniformly random point on the sphere. But alas, no more on jumps.
+Incidentally the above example also produces a natural class of *non-local* mixing operators: averaging over a non-infinitesimal neighborhood
+$$
+L_rf(x)=\frac{1}{|\partial B_r|}\int_{\partial B_r(x)}(fy-fx)\mathrm dy.
+$$
+The exponential of this operator represents a Markov kernel that can suddenly *jump* to a uniformly random point on the sphere. But alas, no more on jumps.
 
 Back to our local business. Two questions arise:
 1. Is there mixing beyond second order?
@@ -906,7 +923,7 @@ In practice we're saying that for a local maximum of $f$ attained at $x_0$ we mu
 
 **A local differential operator that satisfies the maximum principle has order $\leq 2$, with positive semidefinite second order component.**
 
-*Proof.* Take $g$ with trivial 2-jet $j^2_ag(x)=0$. We shall show $Lg=0$. Consider the functions $f_\pm=-d(a,x)^2\pm \varepsilon g(x)$, where $d$ is Euclidean distance. The first crucial point is that $d(a,x)^2$ is smooth, unlike $d(a,x)$ itself. Hence $f_\pm$ have smooth germs at $x=a$ and are therefore valid inputs for any differential operator. The second crucial point is that we can control $\varepsilon$ and the ball $B_r(a)$ enough so *both* $f_\pm$ have a local maximum at $x=a$. First, using the integral form of Taylor series remainder we know $g(x)-j^2_a(x)=g(x)$ is a smooth multiple of $(x-a)^3$. Next, working inside our small compact ball $B_r(a)$ we have the bound
+*Proof.* Take $g$ with trivial 2-jet $j^2_ag(x)=0.$ We shall show $Lg=0$. Consider the functions $f_\pm=-d(a,x)^2\pm \varepsilon g(x)$, where $d$ is Euclidean distance. The first crucial point is the *square* of Euclidean distance is smooth, unlike $d(a,x)$ itself. Hence $f_\pm$ have smooth germs at $x=a$ and are therefore valid inputs for any differential operator. The second crucial point is that we can control $\varepsilon$ and the ball $B_r(a)$ enough so *both* $f_\pm$ have a local maximum at $x=a$. First, using the integral form of Taylor series remainder we know $g(x)-j^2_a(x)=g(x)$ is a smooth multiple of $(x-a)^3$. Next, working inside our small compact ball $B_r(a)$ we have the bound
 
 $$
 f_\pm (x) \leq -|x-a|^2\pm \varepsilon g(x)\leq -|x-a|^2+\varepsilon C|x-a|^3.
@@ -1398,7 +1415,7 @@ But now we want to focus on a single distribution $\nu$ and its *spatial* change
 
 ⚠️ Wrong. Very wrong. There is a crucial and subtle detail in our histogram analogy above: the implicit reference measure $\mu$ was implicitly assumed to be translation-invariant. Let us unravel this point.
 
-**Histograms and reference measure.** Start with the familiar: finite distributions. We visualize the associated histogram as a bunch of columns *of equal, unit width*, whose height is probability. The equal unit width is the implicit appearance of the counting measure, and our histogram is that of the derivative $\frac{\mathrm d\nu}{\mathrm d\#}$. Scaling the counting measure into a uniform distribution would maintain uniform width $\frac 1n$. We will model histograms as follows: the width of each label $x_i$ is $\mu\lbrace x_i \rbrace$ while the height is density $\frac{\nu\lbrace x_i\rbrace}{\mu\lbrace x_i\rbrace}$. Hence the area of each column is $\nu\lbrace x_i\rbrace$.
+**Histograms and reference measure.** Start with the familiar: finite distributions. We visualize the associated histogram as a bunch of columns *of equal, unit width*, whose height is probability. The equal unit width is the implicit appearance of the counting measure, and our histogram is that of the derivative $\frac{\mathrm d\nu}{\mathrm d\text{\#}}$. Scaling the counting measure into a uniform distribution would maintain uniform width $\frac 1n$. We will model histograms as follows: the width of each label $x_i$ is $\mu\lbrace x_i \rbrace$ while the height is density $\frac{\nu\lbrace x_i\rbrace}{\mu\lbrace x_i\rbrace}$. Hence the area of each column is $\nu\lbrace x_i\rbrace$.
 
 Our overlay procedure involves cyclically shifting $\nu$ while keeping the ruler $\mu$ fixed. Applying a shift $\sigma$ to the density gives $\left(\sigma \cdot\frac{\mathrm d\nu}{\mathrm d\mu}\right)(i)=\frac{\nu_{\sigma i}}{\mu_i}$. To illustrate how uneven rulers may alter the shape of $\sigma \cdot\frac{\mathrm d\nu}{\mathrm d\mu}$ consider an extreme example of $\mu_1=\varepsilon,\mu_2=1-\varepsilon$ with $\varepsilon\ll 1$. Shifting a biased coin $\nu_1=p,\nu_2=1-p$ for would drastically change the histogram: the unshifted density has one column of approximate height zero and one of approximate height $p$. The shifted column has one column of approximate height $1-p$ and another of approximate height zero.
 
