@@ -250,7 +250,7 @@ Suppose we have probability distributions $\nu,\mu$ on the same measurable space
 
 Note the sign of information gain may fluctuate: either model can get lucky sometimes. The simplest example is perhaps the most illustrative: a fair coin and a very biased coin. Taking $\nu$ to be biased toward heads $\nu\lbrace\mathrm H\rbrace=(1-\varepsilon)$ vs tails $\nu\lbrace\mathrm T\rbrace=\varepsilon$, we find:
 * $\log \frac{\nu\lbrace\mathrm H\rbrace}{\mu\lbrace\mathrm H\rbrace}=\log 2(1-\varepsilon)\approx \log 2>0$, witnessing the heads-biased distribution as a better predictor of heads (obviously).
-* For tails we have $\approx \log \varepsilon \overset{\varepsilon\to 0}{\longrightarrow}-\infty$, witnessing $nu$ as a worse predictor of tails.
+* For tails we have $\approx \log \varepsilon \overset{\varepsilon\to 0}{\longrightarrow}-\infty$, witnessing $\nu$ as a worse predictor of tails.
 
 The interesting question is: what is the information gain expected by $\nu$ and by $\mu$? We will answer this below.
 
@@ -1564,7 +1564,12 @@ $$
 
 with parameter given by the basepoint $p$. After we do this, we can apply the fundamental theorem about autonomous parametric flows, which is satisfied with Lipschitz $\vec v$. (Generally, $$\vec v\in C^k\implies u\in C^{k+1}$$ essentially by definition of the ODE.)
 
-The point behind autonomy is $$\left. \frac{\mathrm d}{\mathrm dt} \right|_t \gamma(t) = \left. \frac{\mathrm d}{\mathrm dt} \right|_0 \gamma(t+s)$$. Indeed:
+The point behind autonomy is
+
+$$\left. \frac{\mathrm d}{\mathrm dt} \right|_t \gamma(t) = \left. \frac{\mathrm d}{\mathrm dt} \right|_0 \gamma(t+s).
+$$
+
+Indeed:
 
 $$
 \begin{aligned}
