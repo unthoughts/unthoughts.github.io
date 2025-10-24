@@ -121,7 +121,7 @@ Fix a set $X$. Recall functions from $X$ are in canonical bijection with indexed
 
 **Definition.** The distribution of a measurable partition $\mathscr P$ of a measure space $(X,\mathscr A,\mu)$ is the pushforward of $\mu$ along the projection onto the space of cells $\Omega \overset{\pi}{\twoheadrightarrow}  \mathscr P$. Note an element of $\pi_\ast\mathscr A$ is a collection of cells with measurable union, and its measure $\pi_\ast \mu$ is just the measure of their union.
 
-In more earthly terms, the distribution is the multiset of cell masses (multiset because different cells can have equal mass). Upon indexing/labeling a partition we arrive at the common visualization of distributions as histograms, where the $x$-axis ticks are labels of cells, the $y$-axis denotes probability, and the rectangle areas sum to the total measure of the space. Partitions $\mathscr P_i$ of measure spaces $(X_i,\mathscr A_i,\mu _i)$ have isomorphic distributions precisely iff the induced measure spaces are isomorphic $(\mathscr P_i,\pi_{i\ast}\mathscr A_i,\pi_{i\ast}\mu_i)$, iff the restrictions $\mathscr P_i\overset{\mu|_{\mathscr{P_i}}{\longrightarrow}[0,\infty]$ are isomorphic iff they have equals multisets of cell masses. This means both partitions can be represented by the same histogram.
+In more earthly terms, the distribution is the multiset of cell masses (multiset because different cells can have equal mass). Upon indexing/labeling a partition we arrive at the common visualization of distributions as histograms, where the $x$-axis ticks are labels of cells, the $y$-axis denotes probability, and the rectangle areas sum to the total measure of the space. Partitions $\mathscr P_i$ of measure spaces $(X_i,\mathscr A_i,\mu_i)$ have isomorphic distributions precisely iff the induced measure spaces are isomorphic $(\mathscr P_i,\pi_{i\ast}\mathscr A_i,\pi_{i\ast}\mu_i)$, iff the restrictions $\mathscr P_i\overset{\mu|_{\mathscr{P_i}}}{\longrightarrow}[0,\infty]$ are isomorphic iff they have equals multisets of cell masses. This means both partitions can be represented by the same histogram.
 
 **Remark.** The astute reader may have noticed the restriction of the measure to partition cells is actually the Radon-Nikodym derivative of the pushforward with respect to the counting measure on $\mathscr P$, i.e. $\mu |_\mathscr{P}=\frac{\mathrm d\pi_\ast \mu}{\mathrm d\#}$. While every measure is absolutely continuous w.r.t the counting measure, the derivative only exists when the atomic support of $\pi_\ast \mu$ is countable. This observation, and the key role played by the counting measure, will be explored later.
 
@@ -176,7 +176,7 @@ For an $S$-valued random variable $X$ we therefore have the famous formula
 
 $$\begin{aligned}
 h(X\mid \#) &=-\int_S \frac{\mathrm dP_X}{\mathrm d\#} \log \frac{\mathrm dP_X}{\mathrm d\#} \mathrm d\# \\
-&= -\sum _{x\in S} P\lbrace X=x\rbrace \log P\lbrace X=x\rbrace
+&= -\sum_{x\in S} P\lbrace X=x\rbrace \log P\lbrace X=x\rbrace
 \end{aligned}.$$
 
 **Remark.** The determined reader may try to avoid countability assumptions by using the function $P_\mathscr{P}$ without assuming it realizes the derivative $\frac{\mathrm d\nu}{\mathrm d \#}$. This does allow for a general definition, but it suffers from the same issue: continuous random variables would still have infinite information content whence infinite Shannon entropy.
@@ -426,7 +426,7 @@ This section will culminate in a proof that $\nu\mapsto D(\nu\mid \mu)$ is lower
 Fix a measure space $X$ with measure $\lambda$ and consider a non-negative function $X\to \mathbb R$, thinking of it as mass-density with respect to $\lambda$ (formally as the Radon-Nikodym derivative of some finite measure relative to $\lambda$). The integral is the total mass. When $f$ takes finitely many values it is a simple sum, which can be further decomposed when $X$ itself is finite.
 
 $$\begin{aligned}
-\int f\mathrm d\lambda & =\sum _y y_i\lambda ( f^\leftarrow (y))\\
+\int f\mathrm d\lambda & =\sum_y y_i\lambda ( f^\leftarrow (y))\\
 & = \sum_x f_i(x)\lambda\lbrace x\rbrace  \\
 \end{aligned}$$
 
@@ -443,7 +443,7 @@ For a lucid phrasing of Fatou's lemma, recall a real-valued function $f$ is *low
 
 **Fatou's lemma.** Integration is continuous on finite spaces. Integration of non-negative functions is lower semicontinuous. Moreover, integration of bounded-from-below functions is also lower semicontinuous. Finally, if $\varphi$ is lower semicontinuous and bounded-from-below then the composite $\int \circ \varphi_\ast$ is also lower semicontinuous, i.e. the sublevel sets $\lbrace f\in \mathbb R^X:\int \varphi\circ f \leq c \rbrace$ are closed.
 
-*Proof.* In the finite case, pick a uniform bound on the tail and use it to control the difference between $\int f_n,\int f$. For the infinite case, first fix a finite (measurable) partition $\mathcal P$ of $X$. Define the simple lower approximation $L_\mathcal{P}$ by $L_\mathcal{P}f=\sum_{A\in \mathcal P} \mathbf 1_A \inf _A f$. By *definition* of integration of non-negative functions $\int f=\sup_\mathcal{P}\int L_\mathcal{P}f$. By the lemma it suffices to prove each $L_\mathcal{P}$ is lower semicontinuous. Now we'll reduce to the (continuous) finite case. To this end define $L_{\mathcal F \preceq P} f=\sum _{F\in \mathcal F}\mathbf 1_F\min _Ff$, where $\mathcal F\preceq \mathcal P$ denotes a choice of finite subset of each cell in $P$. These operators are continuous due to the *finite* minima. A straightforward verification shows $L_\mathcal{P}= \sup_{\mathcal F\preceq \mathcal P}L_{\mathcal F\preceq \mathcal P}$. Thus $\int = \sup_\mathcal{P}\sup_{\mathcal F\preceq \mathcal P}L_{\mathcal F\preceq \mathcal P}$, establishing lower semicontinuity. Now suppose the sequence $f_n$ is merely bounded-from-below by $M$. Then we can apply Fatou's lemma to $f_n+M\geq 0$. The result follows by linearity of the integral. To be a bit more explicit, consider the commutative square starting at the subset of functions bounded-from-below by $-M$. The horizontal edges are translations by $M$ while the vertical edges are integration, and commutativity is by linearity of integration. For the last assertion, lower semicontinuity is closed under composition.
+*Proof.* In the finite case, pick a uniform bound on the tail and use it to control the difference between $\int f_n,\int f$. For the infinite case, first fix a finite (measurable) partition $\mathcal P$ of $X$. Define the simple lower approximation $L_\mathcal{P}$ by $L_\mathcal{P}f=\sum_{A\in \mathcal P} \mathbf 1_A \inf_A f$. By *definition* of integration of non-negative functions $\int f=\sup_\mathcal{P}\int L_\mathcal{P}f$. By the lemma it suffices to prove each $L_\mathcal{P}$ is lower semicontinuous. Now we'll reduce to the (continuous) finite case. To this end define $L_{\mathcal F \preceq P} f=\sum_{F\in \mathcal F}\mathbf 1_F\min_Ff$, where $\mathcal F\preceq \mathcal P$ denotes a choice of finite subset of each cell in $P$. These operators are continuous due to the *finite* minima. A straightforward verification shows $L_\mathcal{P}= \sup_{\mathcal F\preceq \mathcal P}L_{\mathcal F\preceq \mathcal P}$. Thus $\int = \sup_\mathcal{P}\sup_{\mathcal F\preceq \mathcal P}L_{\mathcal F\preceq \mathcal P}$, establishing lower semicontinuity. Now suppose the sequence $f_n$ is merely bounded-from-below by $M$. Then we can apply Fatou's lemma to $f_n+M\geq 0$. The result follows by linearity of the integral. To be a bit more explicit, consider the commutative square starting at the subset of functions bounded-from-below by $-M$. The horizontal edges are translations by $M$ while the vertical edges are integration, and commutativity is by linearity of integration. For the last assertion, lower semicontinuity is closed under composition.
 
 Led by Fatou-style intuition that mass can only drift off in the limit (but not appear), intuition suggests similar behavior of expected information gain $D(\nu\mid\mu)=\int \frac{\mathrm d\nu}{\mathrm d\mu}\log \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\mu$. Upon inspection we implicitly consider densities (the standard visualiation of histograms) and not the distributions themselves.
 
@@ -453,7 +453,7 @@ Led by Fatou-style intuition that mass can only drift off in the limit (but not 
 
 Since pointwise convergence of densities is extremely stringent, it's natural to wonder about lower semicontinuity with respect to coarser topologies. The following theorem gives a geometric characterization of the *weak topology* on the space of measures. We will adopt it as a definition.
 
-**Portmanteau theorem.** A sequence of measures converges in the weak topology $\mu_n\Rightarrow \mu$ iff for all measurable $A$ satisfying $\mu (\partial A)=0$ we have $\mu _nA\to \mu A$.
+**Portmanteau theorem.** A sequence of measures converges in the weak topology $\mu_n\Rightarrow \mu$ iff for all measurable $A$ satisfying $\mu (\partial A)=0$ we have $\mu_nA\to \mu A$.
 
 Intuitively, the condition $\mu(\partial A)=0$ prevents measure from leaking out into the boundary. Thus the weak topology is oblivious to behavior of $\mu_n A$ if there is concentration at the boundary $\mu (\partial A)>0$.
 
@@ -462,10 +462,10 @@ The takeaway:
 **Continuity for a fixed continuity partition.** Assume $\mathscr P$ is a finite partition satisfying $A\in \mathscr P\implies \mu(\partial A)=0$. Then $\nu \mapsto D_\mathscr{P}(\nu\mid\mu)$ is continuous with respect to the weak topology, i.e.
 
 $$
-\nu _n\Rightarrow \nu \implies D_\mathscr{P}(\nu _n\mid \mu)\to D_\mathscr{P}(\nu\mid \mu).
+\nu_n\Rightarrow \nu \implies D_\mathscr{P}(\nu_n\mid \mu)\to D_\mathscr{P}(\nu\mid \mu).
 $$
 
-*Proof.* By Portmanteau $\nu _n\Rightarrow \nu$ implies set-wise convergence over $\mathscr P$. For each summand of $D_\mathscr{P}(\nu\mid\mu)=\sum_{A\in \mathscr P}\nu A \log \frac{\nu A}{\mu A}$, $\mu A$ is fixed and the map $x\log \frac x{\mu A}$ is continuous. Hence set-wise convergence gives the desired result.
+*Proof.* By Portmanteau $\nu_n\Rightarrow \nu$ implies set-wise convergence over $\mathscr P$. For each summand of $D_\mathscr{P}(\nu\mid\mu)=\sum_{A\in \mathscr P}\nu A \log \frac{\nu A}{\mu A}$, $\mu A$ is fixed and the map $x\log \frac x{\mu A}$ is continuous. Hence set-wise convergence gives the desired result.
 
 Now we anticipate lower semicontinuity $\nu\mapsto D(\nu\mid\mu)$ if we can only compute $D(\nu\mid\mu)$ as a supremum over continuity partitions. First we'll prove the supremum formula and then explain why it suffices to use continuity partitions.
 
@@ -475,8 +475,8 @@ Now we anticipate lower semicontinuity $\nu\mapsto D(\nu\mid\mu)$ if we can only
 
 $$\begin{aligned}
 D_\mathscr{P}(\nu\mid \mu) & =\sum_{A\in \mathscr P}\nu A \log \frac{\nu A}{\mu A} \\
-& = \sum_{A\in \mathscr P}\mu A \underbrace{\frac{\nu A}{\mu A}}_{\frac{1}{\mu A}\int _A f\mathrm d\mu} \log \frac{\nu A}{\mu A} \\
-&= \sum_{A\in \mathscr P}\mu A \cdot\varphi \left(\int f \mathrm d \mu | _A\right) \\
+& = \sum_{A\in \mathscr P}\mu A \underbrace{\frac{\nu A}{\mu A}}_{\frac{1}{\mu A}\int_A f\mathrm d\mu} \log \frac{\nu A}{\mu A} \\
+&= \sum_{A\in \mathscr P}\mu A \cdot\varphi \left(\int f \mathrm d \mu |_A\right) \\
 & \leq \sum_{A\in \mathscr P}\mu A \int \varphi(f)\mathrm d \mu|_A \\
 & = \int f\log f\mathrm d\mu= D(\nu\mid \mu).
 \end{aligned}$$
@@ -510,13 +510,13 @@ $$
 
 We'll need the following theorem.
 
-**Prokhorov theorem.** In the weak topology, a sequence $(\mu _n)_{n\geq 1}$ has a convergent subsequence iff $\forall \varepsilon >0$ there's a compact $K$ such that $\sup _n\mu _n (X\setminus K)<\varepsilon$.
+**Prokhorov theorem.** In the weak topology, a sequence $(\mu_n)_{n\geq 1}$ has a convergent subsequence iff $\forall \varepsilon >0$ there's a compact $K$ such that $\sup_n\mu_n (X\setminus K)<\varepsilon$.
 
 Intuitively, existence of compact sets uniformly  containing most of each measure $\mu_n$ prevents measure from leaking into infinity on our space (at the limit).
 
 **Sequentially compact sublevel sets.** Fix a probability measure $\mu$ (inner regular - automatic for Borel measures on nice spaces). When restricted to probability measures, expected information gain $\nu\mapsto D(\nu\mid \mu)$ has sequentially compact sublevel sets. That is, every sequence in $\lbrace \nu : D(\nu\mid\mu)\leq d \rbrace, d\in \mathbb R$ has a convergent subsequence. By lower semicontinuity, the limit also lies in $\lbrace \nu : D(\nu\mid\mu)\leq d \rbrace$.
 
-*Proof.* We use Prokhorov. Let $\lbrace \nu_ n\rbrace_{n\geq 1} \subseteq \lbrace \nu : D(\nu \mid \mu \leq d\rbrace)$. Given $\varepsilon > 0$ we must find a compact $K$ such that $\sup_n\nu _n (X\setminus K)<\varepsilon$.
+*Proof.* We use Prokhorov. Let $\lbrace \nu_ n\rbrace_{n\geq 1} \subseteq \lbrace \nu : D(\nu \mid \mu \leq d\rbrace)$. Given $\varepsilon > 0$ we must find a compact $K$ such that $\sup_n\nu_n (X\setminus K)<\varepsilon$.
 
 The supremum characterization of entropy ensures $D_\mathscr{P}(\nu\mid\mu)\leq D(\nu\mid\mu)$ for a partition $\mathscr P$. Taking a binary partition we have (using $x\log x\geq -\frac 1e$) the following inequality for any $\nu $.
 
@@ -564,7 +564,7 @@ Intuitively, "pure mixing" cannot alter a uniform distribution, since any such e
 
 Since a Markov chain is entirely specified by the $(p_{ij})$, it is equivalently representable by a matrix. We will use the row-stochastic convention, where row $i$ represents outgoing probabilities $i\to \bullet$ (hence row-sums equal one) while column $i$ represents incoming probabilities $i \leftarrow \bullet$. For example the Markov chain $1\underset{q}{\overset{p}{\rightleftarrows}}2$ is represented by the row-stochastic matrix $\begin{pmatrix} 1-p & p \\ q & 1-q \end{pmatrix}$ with the extreme case $1\underset{1}{\rightleftarrows}2$ given by the matrix $\begin{pmatrix} 1 & 0 \\ 1 & 0 \end{pmatrix}$. In the row-stochastic convention, the action on an initial distribution is row-mixing $\nu\mapsto \nu P$, or equivalently $\nu\mapsto P^\top \nu$. Thus Markov chains are *linear* mixing operators. The "pure mixing" condition says $\frac 1n \mathbf 1 P=\frac 1n \mathbf 1$. Unpacking, the LHS adds the rows to each other, and the equation means column-sum equals one. Thus pure mixing operators are represented by doubly-stochastic matrices.
 
-But is that the entire story? Well, no. Permutation matrices are doubly-stochastic, but *all* they do is circulate, without any mixing. Even if we look at a doubly-stochastic perturbation of a permutation matrix $\begin{pmatrix} \varepsilon & 1-\varepsilon & 0 \\ 0 & \varepsilon & 1-\varepsilon \\ 1-\varepsilon & 0 & \varepsilon \end{pmatrix}$ we still see a circulation dynamic $1 \overset{1-\varepsilon}{\longrightarrow} 2 \overset{1-\varepsilon}{\longrightarrow} 3 \overset{1-\varepsilon}{\longrightarrow} 1$. A pure mixing operator should be circulation-free. To capture this, we require zero circulation at equillibrium! Concretely, for a stationary $\pi$, zero circulation asserts the total volume flowing through pipe $i\to j$ equals the total volume through $i\leftarrow j$. In other words, $\pi _i P_{ij}=\pi _j P_{ji}$. In our doubly-stochastic context $\pi$ is the uniform distribution, and the equation is equivalent to symmetry $P=P^\top$, but this is a peculiarity of the uniform distribution! For infinite state spaces, the reference equillibrium $\pi$ will play a very explicit role.
+But is that the entire story? Well, no. Permutation matrices are doubly-stochastic, but *all* they do is circulate, without any mixing. Even if we look at a doubly-stochastic perturbation of a permutation matrix $\begin{pmatrix} \varepsilon & 1-\varepsilon & 0 \\ 0 & \varepsilon & 1-\varepsilon \\ 1-\varepsilon & 0 & \varepsilon \end{pmatrix}$ we still see a circulation dynamic $1 \overset{1-\varepsilon}{\longrightarrow} 2 \overset{1-\varepsilon}{\longrightarrow} 3 \overset{1-\varepsilon}{\longrightarrow} 1$. A pure mixing operator should be circulation-free. To capture this, we require zero circulation at equillibrium! Concretely, for a stationary $\pi$, zero circulation asserts the total volume flowing through pipe $i\to j$ equals the total volume through $i\leftarrow j$. In other words, $\pi_i P_{ij}=\pi_j P_{ji}$. In our doubly-stochastic context $\pi$ is the uniform distribution, and the equation is equivalent to symmetry $P=P^\top$, but this is a peculiarity of the uniform distribution! For infinite state spaces, the reference equillibrium $\pi$ will play a very explicit role.
 
 Every finite Markov chain canonically decomposes into maximal strongly connected components. By collapsing these components into points we obtain a new graph of communication *between components*. By maximality, components are either entirely disconnected from each other, or connected in just one direction. A component disconnected from the others is *closed*, while a component that points outward is *transient*, meaning all the stuff in it will eventually drain out. Components with arrows going into them are *absorbing*. This decomposition reveals highlights the irrelevance of transient components to long-term dynamics: eventually only closed and absorbing components matter.
 
@@ -605,7 +605,7 @@ $$\begin{aligned}
 
 Thus a stochastic matrix is just a family of densities relative to counting measure, indexed by a finite state space. Removing the word 'finite' and dealing with distributions directly gives rise to *Markov kernels*: linear mixing operators between general spaces. Formally, a Markov kernel between measurable spaces $(X,\mathscr A)\overset{P}{\longrightarrow}(Y,\mathscr B)$ is a measurable function $(X,\mathscr A)\overset{P}{\longrightarrow}\mathcal P(Y,\mathscr B)$ to the space of probability distributions (equipped with the $\sigma$-algebra generated by the set of evaluations $\lbrace\operatorname{ev}_B,B\in \mathscr B\rbrace$). A Markov kernel canonically lifts to act on distributions $\mathcal P(X,\mathscr A)\overset{P}{\longrightarrow} \mathcal P(Y,\mathscr B)$ via $\nu P=\mathbb E_\nu P$, i.e. $P$ mixes $\nu$ into the $\nu$-expectation of the family. (Formally, the expectation is a Bochner integral, but I'm in favor of disregarding pedantry in our context.)
 
-Now we come to generalize "pure mixing" operators from *doubly*-stochastic matrices. As discussed above, the additional requirement $\mathbf 1P=\mathbf 1$ means the uniform distribution is stationary, and mild connectedness assumptions give uniqueness, giving a globally attractive fixed point for the flow. Intuitively, this means doubly-stochastic matrices represent mixing operators whose "most mixed" or "most spread out" state is uniform. In general state spaces we follow the same principle and work relative to a chosen stationary reference $\pi$, which is unique under similarly mild connectedness assumptions. Note $\pi$-invariance is equivalent to "$\pi$-sum of the $y$-column equals one". Indeed $\pi P=\pi \iff \frac{\mathrm d\pi P}{\mathrm d\pi}\overset{\text{a.s}}{=}1$ and compute the LHS to discover $\frac{\mathrm d\pi P}{\mathrm d\pi}(y)=\int _\Omega \frac{\mathrm dP_x}{\mathrm d\pi}(y)\mathrm d\mu(x)$.
+Now we come to generalize "pure mixing" operators from *doubly*-stochastic matrices. As discussed above, the additional requirement $\mathbf 1P=\mathbf 1$ means the uniform distribution is stationary, and mild connectedness assumptions give uniqueness, giving a globally attractive fixed point for the flow. Intuitively, this means doubly-stochastic matrices represent mixing operators whose "most mixed" or "most spread out" state is uniform. In general state spaces we follow the same principle and work relative to a chosen stationary reference $\pi$, which is unique under similarly mild connectedness assumptions. Note $\pi$-invariance is equivalent to "$\pi$-sum of the $y$-column equals one". Indeed $\pi P=\pi \iff \frac{\mathrm d\pi P}{\mathrm d\pi}\overset{\text{a.s}}{=}1$ and compute the LHS to discover $\frac{\mathrm d\pi P}{\mathrm d\pi}(y)=\int_\Omega \frac{\mathrm dP_x}{\mathrm d\pi}(y)\mathrm d\mu(x)$.
 
 ### Chain rule and change in information gain
 
@@ -625,15 +625,15 @@ The table below summarizes the key probabilities in play and their generalizatio
 
 $P_{ij}$ is the fraction of stuff currently in state $i$ that will flow through the pipe $i\to j$. This is the probability of the next state $j$ conditioned on the *prior* of present state $i$. (Is it strange to call the present a prior? The mere thought of this makes it past...) The conditional generalizes to a Markov kernel $P$, with $P_x$ the fraction of stuff at state $x$ that will flow into $A$.
 
-$(\nu P)_j$ is the fraction of the total stuff that will sit inside cup $j$ in the next phase. It depends on $\nu$ because it pertains to the total amount of stuff. It generalizes to the action $\nu P=\mathbb E _\nu P$.
+$(\nu P)_j$ is the fraction of the total stuff that will sit inside cup $j$ in the next phase. It depends on $\nu$ because it pertains to the total amount of stuff. It generalizes to the action $\nu P=\mathbb E_\nu P$.
 
-$\nu _i P_{ij}$ is the fraction of the total stuff flowing through $i\to j$. It is the *joint* probability of both present state $i$ *and* next state $j$. The pointwise multiplication should therefore generalize to a joint distribution of "now" and "next" on the product space. Let's think how to compute it on $A\times B$. The second variable appears only in $P$ and won't pose an issue. For the first, we want to integrate $\nu \lbrace x\rbrace P_x$ over $x\in A$. This is the probability measure $\int _A P_x\mathrm d\nu(x) $, which can be evaluated at $B$. That's all there is to it. As for notation, we'll adopt $\nu\otimes P$ following Kallenberg (if I recall correctly). To be honest the moral choice of notation would be asymmetric semidirect product notation $\nu \rtimes P$, but ah well.
+$\nu_i P_{ij}$ is the fraction of the total stuff flowing through $i\to j$. It is the *joint* probability of both present state $i$ *and* next state $j$. The pointwise multiplication should therefore generalize to a joint distribution of "now" and "next" on the product space. Let's think how to compute it on $A\times B$. The second variable appears only in $P$ and won't pose an issue. For the first, we want to integrate $\nu \lbrace x\rbrace P_x$ over $x\in A$. This is the probability measure $\int_A P_x\mathrm d\nu(x) $, which can be evaluated at $B$. That's all there is to it. As for notation, we'll adopt $\nu\otimes P$ following Kallenberg (if I recall correctly). To be honest the moral choice of notation would be asymmetric semidirect product notation $\nu \rtimes P$, but ah well.
 
 To be very concrete, the joint distribution $(\nu \otimes P)(A\times B)$ is the fraction of total stuff that will next flow through pipes $A\rightrightarrows B$. More generally, $(\nu P^m \otimes P^n)(A\times B)$ is the fraction that will flow through from time $m$ for a period of length $n$. If we take an equillibrium $\nu=\pi$ then $\pi P^m \otimes P^n=\pi \otimes P^n$ depends only on the duration of mixing.
 
 That $\nu \otimes P$ is the joint distribution of "now" and "next" implies its $X$ and $Y$ marginals are $\nu$ and $\nu P$ respectively. This is indeed the case:
-* Taking $B=Y$ we find the value is $\int _AP_x(Y)\mathrm d\nu (x)=\int_A \mathrm d\nu=\nu A$. Hence $\pi_{X\ast}(\nu \otimes P)=\nu$.
-* Taking $A=X$ we find the value is always $\int _XP_x\mathrm d\nu=\mathbb E_\nu P=\nu P$. That is, $\pi_{Y\ast}(\nu \otimes P)=\nu P$.
+* Taking $B=Y$ we find the value is $\in_AP_x(Y)\mathrm d\nu (x)=\int_A \mathrm d\nu=\nu A$. Hence $\pi_{X\ast}(\nu \otimes P)=\nu$.
+* Taking $A=X$ we find the value is always $\int_XP_x\mathrm d\nu=\mathbb E_\nu P=\nu P$. That is, $\pi_{Y\ast}(\nu \otimes P)=\nu P$.
 
 Now comes a fundamental result.
 
@@ -707,7 +707,7 @@ Pf(x)=\int f\mathrm dP_x=\mathbb E_{P_x}f.
 \end{gathered}
 $$
 
-In the discrete case $P$ is a row-stochastic matrix and $f$ a column vector, interpretted as a function on the state space. Write $X_n$ for the random variable whose value is the observed state at time $n$. Then $Pf(i)=\sum _{j}P_{ij}f_j$ is the conditional expectation $\mathbb E[f(X_{n+1})\mid X_n=i]$ of $f$ evaluated on the next state given current value $i$. Taking $f=\mathbf 1_{j}$ recovers the conditional probability $P_{ij}=\mathbb P[X_{n+1}=j\mid X_n=i]$. Similarly for continuous time $Pf(x)=\mathbb E[f(X_{s+t})\mid X_s=x]$.
+In the discrete case $P$ is a row-stochastic matrix and $f$ a column vector, interpretted as a function on the state space. Write $X_n$ for the random variable whose value is the observed state at time $n$. Then $Pf(i)=\sum_{j}P_{ij}f_j$ is the conditional expectation $\mathbb E[f(X_{n+1})\mid X_n=i]$ of $f$ evaluated on the next state given current value $i$. Taking $f=\mathbf 1_{j}$ recovers the conditional probability $P_{ij}=\mathbb P[X_{n+1}=j\mid X_n=i]$. Similarly for continuous time $Pf(x)=\mathbb E[f(X_{s+t})\mid X_s=x]$.
 
 The following square commutes by Fubini
 
@@ -738,7 +738,7 @@ Finally we come to action on densities. The key is commutativity of the followin
 
 $$
 \begin{array}{ccc}
-\mathcal M _{\ll\mu}(X) & \stackrel{P_\ast}{\longrightarrow} & \mathcal M_{\ll\mu P} (Y) \\
+\mathcal M_{\ll\mu}(X) & \stackrel{P_\ast}{\longrightarrow} & \mathcal M_{\ll\mu P} (Y) \\
 \Big\downarrow\!{\scriptstyle \mathrm{RN}} & & \Big\downarrow\!{\scriptstyle \mathrm{RN}} \\
 L^2(\mu) & \stackrel{P^\dagger[\mu]^\ast}{\longrightarrow} & L^2(\mu P)
 \end{array}
@@ -775,7 +775,7 @@ A continuous-time (autonomous) mixing flow (Markov chain) is an action of the mo
 **Information gain and continuous mixing.** Fix a Markov monoid $(P^t)$ and two distributions $\nu\ll\mu$ on $(\Omega,\mathscr F)$. Then:
 
 $$
-\overbrace{D(\nu\mid \mu)}^{\substack{\text{initial} \\ \text{information}\\ {\text{gain}}}}=\overbrace{D(\nu P^t\mid \mu P^t)}^{\substack{\text{information} \\ \text{gain}\\ {\text{at time }t}}}+ \overbrace{\int _0 ^t\lim_{h\searrow 0}\frac 1h\mathbb E_{\nu P^{s+h}}\left[D\left( \frac{\mathrm d(\nu P^s\otimes P^h)}{\mathrm d\nu P^{s+h}} \mid \frac{\mathrm d(\mu P^s\otimes P^h)}{\mathrm d\mu P^{s+h}} \right) \right]}^{\text{total expected posterior information gain}}.
+\overbrace{D(\nu\mid \mu)}^{\substack{\text{initial} \\ \text{information}\\ {\text{gain}}}}=\overbrace{D(\nu P^t\mid \mu P^t)}^{\substack{\text{information} \\ \text{gain}\\ {\text{at time }t}}}+ \overbrace{\int_0 ^t\lim_{h\searrow 0}\frac 1h\mathbb E_{\nu P^{s+h}}\left[D\left( \frac{\mathrm d(\nu P^s\otimes P^h)}{\mathrm d\nu P^{s+h}} \mid \frac{\mathrm d(\mu P^s\otimes P^h)}{\mathrm d\mu P^{s+h}} \right) \right]}^{\text{total expected posterior information gain}}.
 $$
 
 Consequently we have the differential version:
@@ -791,10 +791,10 @@ In particular we have the *data-processing inequality* $D(\nu P^t\mid \mu P^t)\l
 In the discrete case $P^{\mathbb N_{\geq0}}$ is generated by $P$. In the continuous case, $P^{\mathbb R_{\geq 0}}$ is typically also generated by one object, but this infinitesimal generator is not a member of the monoid and isn't even a mixing operator. The story here is the operator exponential, and we sketch it bug gloss over technical precisions. The exponential action takes a perturbation of the identity by an infinitesimal fraction $\frac 1n$ of our operator - a tiny linear update - and applies this perturbation $n$ times.
 
 $$
-e^{tA}=\lim _{n\to \infty}\left( \mathrm I+\frac tn A \right)^n=\sum _{n=0}^\infty \frac{t^n}{n!}A^n.
+e^{tA}=\lim_{n\to \infty}\left( \mathrm I+\frac tn A \right)^n=\sum_{n=0}^\infty \frac{t^n}{n!}A^n.
 $$
 
-Just as $u(t)=u_0e^{at}$ is characterized as the unique solution to the scalar ODE $\frac{\mathrm d}{\mathrm dt}u(t)=au(t)$ with initial condition $u_0$, so the operator exponential $u(t)=e^{tA}u_0$ is characterized as providing the unique solution to the vector ODE $\partial _t u=Au$ with initial condition $u_0$ (we suppress the spatial variable). The exponential functional equation (expressing the fact $\exp$ is a group morphism from the reals to the additive structure of our linear space) can be derived either from the limit definitions above, or from the ODE characterization using translations and uniqueness of solutions to ODE. The takeaway is that $\mathbb R$-action $(e^{tA})_{t\in \mathbb R}$ is the flow generated by $A$: while $\partial_t|_0 u = Au_0$ is just the initial *derivative*, $u=e^{tA}u_0$ is the *position* on the integral curve at time $t$. Conversely, the infinitesimal generator of an exponential group $e^{tA}$ is recoverable as the initial derivative.
+Just as $u(t)=u_0e^{at}$ is characterized as the unique solution to the scalar ODE $\frac{\mathrm d}{\mathrm dt}u(t)=au(t)$ with initial condition $u_0$, so the operator exponential $u(t)=e^{tA}u_0$ is characterized as providing the unique solution to the vector ODE $\partial_t u=Au$ with initial condition $u_0$ (we suppress the spatial variable). The exponential functional equation (expressing the fact $\exp$ is a group morphism from the reals to the additive structure of our linear space) can be derived either from the limit definitions above, or from the ODE characterization using translations and uniqueness of solutions to ODE. The takeaway is that $\mathbb R$-action $(e^{tA})_{t\in \mathbb R}$ is the flow generated by $A$: while $\partial_t|_0 u = Au_0$ is just the initial *derivative*, $u=e^{tA}u_0$ is the *position* on the integral curve at time $t$. Conversely, the infinitesimal generator of an exponential group $e^{tA}$ is recoverable as the initial derivative.
 
 As in discrete time, a continuous Markov monoid $P^{\mathbb R_{\geq 0}}$ is often generated by a single object, except it's more delicate: evaluating the exponential characterization $\partial_t e^{tA}=Ae^{tA}$ at zero suggests the Markov generator is $L=\partial_t |_{t=0^+}P^t$ when this limit exists in a suitably strong sense, in which case $P^t=e^{tL}$. Essentially we're embedding the monoid into an exponential group, keeping in mind that only the non-negative half represents mixing operators.
 
@@ -841,15 +841,15 @@ L^2(\pi) & \xrightarrow{\;\;L^\dagger[\pi]^\ast\;\;} & L^2(\pi)
 \end{array}
 $$
 
-Hence $\frac{\mathrm d \nu P^t}{\mathrm d \pi}=P^{t\dagger}[\pi]\frac{\mathrm d \nu}{\mathrm d \pi}=e^{tL^\dagger[\pi]}\frac{\mathrm d \nu}{\mathrm d \pi}$. But this is precisely the form $u(t)=e^{tL}u_0$ of the solution to $\partial _tu=Lu,u(0)=u_0$. Thus we have a time evolution equation for densities:
+Hence $\frac{\mathrm d \nu P^t}{\mathrm d \pi}=P^{t\dagger}[\pi]\frac{\mathrm d \nu}{\mathrm d \pi}=e^{tL^\dagger[\pi]}\frac{\mathrm d \nu}{\mathrm d \pi}$. But this is precisely the form $u(t)=e^{tL}u_0$ of the solution to $\partial_tu=Lu,u(0)=u_0$. Thus we have a time evolution equation for densities:
 
 $$
-\partial _t \frac{\mathrm d \nu P^t}{\mathrm d\pi}=L^\dagger[\pi]\frac{\mathrm d \nu P^t}{\mathrm d\pi}.
+\partial_t \frac{\mathrm d \nu P^t}{\mathrm d\pi}=L^\dagger[\pi]\frac{\mathrm d \nu P^t}{\mathrm d\pi}.
 $$
 
 The literature often calls this the *forward equation* of the process, because we're acting in the direction of the *pushforward* of measures.
 
-The action on functions is adjoint and often called the *backward equation* $\partial _t P^tf=L P^tf$.
+The action on functions is adjoint and often called the *backward equation* $\partial_t P^tf=L P^tf$.
 
 ## Physical mixing
 
@@ -867,7 +867,7 @@ A celebrated theorem by Peetre states that a local linear operator on smooth rea
 
 To summarize, the locality assumption has reduced us to mixing prescribed given by finite order differential operators.
 
-When $L$ is a *first order* local differential operator the story is simple. In coordinates $L$ is a $C^\infty$-linear combination of partial derivatives alongside a free term which encodes a source/sink. In our context we'll assume the latter is zero. First order differential operators with zero free coefficient are equivalent to vector fields, and the geometry is given by integrating into a flow. Since (sufficiently smooth) vector fields have invertible flows, this is pure circulation without any real mixing. As stuff is only moving around with neither concentration nor diffusion, information gain relative to a flow-invariant measure is static. For a simple example consider $L=\partial _x$. By manipulating Taylor series one anticipates the exponential family of the derivative is given by translation $e^{t\partial_x}f(x)=f(x+t)$ and indeed this family solves the transport equation $\partial_tu=\partial_xu$, whose characteristics are just straight lines.
+When $L$ is a *first order* local differential operator the story is simple. In coordinates $L$ is a $C^\infty$-linear combination of partial derivatives alongside a free term which encodes a source/sink. In our context we'll assume the latter is zero. First order differential operators with zero free coefficient are equivalent to vector fields, and the geometry is given by integrating into a flow. Since (sufficiently smooth) vector fields have invertible flows, this is pure circulation without any real mixing. As stuff is only moving around with neither concentration nor diffusion, information gain relative to a flow-invariant measure is static. For a simple example consider $L=\partial_x$. By manipulating Taylor series one anticipates the exponential family of the derivative is given by translation $e^{t\partial_x}f(x)=f(x+t)$ and indeed this family solves the transport equation $\partial_tu=\partial_xu$, whose characteristics are just straight lines.
 
 Real mixing appears for *second order* local differential operators. The core intuition is present already in one dimension, exposed by an elementary but somehow less familiar characterization of the second derivative. Suppose $f\in C^2$ and compute using L'Hôpital's rule w.r.t $h$ to find
 
@@ -877,9 +877,9 @@ $$\begin{aligned}
 &= \frac 12 f^{\prime\prime}(x).
 \end{aligned}$$
 
-Hence a positive/negative second derivative means the average is higher/lower. The second derivative is thus proportional to "displacement from the infinitesimal average". With this in mind, the 1D heat equation $\partial _tu=\frac 12 \partial _{xx}u$ describes mixing essentially by definition: it says temperature $u$ evolves precisely according to the average of nearby points: point $x$ gets hotter/colder as long as the average temperature of its neighbors is higher/lower. For computing the exponential we have the general machinery of the Fourier transform, which we'll get to.
+Hence a positive/negative second derivative means the average is higher/lower. The second derivative is thus proportional to "displacement from the infinitesimal average". With this in mind, the 1D heat equation $\partial_tu=\frac 12 \partial_{xx}u$ describes mixing essentially by definition: it says temperature $u$ evolves precisely according to the average of nearby points: point $x$ gets hotter/colder as long as the average temperature of its neighbors is higher/lower. For computing the exponential we have the general machinery of the Fourier transform, which we'll get to.
 
-In higher dimensions the Laplacian $\Delta = \sum_i \partial_{x_ix_i}$ has a similar characterization: it's proportional to the limit of averaging operators $\Delta \propto \lim_{r\searrow 0}L_rf(x)=\lim_{r\searrow 0}\frac{1}{|\partial B_r|}\int_{\partial B_r(x)}(fy-fx)\mathrm dy$, and also describes mixing. The heat equation $\partial _tu\propto \Delta$ simply generalizes the 1D idea.
+In higher dimensions the Laplacian $\Delta = \sum_i \partial_{x_ix_i}$ has a similar characterization: it's proportional to the limit of averaging operators $\Delta \propto \lim_{r\searrow 0}L_rf(x)=\lim_{r\searrow 0}\frac{1}{|\partial B_r|}\int_{\partial B_r(x)}(fy-fx)\mathrm dy$, and also describes mixing. The heat equation $\partial_tu\propto \Delta$ simply generalizes the 1D idea.
 
 *Remark.* Some sources use averaging over balls instead of spheres. For harmonic functions, where the value is *equal* to the average but independent of $r$, both approaches are equivalent. This is a really nice "exercise". I think you need to write the ball average as an integral over $r$ of sphere averages and then differentiate w.r.t $r$ to get some ODE that you can reason with.
 
@@ -922,7 +922,7 @@ $$\begin{aligned}
 \partial_t T+\underbrace{\nabla T\cdot \vec v}_{\substack{\text{advection}\\\text{by motion}}}+\underbrace{T\operatorname{div}\vec v}_{\substack{\text{compression/expansion}\\\text{heating}}} &= \underbrace{\alpha \Delta T}_{\text{isotropic diffusion}}+ \underbrace{\nabla \alpha \cdot \nabla T}_{\substack{\text{flux from} \\ \text{spatially varying }\alpha}}+S
 \end{aligned}$$
 
-We can rewrite the PDE in conservative form $\partial _tu+\operatorname{div}J=S$, where $u$ is density, $J$ is flux, and $S$ is sources/sinks.
+We can rewrite the PDE in conservative form $\partial_tu+\operatorname{div}J=S$, where $u$ is density, $J$ is flux, and $S$ is sources/sinks.
 
 $$
 \partial_t T= \operatorname{div}(\underbrace{\alpha \nabla T}_{\text{diffusive}}-\underbrace{T\vec v}_{\text{convective}})+S 
@@ -956,7 +956,7 @@ In the isotropic case we reduce to $A=\alpha I$.
 
 The convection diffusion equation is idealized and features non-phyiscal behavior: there is instant spatial propagation of information. Specifically, if we start off with a concentrated initial condition (e.g. a delta) at $t=0$, then temperature is globally nonzero for $t>0$. To see this (jumping slightly ahead of ourselves), recall the heat equation is famously solved via the convolution with the Gaussian kernel, which is globally positive all the time.
 
-The peculiarity stems from Fourier's law of heat conduction, encoding his empirical observations. This is a short story. Writing $\mathbf q$ for heat flux and $Q$ for heat energy density, (local) conservation of energy is $\partial_t Q+\operatorname{div}\mathbf q=0$. Writing $T$ for temperature and assuming our material properties don't change with time (reasonable for short durations) we have $\partial_tQ=c\rho \partial _tT$, where $c,\rho$ are respectively specific heat capacity and density. Fourier observed (in the isotropic case) that heat flows in the negative temperature gradient $\mathbf q= -\alpha \nabla T$, i.e. heat flows in the coldest direction at rate determined by *thermal diffusivity* $\alpha$. Plugging into conservation of energy gives the familiar heat equation. In the anisotropic case $\alpha$ is a matrix encoding directional diffusivity.
+The peculiarity stems from Fourier's law of heat conduction, encoding his empirical observations. This is a short story. Writing $\mathbf q$ for heat flux and $Q$ for heat energy density, (local) conservation of energy is $\partial_t Q+\operatorname{div}\mathbf q=0$. Writing $T$ for temperature and assuming our material properties don't change with time (reasonable for short durations) we have $\partial_tQ=c\rho \partial_tT$, where $c,\rho$ are respectively specific heat capacity and density. Fourier observed (in the isotropic case) that heat flows in the negative temperature gradient $\mathbf q= -\alpha \nabla T$, i.e. heat flows in the coldest direction at rate determined by *thermal diffusivity* $\alpha$. Plugging into conservation of energy gives the familiar heat equation. In the anisotropic case $\alpha$ is a matrix encoding directional diffusivity.
 
 Infinite propagation speed of information is incompatible with relativity. To amend this, the Maxwell–Cattaneo conduction equation replaces Fourier's *parabolic* equation with a *hyperbolic* equation involving a second time derivative. The result is better behaved in the sense that propagation speed is finite, but the resulting process is no longer Markovian because second derivatives involve "memory".
 
@@ -975,8 +975,8 @@ $$
 The product rule $\operatorname{div}(f\vec v)=f\operatorname{div}\vec v+\langle \nabla f,\vec v\rangle$ lets us compute via integration by parts (assuming rapid decay of densities) and the identity $\nabla \log u=\frac{\nabla u}u$:
 
 $$\begin{aligned}
-\partial _t D(\nu P^t\mid \lambda) &=\partial _t \int (f_t\log f_t)\mathrm d\lambda \\
-&= \int (\partial _t f)(1+\log f_t)\mathrm d\lambda \\
+\partial_t D(\nu P^t\mid \lambda) &=\partial_t \int (f_t\log f_t)\mathrm d\lambda \\
+&= \int (\partial_t f)(1+\log f_t)\mathrm d\lambda \\
 &= \int \operatorname{div}(\alpha \nabla f_t-f_t\vec v)(1+\log f_t)\mathrm d\lambda \\
 &\overset{\text{IBP}}{=}-\int \langle \alpha \nabla f_t-f_t\vec v,\nabla (1+\log f_t)\rangle \mathrm d\lambda \\
 &= \int \langle \vec v,\nabla f_t\rangle \mathrm d\lambda - \int \langle \alpha \nabla f_t,\frac{\nabla f_t}{f}\rangle\mathrm d\lambda \\
@@ -987,7 +987,7 @@ $$\begin{aligned}
 To summarize,
 
 $$\begin{aligned}
-\partial _t D(\nu P^t\mid \lambda) &= - \int f_t (\operatorname{div}\vec v+\alpha \|\nabla\log f_t\|^2_2)\mathrm d\lambda \\
+\partial_t D(\nu P^t\mid \lambda) &= - \int f_t (\operatorname{div}\vec v+\alpha \|\nabla\log f_t\|^2_2)\mathrm d\lambda \\
 & = - \mathbb E_{\nu P^t}[\operatorname{div}\vec v+\alpha \|\nabla\log f_t\|^2_2] \\
 & = - \mathbb E_{\nu P^t}[\operatorname{div}\vec v+\alpha \|D\log f_t\|^2_{\mathrm{op}}].
 \end{aligned}$$
@@ -1001,7 +1001,7 @@ In the simple case of scalar diffusivity $\alpha>0$ we can intuitively summarize
 When the velocity field has no sources/sinks (a.k.a incompressible) $\operatorname{div}\vec v=0$ we recover the de Bruijn identity
 
 $$\begin{aligned}
-\partial _t D(\nu P^t\mid \lambda) &=-\alpha \mathbb E_{\nu P^t}[\|\nabla\log \tfrac{\mathrm d \nu P^t}{\mathrm d\lambda}\|^2_2]\\
+\partial_t D(\nu P^t\mid \lambda) &=-\alpha \mathbb E_{\nu P^t}[\|\nabla\log \tfrac{\mathrm d \nu P^t}{\mathrm d\lambda}\|^2_2]\\
 &=-\alpha \mathbb E_{\nu P^t}[\|D\log \tfrac{\mathrm d \nu P^t}{\mathrm d\lambda}\|^2_\mathrm{op}].
 \end{aligned}$$
 
@@ -1013,14 +1013,14 @@ Working relative to an equillibrium $\pi\ll \lambda$ incorporates the drift term
 
 When our space is a group it's natural to consider translation invariant Markov kernels $P_{gx}(gA)=P_x(A)$. For intuition take the example $\mathbb Z/n\mathbb Z$ so we have an $n$-state Markov chain with states arranged in a circle. Translation invariance means $P_{i,j}=P_{i+1,j+1}$, so it effectively becomes a univariate function $P_{i-j}$ depending only on the "distance". One could say the dynamics/physics are the same everywhere.
 
-Define $\mu=P_1$ to be the measure at the group's identity element. Then $P_g(A)=P_1(g^{-1}A)=\mu (g^{-1}A)$. Hence a translation invariant kernel is just a family of translations of $\mu=P_1$. In this case $\nu P(A)=\int _G \mu(g^{-1}A)\mathrm d\nu$ is the $\nu$-expected measure of the family of translations of $A$. The integral expression is known as the convolution $\nu\ast\mu$. It is abstractly characterized as the pushforward of $\nu \otimes \mu$ along the group operation $G\times G\to G$. Consequently, convolution is always associate, and becomes commutative for abelian groups.
+Define $\mu=P_1$ to be the measure at the group's identity element. Then $P_g(A)=P_1(g^{-1}A)=\mu (g^{-1}A)$. Hence a translation invariant kernel is just a family of translations of $\mu=P_1$. In this case $\nu P(A)=\int_G \mu(g^{-1}A)\mathrm d\nu$ is the $\nu$-expected measure of the family of translations of $A$. The integral expression is known as the convolution $\nu\ast\mu$. It is abstractly characterized as the pushforward of $\nu \otimes \mu$ along the group operation $G\times G\to G$. Consequently, convolution is always associate, and becomes commutative for abelian groups.
 
 To summarize, when $P$ is translation invariant then $\nu P=\nu \ast P_1=\nu\ast\mu$. In continuous time we require translation invariance of all $P^t$. Defining $P_1^t=\mu_t$ we have $\nu P^t=\nu\ast \mu_t$, and also the monoid laws $\mu_0=\delta_1$ and $\mu_{s+t}=\mu_s\ast \mu_t$.
 
-Now we'll see what translation invariance imposes on the forward time evolution equation for densities $\partial _t \frac{\mathrm d \nu P^t}{\mathrm d\pi}=L^\dagger[\pi]\frac{\mathrm d \nu P^t}{\mathrm d\pi}$, and take the initial condition to be $\nu=\mu_0$.
+Now we'll see what translation invariance imposes on the forward time evolution equation for densities $\partial_t \frac{\mathrm d \nu P^t}{\mathrm d\pi}=L^\dagger[\pi]\frac{\mathrm d \nu P^t}{\mathrm d\pi}$, and take the initial condition to be $\nu=\mu_0$.
 
-* First, the monoid laws simplify the equation to the form $\partial _t \frac{\mathrm d \mu _t}{\mathrm d\pi}=L^\dagger[\pi]\frac{\mathrm d \mu _t}{\mathrm d\pi}$.
-* Second, translation invariance actually forces the differential operator $L^\dagger[\pi]$ to have constant coefficients, i.e. to be given by a convolution operator, where the convolution kernel is a distribution, typically encoding a differential operator $\partial _t \frac{\mathrm d \mu _t}{\mathrm d\pi}=\eta^\dagger[\pi]\ast\frac{\mathrm d \mu _t}{\mathrm d\pi}$.
+* First, the monoid laws simplify the equation to the form $\partial_t \frac{\mathrm d \mu_t}{\mathrm d\pi}=L^\dagger[\pi]\frac{\mathrm d \mu_t}{\mathrm d\pi}$.
+* Second, translation invariance actually forces the differential operator $L^\dagger[\pi]$ to have constant coefficients, i.e. to be given by a convolution operator, where the convolution kernel is a distribution, typically encoding a differential operator $\partial_t \frac{\mathrm d \mu_t}{\mathrm d\pi}=\eta^\dagger[\pi]\ast\frac{\mathrm d \mu_t}{\mathrm d\pi}$.
 
 From here on out one can kick ass with the Fourier transform which diagonalizes translation invariant operators on $L^2(\mathbb R^n)$.
 
@@ -1037,7 +1037,7 @@ This lets us move from measure monoids to density monoids.
 Consider the heat equation. (We'll just do 1D since we'll focus on 1D CLT.)
 
 $$\begin{aligned}
-\partial _t u(x,t) &=\tfrac 12 \partial_{xx}u(x,t), & (x,t)\in \mathbb R\times [0,\infty ) \\
+\partial_t u(x,t) &=\tfrac 12 \partial_{xx}u(x,t), & (x,t)\in \mathbb R\times [0,\infty ) \\
 u(x,0) &= f(x).
 \end{aligned}$$
 
@@ -1055,7 +1055,7 @@ We can now specialize the de Bruijn identity.
 
 $$
 \begin{aligned}
-\partial _t D(\nu \ast\gamma_t \mid \lambda)& =-\tfrac 12 I(\nu\ast \gamma_t\mid \lambda)\\
+\partial_t D(\nu \ast\gamma_t \mid \lambda)& =-\tfrac 12 I(\nu\ast \gamma_t\mid \lambda)\\
 &=-\tfrac 12 \mathbb E_{\nu \ast\gamma_t}[(\partial_x \log (\tfrac{\mathrm d \nu\ast\gamma_t}{\mathrm d\lambda}))^2] \\
 & = -\tfrac 12 \int \tfrac{\mathrm d \nu\ast\gamma_t}{\mathrm d\lambda}(\partial_x \log (\tfrac{\mathrm d \nu\ast\gamma_t}{\mathrm d\lambda}))^2 \mathrm d\lambda,
 \end{aligned}\quad t>0.
@@ -1064,7 +1064,7 @@ $$
 Consequently, by entropy relative to the matching Gaussian
 
 $$
-\partial _t D(\nu \ast\gamma_t \mid \gamma_{\sigma^2+t}) =\tfrac 12\tfrac{1}{\sigma^2+t}-\tfrac 12 \mathbb E_{\nu \ast\gamma_t}[(\partial_x \log (\tfrac{\mathrm d \nu\ast\gamma_t}{\mathrm d\lambda}))^2],\quad t>0.
+\partial_t D(\nu \ast\gamma_t \mid \gamma_{\sigma^2+t}) =\tfrac 12\tfrac{1}{\sigma^2+t}-\tfrac 12 \mathbb E_{\nu \ast\gamma_t}[(\partial_x \log (\tfrac{\mathrm d \nu\ast\gamma_t}{\mathrm d\lambda}))^2],\quad t>0.
 $$
 
 Note $\gamma_{\sigma^2+t}=\gamma_{\sigma^2}\ast\gamma_t$, so the data-processing inequality ensures the time-derivative is non-positive (dissipation of information gain).
@@ -1076,8 +1076,8 @@ Note $\gamma_{\sigma^2+t}=\gamma_{\sigma^2}\ast\gamma_t$, so the data-processing
 **Integral de-Bruijn identities.** 
 
 $$\begin{aligned}
-D(\nu\ast \gamma_t\mid \gamma_{\sigma^2+t}) &=\frac 12\int _t^\infty I(\nu\ast\gamma_ s\mid \lambda)-\tfrac{1}{\sigma^2+s}\;\mathrm ds,\quad t>0 \\
-D(\nu \mid \gamma_{\sigma^2}) &= \frac 12 \int _0^\infty I(\nu\ast\gamma_ t\mid \lambda)-\tfrac{1}{\sigma^2+t}\;\mathrm dt.
+D(\nu\ast \gamma_t\mid \gamma_{\sigma^2+t}) &=\frac 12\int_t^\infty I(\nu\ast\gamma_ s\mid \lambda)-\tfrac{1}{\sigma^2+s}\;\mathrm ds,\quad t>0 \\
+D(\nu \mid \gamma_{\sigma^2}) &= \frac 12 \int_0^\infty I(\nu\ast\gamma_ t\mid \lambda)-\tfrac{1}{\sigma^2+t}\;\mathrm dt.
 \end{aligned}$$
 
 *Proof.* We prove the first assertion by computation. The fundamental theorem of calculus means the integral on $[t,T]$ is the difference
@@ -1111,7 +1111,7 @@ $$
 $$
 whence also (by Cauchy-Schwartz - see proof below)
 $$
-\|\rho_Y(Y)\|^2 \sum _i a_i^2 \leq \sum_i a_i^2\|\rho_{X_i}(X_i)\|^2.
+\|\rho_Y(Y)\|^2 \sum_i a_i^2 \leq \sum_i a_i^2\|\rho_{X_i}(X_i)\|^2.
 $$
 3. (Score projection property for linear combinations.) We have $$\rho_{Y}(Y)=\frac 1{\sum_i a_i}\mathbb E\left[ \sum_i \rho_{X_i}(X_i) \mid Y \right].$$
 
@@ -1120,8 +1120,8 @@ $$
 *Proof.* First compute via integration-by-parts using compact support. Then use the characterization of conditional expectation on the $L^2$-dense subspace of compactly supported functions. For the first assertion, independence implies the joint density is the product of the marginal ones. Now we can compute via Fubini. We'll write the case $i=1$ for convenience, but without loss of generality.
 
 $$\begin{aligned}
-\mathbb E[\varphi(Y)\rho_{X_i}(X_i)] &=\int _{\mathbb R^n}\varphi(\sum_i a_i x_i)\rho_{X_1}(x_1)f_{X_1}(x_1)\cdots f_{X_n}(x_n)\mathrm dx_1\cdots \mathrm dx_n \\
-&= \int _{\mathbb R^{n-1}} f_{X_2}(x_2)\cdots f_{X_n}(x_n) \left[ \int_{\mathbb R} \varphi(\sum_i a_i x_i)f^\prime_{X_1}(x_1)\mathrm dx_1 \right] \mathrm dx_2 \cdots \mathrm dx_n\\
+\mathbb E[\varphi(Y)\rho_{X_i}(X_i)] &=\int_{\mathbb R^n}\varphi(\sum_i a_i x_i)\rho_{X_1}(x_1)f_{X_1}(x_1)\cdots f_{X_n}(x_n)\mathrm dx_1\cdots \mathrm dx_n \\
+&= \int_{\mathbb R^{n-1}} f_{X_2}(x_2)\cdots f_{X_n}(x_n) \left[ \int_{\mathbb R} \varphi(\sum_i a_i x_i)f^\prime_{X_1}(x_1)\mathrm dx_1 \right] \mathrm dx_2 \cdots \mathrm dx_n\\
 &= \int f_{X_2}(x_2)\cdots f_{X_n}(x_n) \left[ -\int a_i\varphi^\prime(\sum_i a_i x_i)f_{X_1}(x_1)\mathrm dx_1 \right] \mathrm dx_2 \cdots \mathrm dx_n \\
 & =-\int_{\mathbb R^n} a_i\varphi^\prime(\sum_i a_i x_i)f_{X_1}(x_1)\cdots f_{X_n}(x_n)\mathrm dx_1\cdots \mathrm dx_n \\
 & =-a_i\mathbb E\varphi^\prime(Y),
@@ -1133,8 +1133,8 @@ For Stam's inequality, consider the following quadratic form
 
 $$\begin{aligned}
 0\leq Q(\lambda_1,\dots ,\lambda_n) &=\left\Vert \sum_i \lambda_i \rho_{X_i}(X_i)-\rho_{Y}(Y) \right\Vert ^2 \\
-&= \sum_i \lambda _i^2\|\rho_{X_i}(X_i)\|^2-2\sum_i\lambda_i \langle\rho_{X_i}(X_i),\rho_Y(Y)\rangle +\|\rho_Y(Y)\|^2 \\
-&= \sum_i \lambda _i^2\|\rho_{X_i}(X_i)\|^2-2\|\rho_Y(Y)\|^2(\sum_i \lambda_i a_i) +\|\rho_Y(Y)\|^2.
+&= \sum_i \lambda_i^2\|\rho_{X_i}(X_i)\|^2-2\sum_i\lambda_i \langle\rho_{X_i}(X_i),\rho_Y(Y)\rangle +\|\rho_Y(Y)\|^2 \\
+&= \sum_i \lambda_i^2\|\rho_{X_i}(X_i)\|^2-2\|\rho_Y(Y)\|^2(\sum_i \lambda_i a_i) +\|\rho_Y(Y)\|^2.
 \end{aligned}$$
 
 For each $\lambda_i$ complete the square separately.
@@ -1156,38 +1156,38 @@ For the second inequality, apply Cauchy-Schwarz in $\mathbb R^n$ to the vectors 
 We turn to the score projection formula. Summing up the first assertion over $i$ we find the following equality holds for all compactly supported $\varphi$.
 
 $$\begin{aligned}
-\mathbb E\varphi^\prime (Y) &=\frac{1}{\sum_i a_i} \sum _i\mathbb E\left[\varphi(Y)\rho_{X_i}(X_i)\right] \\
-&= \mathbb E\left[\varphi(Y)\frac{1}{\sum_i a_i}\sum _i\rho_{X_i}(X_i)\right]
+\mathbb E\varphi^\prime (Y) &=\frac{1}{\sum_i a_i} \sum_i\mathbb E\left[\varphi(Y)\rho_{X_i}(X_i)\right] \\
+&= \mathbb E\left[\varphi(Y)\frac{1}{\sum_i a_i}\sum_i\rho_{X_i}(X_i)\right]
 \end{aligned}$$
 
 On the other hand, unpacking the definition $\rho=\frac{f^\prime}{f}$ and integrating by parts gives the following for any compactly supported $\varphi$.
 
 $$\mathbb E\varphi^\prime (Y)=\mathbb E[\varphi(Y)\rho(Y)]$$
 
-But the space of compactly supported functions is $L^2$-dense whence $\rho(Y)=\mathbb E\left [\frac{1}{\sum_i a_i}\sum _i\rho_{X_i}(X_i)\mid Y\right]$ as desired.
+But the space of compactly supported functions is $L^2$-dense whence $\rho(Y)=\mathbb E\left [\frac{1}{\sum_i a_i}\sum_i\rho_{X_i}(X_i)\mid Y\right]$ as desired.
 
 The following characterization of Gaussians via Fisher information crucially relies on positivity of densities.
 
 **Stam characterization of Gaussians.** The following are equivalent.
 1. Equality in Stam's inequality $\frac 1{\|\rho_Y(Y)\|^2}= \sum_{i=1}^n \frac{a_i^2}{\|\rho_{X_i}(X_i)\|^2}$.
-2. Equality in $\|\rho_Y(Y)\|^2 \sum _i a_i^2 \leq \sum_i a_i^2\|\rho_{X_i}(X_i)\|^2.$
+2. Equality in $\|\rho_Y(Y)\|^2 \sum_i a_i^2 \leq \sum_i a_i^2\|\rho_{X_i}(X_i)\|^2.$
 3. $X_1,\dots ,X_n$ are all Gaussian.
 
 Consequently, if $X_1,\dots,X_n$ are i.i.d and satisfy $I(X_1)=I\left( \frac{X_1+\cdots+X_n}{\sqrt n} \right)$ then they're all Gaussian.
 
 *Proof.* Equivalence of the first two conditions is due to their relation by Cauchy-Schwarz, which has equality iff the vectors are linearly dependent. Equality is achieved in the Gaussian case by computation. Hence it suffices to prove equality implies Gaussian distributions. Continuing the proof of Stam's inequality, we have equality precisely when the minimal value of $Q$ equals zero
 $$
-0=\left\Vert \sum_i \lambda^\ast _i \rho_{X_i}(X_i)-\rho_{Y}(Y) \right\Vert
+0=\left\Vert \sum_i \lambda^\ast_i \rho_{X_i}(X_i)-\rho_{Y}(Y) \right\Vert
 $$
 
-whence $\rho _Y(Y)=\sum _i \lambda^\ast_i \rho_{X_i}(X_i) $. Thus the RHS is a deterministic function of the linear combination $Y=\sum_i a_i X_i$. Morally, we'd like to lift this equality to the coordinate functions of Euclidean space, so that $\rho_Y\left(\sum_i a_i x_i \right)=\sum_i\lambda_i^\ast\rho_{X_i}(x_i)$. Why? Because this means the scores $\rho_{X_i}(x_i)$ are all affine, whence the $X_i$ are Gaussian. To see this, apply $\frac{\partial}{\partial x_i}$ to get $\rho_Y^\prime\left(\sum_i a_i x_i \right)=\frac 1{a_i}\lambda_i^\ast\rho^\prime_{X_i}(x_i)$ for all $i$, meaning each $\rho^\prime_{X_i}(x_i)$ is constant.
+whence $\rho_Y(Y)=\sum_i \lambda^\ast_i \rho_{X_i}(X_i) $. Thus the RHS is a deterministic function of the linear combination $Y=\sum_i a_i X_i$. Morally, we'd like to lift this equality to the coordinate functions of Euclidean space, so that $\rho_Y\left(\sum_i a_i x_i \right)=\sum_i\lambda_i^\ast\rho_{X_i}(x_i)$. Why? Because this means the scores $\rho_{X_i}(x_i)$ are all affine, whence the $X_i$ are Gaussian. To see this, apply $\frac{\partial}{\partial x_i}$ to get $\rho_Y^\prime\left(\sum_i a_i x_i \right)=\frac 1{a_i}\lambda_i^\ast\rho^\prime_{X_i}(x_i)$ for all $i$, meaning each $\rho^\prime_{X_i}(x_i)$ is constant.
 
-*Remark.* Incidentally $\lambda^\ast_i= a_i\frac{\|\rho_Y(Y)\|^2}{\|\rho_{X_i}(X_i)\|^2}$, but these are nevertheless constants. Writing out the equality $\rho_Y(Y)=\sum _i a_i \frac{\|\rho_{Y}(Y)\|^2}{\|\rho_{X_i}(X_i)\|^2} \rho_{X_i}(X_i)$ is potentially misleading because one is tempted to also lift the dependence on the random variables inside the norms.
+*Remark.* Incidentally $\lambda^\ast_i= a_i\frac{\|\rho_Y(Y)\|^2}{\|\rho_{X_i}(X_i)\|^2}$, but these are nevertheless constants. Writing out the equality $\rho_Y(Y)=\sum_i a_i \frac{\|\rho_{Y}(Y)\|^2}{\|\rho_{X_i}(X_i)\|^2} \rho_{X_i}(X_i)$ is potentially misleading because one is tempted to also lift the dependence on the random variables inside the norms.
 
 So how to lift? Since the densities are strictly positive we, all distributions are equivalent to Lebesgue measure. We only need $\lambda \ll  P_X$: if $X$ has density $f>0$ then 
 
 $$
-P_X\lbrace g(x)\neq h(x)\rbrace =\int _{\lbrace g(x)\neq h(x) \rbrace}f\mathrm d \lambda,
+P_X\lbrace g(x)\neq h(x)\rbrace =\int_{\lbrace g(x)\neq h(x) \rbrace}f\mathrm d \lambda,
 $$
 
 so if the LHS equals zero we must have $\lambda \lbrace g(x)\neq h(x) \rbrace=0$. This recovers our equality almost-everywhere, which is good enough for differentiation since densities are also defined almost-everywhere.
@@ -1272,23 +1272,23 @@ Write $J(\nu \mid \gamma_1)=I(\nu\ast\gamma_t\mid \lambda)-\tfrac{1}{1+t}$ for s
 Assuming expected information gain is finite for $m$ we have by integral de Bruijn
 
 $$
-\infty > D(S_m\mid \gamma_1) = \frac 12 \int _0^\infty  \frac{J(S_{m,s}\mid \gamma_1)}{1 +s}\mathrm ds,
+\infty > D(S_m\mid \gamma_1) = \frac 12 \int_0^\infty  \frac{J(S_{m,s}\mid \gamma_1)}{1 +s}\mathrm ds,
 $$
 
 so $t\mapsto J(S_{m,t}\mid \gamma_1)$ is integrable. The sequence of Fisher informations is convergent (by Fekete), and its subsequences-along-multiples are weakly decreasing. Hence the $m^\text{th}$ Fisher information dominates the tail of the associated subsequence on any interval $[t,\infty),t>0$. Since the sequence is convergent for each $t$ we have pointwise convergence $J(S_{n,t}\mid \gamma_1)\to g\in L^1$ of functions $[0,\infty)\to [0,\infty)$. Hence, by Dominated Convergence and the extended de Bruijn identity we have
 
 $$
-\lim _n D(S_{n}\mid\gamma_1)=\lim_n \int _0^\infty \frac{J(S_{n,s}\mid\gamma_1)}{1 +s}\mathrm ds=\int _0^\infty g.
+\lim_n D(S_{n}\mid\gamma_1)=\lim_n \int_0^\infty \frac{J(S_{n,s}\mid\gamma_1)}{1 +s}\mathrm ds=\int_0^\infty g.
 $$
 
 Thus it suffices to prove $g=0$. Another application of Dominated Convergence to de Bruijn gives
 $$
-\lim _n D(S_{n,t}\mid \gamma_1)=\lim_n \int _t^\infty \frac{J(S_{n,s}\mid \gamma_1)}{1 +s}\mathrm ds=\int _t^\infty g.
+\lim_n D(S_{n,t}\mid \gamma_1)=\lim_n \int_t^\infty \frac{J(S_{n,s}\mid \gamma_1)}{1 +s}\mathrm ds=\int_t^\infty g.
 $$
 
 Hence, to prove $g=0$ it suffices to prove the LHS is zero for all $t>0$ (as the integral of $g$ will be zero on every interval).
 
-The sublevel set $\lbrace \nu \mid D(\nu\mid \mu) \leq c \rbrace$ is sequentially compact. Since $g\in L^1$ we know the tail of the sequence $\lim _n D(S_{n}\mid \gamma_1)$ lies in such a sublevel set. Hence there's a subsequence $S_{n_m}$ whose distribution weakly converges to that of some $Y$. For $t>0$, smoothing ensures pointwise convergence of densities of $S_{n_m,t}$ to the density of $Y_t$. Moreover, the densities of $S_{2n_m,t}$ converge to the density of $\frac {Y_t+\tilde Y_t}{\sqrt 2}$ where $\tilde Y$ is an i.i.d copy of $Y$. Since the densities are convergent and uniformly bounded, the continuity of expected information gain ensures
+The sublevel set $\lbrace \nu \mid D(\nu\mid \mu) \leq c \rbrace$ is sequentially compact. Since $g\in L^1$ we know the tail of the sequence $\lim_n D(S_{n}\mid \gamma_1)$ lies in such a sublevel set. Hence there's a subsequence $S_{n_m}$ whose distribution weakly converges to that of some $Y$. For $t>0$, smoothing ensures pointwise convergence of densities of $S_{n_m,t}$ to the density of $Y_t$. Moreover, the densities of $S_{2n_m,t}$ converge to the density of $\frac {Y_t+\tilde Y_t}{\sqrt 2}$ where $\tilde Y$ is an i.i.d copy of $Y$. Since the densities are convergent and uniformly bounded, the continuity of expected information gain ensures
 
 $$\begin{aligned}
 D(S_{n_m,t} & \mid \gamma_1)\overset{m}{\to} D(Y_t\mid \gamma_1), \\
@@ -1343,7 +1343,7 @@ One way to compare nearby hypotheses in the family $\nu_\theta$ is to consider t
 
 We want to globalize over the probability space and quantify the "total" rate of information gain at $\theta$, not just at a particular outcome. To this end we use the $L^2(\nu_\theta)$-norm of the random variable $\frac{\partial}{\partial \theta^\prime}|_{\theta}\log \frac{\mathrm d\nu_ {\theta^\prime} }{\mathrm d \mu}$, which sums the squares of the local rates of information gain. A small $L^2$-norm at $\theta$ means the rate of information gain at $\theta$ is typically miniscule, while a large $L^2$-norm means typically substantial information gain. Note the norm is too coarse to determine whether the phenomenon is concentrated locally at some $\omega$ or distributed across the entire probability space.
 
-By the Bayesian interpretation of expectation we anticipate $\mathbb E _{\nu_\theta}\left[\frac{\partial}{\partial \theta^\prime}|_{\theta}\log \frac{\mathrm d\nu_ {\theta^\prime} }{\mathrm d \mu}\right]=0$. Indeed in a world modeled by $\nu$, the information gain relative to any prior is maximized by $\nu $ itself, and the derivative at this critical point is zero. The proof is simple using properties of the Radon-Nikodym derivative: we know expected information gain is non-negative, so $0\leq \mathbb E_\nu\left[\log \frac{\mathrm d\nu}{\mathrm d\eta} \right]=\mathbb E_\nu\left[\log \frac{\mathrm d\nu}{\mathrm d\mu}\right]-\mathbb E_\nu \left[ \log \frac{\mathrm d\eta}{\mathrm d\mu} \right]$. The result $\mathbb E _{\nu_\theta}\left[\frac{\partial}{\partial \theta^\prime}|_{\theta}\log \frac{\mathrm d\nu_ {\theta^\prime} }{\mathrm d \mu}\right]=0$ is sometimes referred to as the first Bartlett identity. From it we deduce the $L^2(\nu_\theta)$-norm equals the variance!
+By the Bayesian interpretation of expectation we anticipate $\mathbb E_{\nu_\theta}\left[\frac{\partial}{\partial \theta^\prime}|_{\theta}\log \frac{\mathrm d\nu_ {\theta^\prime} }{\mathrm d \mu}\right]=0$. Indeed in a world modeled by $\nu$, the information gain relative to any prior is maximized by $\nu $ itself, and the derivative at this critical point is zero. The proof is simple using properties of the Radon-Nikodym derivative: we know expected information gain is non-negative, so $0\leq \mathbb E_\nu\left[\log \frac{\mathrm d\nu}{\mathrm d\eta} \right]=\mathbb E_\nu\left[\log \frac{\mathrm d\nu}{\mathrm d\mu}\right]-\mathbb E_\nu \left[ \log \frac{\mathrm d\eta}{\mathrm d\mu} \right]$. The result $\mathbb E_{\nu_\theta}\left[\frac{\partial}{\partial \theta^\prime}|_{\theta}\log \frac{\mathrm d\nu_ {\theta^\prime} }{\mathrm d \mu}\right]=0$ is sometimes referred to as the first Bartlett identity. From it we deduce the $L^2(\nu_\theta)$-norm equals the variance!
 
 **Definition.** Fix a family $(\nu_\theta)_\theta$ of probability distributions. Assume there exists a $\theta$-independent dominating measure $\nu_\theta\ll \mu$. The *Fisher information* of a family $(\nu_\theta)_\theta$ is the real-valued function on the parameter space whose value at $\theta_0$ is the squared $L^2(\nu_{\theta_0})$-norm of the rate of information gain at $\theta_0$.
 
@@ -1426,7 +1426,7 @@ I(\nu\mid\mu)=\mathbb E_{\nu}\left[\left(\frac{\mathrm d}{\mathrm dx}\log \frac{
 $$
 
 We summarize:
-1. If there exists a dominating translation-invariant $\nu\ll\mu$, density and information gain of the translation family both satisfy the pure transport equation $\partial _t f=-\partial _x f$.
+1. If there exists a dominating translation-invariant $\nu\ll\mu$, density and information gain of the translation family both satisfy the pure transport equation $\partial_t f=-\partial_x f$.
 2. The parametric Fisher information of the translation family is constant in $\theta$. We may compute it using $\mu$ as the $\nu$-expected squared *spatial* rate of information gain $\frac{\mathrm d}{\mathrm d x}\log \frac{\mathrm d\nu}{\mathrm d\mu}$. In the literature, especially when $\mu=\lambda$ is Lebesgue measure, this rate is often called the Stein score of $\nu$, or Dirichlet score of $\nu$.
 3. The spatial Fisher information formula is independent of the choice of translation-invariant dominating measure. ⚠️ It is otherwise sensitive to arbitrary changes in $\mu$ e.g. weighting by some positive function $f\mu$. Note the uniqueness of Haar measure means the choice is made for us in the context locally compact Hausdorff groups.
 
@@ -1453,13 +1453,13 @@ An equivalent spatial perspective on autonomy is given by the commutation identi
 **Group action: density and information gain both satisfy pure transport PDE.** In our setting, the family of densities and associated information gains $(\frac{\mathrm dT_{t\ast}\nu}{\mathrm d\pi})_t,(\log\frac{\mathrm dT_{t\ast}\nu}{\mathrm d\pi})_t$ both satisfy the following directional pure transport PDE:
 
 $$
-\partial _tf_t=-\mathrm df_t \circ \vec v,\quad X\times \mathbb R\overset{f}{\longrightarrow}\mathbb R.
+\partial_tf_t=-\mathrm df_t \circ \vec v,\quad X\times \mathbb R\overset{f}{\longrightarrow}\mathbb R.
 $$
 
-The autonomous (!) vector field chooses the direction at each point in space. In one dimension this becomes $\partial _tf(t,x)=-v(x)\partial _xf(t,x)$ so the velocity function determines the ratio of the temporal and spatial changes of $f$. In Euclidean space, the derivative functional is represented by the gradient $\mathrm df(p)v=\langle \nabla f(p),v\rangle $. Similarly for a Riemannian metric $g$
+The autonomous (!) vector field chooses the direction at each point in space. In one dimension this becomes $\partial_tf(t,x)=-v(x)\partial_xf(t,x)$ so the velocity function determines the ratio of the temporal and spatial changes of $f$. In Euclidean space, the derivative functional is represented by the gradient $\mathrm df(p)v=\langle \nabla f(p),v\rangle $. Similarly for a Riemannian metric $g$
 
 $$
-\partial _tf_t=-\left\langle \nabla_g f_t, \vec v\right\rangle _g.
+\partial_tf_t=-\left\langle \nabla_g f_t, \vec v\right\rangle_g.
 $$
 
 *Proof.* For densities, compute via the chain rule. For information gain, divide the density transport equation by the density and use the formula for the derivative of $\log$.
