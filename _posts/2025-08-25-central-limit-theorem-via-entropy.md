@@ -572,7 +572,11 @@ A finite Markov chain is a directed graph on a state space with edges labeled by
 
 Intuitively, "pure mixing" cannot alter a uniform distribution, since any such effect is concentrating. Formally we are stipulating invariance of uniform distribution under a "pure mixing" Markov chain.
 
-Since a Markov chain is entirely specified by the $(p_{ij})$, it is equivalently representable by a matrix. We will use the row-stochastic convention, where row $i$ represents outgoing probabilities $i\to \bullet$ (hence row-sums equal one) while column $i$ represents incoming probabilities $i \leftarrow \bullet$. For example the Markov chain $1\underset{q}{\overset{p}{\rightleftarrows}}2$ is represented by the row-stochastic matrix $\begin{pmatrix} 1-p & p \\ q & 1-q \end{pmatrix}$ with the extreme case $1\underset{1}{\rightleftarrows}2$ given by the matrix $\begin{pmatrix} 1 & 0 \\ 1 & 0 \end{pmatrix}$. In the row-stochastic convention, the action on an initial distribution is row-mixing $\nu\mapsto \nu P$, or equivalently $\nu\mapsto P^\top \nu$. Thus Markov chains are *linear* mixing operators. The "pure mixing" condition says $\frac 1n \mathbf 1 P=\frac 1n \mathbf 1$. Unpacking, the LHS adds the rows to each other, and the equation means column-sum equals one. Thus pure mixing operators are represented by doubly-stochastic matrices.
+Since a Markov chain is entirely specified by the $(p_{ij})$, it is equivalently representable by a matrix. We will use the row-stochastic convention, where row $i$ represents outgoing probabilities $i\to \bullet$ (hence row-sums equal one) while column $i$ represents incoming probabilities $i \leftarrow \bullet$. For example the Markov chain $1\underset{q}{\overset{p}{\rightleftarrows}}2$ is represented by the row-stochastic matrix
+$$
+\begin{pmatrix} 1-p & p \\ q & 1-q \end{pmatrix}
+$$
+with the extreme case $1\underset{1}{\rightleftarrows}2$ given by the matrix $\begin{pmatrix} 1 & 0 \\ 1 & 0 \end{pmatrix}$. In the row-stochastic convention, the action on an initial distribution is row-mixing $\nu\mapsto \nu P$, or equivalently $\nu\mapsto P^\top \nu$. Thus Markov chains are *linear* mixing operators. The "pure mixing" condition says $\frac 1n \mathbf 1 P=\frac 1n \mathbf 1$. Unpacking, the LHS adds the rows to each other, and the equation means column-sum equals one. Thus pure mixing operators are represented by doubly-stochastic matrices.
 
 But is that the entire story? Well, no. Permutation matrices are doubly-stochastic, but *all* they do is circulate, without any mixing. Even if we look at a doubly-stochastic perturbation of a permutation matrix
 $$
@@ -582,7 +586,11 @@ we still see a circulation dynamic $1 \overset{1-\varepsilon}{\longrightarrow} 2
 
 Every finite Markov chain canonically decomposes into maximal strongly connected components. By collapsing these components into points we obtain a new graph of communication *between components*. By maximality, components are either entirely disconnected from each other, or connected in just one direction. A component disconnected from the others is *closed*, while a component that points outward is *transient*, meaning all the stuff in it will eventually drain out. Components with arrows going into them are *absorbing*. This decomposition reveals highlights the irrelevance of transient components to long-term dynamics: eventually only closed and absorbing components matter.
 
-The topological decomposition above defines the Frobenius normal form of a row-stochastic matrix. Specifically, by permuting so transient states come first, we obtain a nice stochastic block matrix. More formally, $P$ admits a permutation matrix $\Pi$ such that $\Pi^\top P \Pi=\begin{pmatrix} T & R \\ 0 & \text{diag}(P_1,\dots,P_k) \end{pmatrix}$ where $T$ has row sums $\leq 1$ and describes movement between transient states, $R$ "complements" $T$ and describes movement from transient states, the zero block says transient components do not receive any stuff, and the block diagonal matrix has a stochastic block for each closed component. Consequently, if $P$ has positive entries then it is already strongly connected. However, positive entries are much stronger: they ensure any state transition can be performed in one step, thereby also precluding any cycles.
+The topological decomposition above defines the Frobenius normal form of a row-stochastic matrix. Specifically, by permuting so transient states come first, we obtain a nice stochastic block matrix. More formally, $P$ admits a permutation matrix $\Pi$ such that
+$$
+\Pi^\top P \Pi=\begin{pmatrix} T & R \\ 0 & \text{diag}(P_1,\dots,P_k) \end{pmatrix}
+$$
+where $T$ has row sums $\leq 1$ and describes movement between transient states, $R$ "complements" $T$ and describes movement from transient states, the zero block says transient components do not receive any stuff, and the block diagonal matrix has a stochastic block for each closed component. Consequently, if $P$ has positive entries then it is already strongly connected. However, positive entries are much stronger: they ensure any state transition can be performed in one step, thereby also precluding any cycles.
 
 Given a stochastic matrix, one typically studies its action on the space of initial distributions. Finite distributions can identified with their density relative to counting measure: $n$-tuples of numbers summing to one. Hence we are studying the action of stochastic matrices on the standard $n$-simplex $\Delta^{n-1}=\lbrace x\geq 0:\sum_i x_i=1 \rbrace\subseteq \mathbb R^n$. Classical theory studies the *semigroup* (!) $P^\mathbb N$, and specifically the limit points of the flow. Even for invertible stochastic $P$, its inverse is generally not stochastic whence not a mixing operator. This is intuitive: unmixing things does not resemble mixing whatsoever, whence *semi*group. Thankfully, *doubly*-stochastic matrices *are* closed under multiplication (intuitively clear), so a "pure-mixing" generator $P$ induces a "pure-mixing" semigroup $P^\mathbb N$.
 
@@ -637,8 +645,9 @@ $$
 $$
 to the space of probability distributions (equipped with the $\sigma$-algebra generated by the set of evaluations $\lbrace\operatorname{ev}_B,B\in \mathscr B\rbrace$). A Markov kernel canonically lifts to act on distributions
 $$
-\mathcal P(X,\mathscr A)\overset{P}{\longrightarrow} \mathcal P(Y,\mathscr B)$ via $\nu P=\mathbb E_\nu P,
+\mathcal P(X,\mathscr A)\overset{P}{\longrightarrow} \mathcal P(Y,\mathscr B)
 $$
+via $\nu P=\mathbb E_\nu P$,
 i.e. $P$ mixes $\nu$ into the $\nu$-expectation of the family. (Formally, the expectation is a Bochner integral, but I'm in favor of disregarding pedantry in our context.)
 
 Now we come to generalize "pure mixing" operators from *doubly*-stochastic matrices. As discussed above, the additional requirement $\mathbf 1P=\mathbf 1$ means the uniform distribution is stationary, and mild connectedness assumptions give uniqueness, giving a globally attractive fixed point for the flow. Intuitively, this means doubly-stochastic matrices represent mixing operators whose "most mixed" or "most spread out" state is uniform. In general state spaces we follow the same principle and work relative to a chosen stationary reference $\pi$, which is unique under similarly mild connectedness assumptions. Note $\pi$-invariance is equivalent to "$\pi$-sum of the $y$-column equals one". Indeed $\pi P=\pi \iff \frac{\mathrm d\pi P}{\mathrm d\pi}\overset{\text{a.s}}{=}1$ and compute the LHS to discover $\frac{\mathrm d\pi P}{\mathrm d\pi}(y)=\int_\Omega \frac{\mathrm dP_x}{\mathrm d\pi}(y)\mathrm d\mu(x)$.
@@ -661,7 +670,7 @@ The table below summarizes the key probabilities in play and their generalizatio
 
 $P_{ij}$ is the fraction of stuff currently in state $i$ that will flow through the pipe $i\to j$. This is the probability of the next state $j$ conditioned on the *prior* of present state $i$. (Is it strange to call the present a prior? The mere thought of this makes it past...) The conditional generalizes to a Markov kernel $P$, with $P_x$ the fraction of stuff at state $x$ that will flow into $A$.
 
-$\left(\nu P\right)_j$ is the fraction of the total stuff that will sit inside cup $j$ in the next phase. It depends on $\nu$ because it pertains to the total amount of stuff. It generalizes to the action $\nu P=\mathbb E_\nu P$.
+$\left(\nu P\right)_{j}$ is the fraction of the total stuff that will sit inside cup $j$ in the next phase. It depends on $\nu$ because it pertains to the total amount of stuff. It generalizes to the action $\nu P=\mathbb E_\nu P$.
 
 $\nu_i P_{ij}$ is the fraction of the total stuff flowing through $i\to j$. It is the *joint* probability of both present state $i$ *and* next state $j$. The pointwise multiplication should therefore generalize to a joint distribution of "now" and "next" on the product space. Let's think how to compute it on $A\times B$. The second variable appears only in $P$ and won't pose an issue. For the first, we want to integrate $\nu \lbrace x\rbrace P_x$ over $x\in A$. This is the probability measure $\int_A P_x\mathrm d\nu(x) $, which can be evaluated at $B$. That's all there is to it. As for notation, we'll adopt $\nu\otimes P$ following Kallenberg (if I recall correctly). To be honest the moral choice of notation would be asymmetric semidirect product notation $\nu \rtimes P$, but ah well.
 
@@ -715,7 +724,7 @@ posterior dynamics behaves "reversely":
 
 > The fraction of stuff in cup $j$ that will flow by the posterior kernel $P^\dagger[\nu]$ through pipe $i\leftarrow j$ equals the volume flowing by $P$ through $i\to j$ divided by the total volume flowing by $P$ into $j$.
 
-Multiplying by the denominator gives $(\nu P)_jP^\dagger[\nu]_{ji}=\nu_i P_{ij}$, which geometrically characterizes the posterior kernel $P^\dagger[\nu]$ as time reversal in the sense $\nu P P^\dagger[\nu]=\nu$.
+Multiplying by the denominator gives $$(\nu P)_jP^\dagger[\nu]_{ji}=\nu_i P_{ij}$$, which geometrically characterizes the posterior kernel $P^\dagger[\nu]$ as time reversal in the sense $\nu P P^\dagger[\nu]=\nu$.
 
 > The total volume flowing by $P$ through $i\to j$ starting from $\nu$, equals the total volume flowing by $P^\dagger[\nu]$ through $i\leftarrow j$ starting from $\nu P$.
 
@@ -986,7 +995,7 @@ $$
 f_\pm (x) \leq -|x-a|^2\pm \varepsilon g(x)\leq -|x-a|^2+\varepsilon C|x-a|^3.
 $$
 
-The constant $C$ is just the supremum over the continuous remainder. Since we're working inside the ball, $|x-a|\leq r$. Hence taking a sufficiently small radius so that $\varepsilon Cr<\tfrac 12$ we find $f_\pm$ takes negative values on the *punctured* ball, and equals zero at $x=a$ by construction. Now we can apply the maximum principle to find generator $Lf_\pm\leq 0$. By $\mathbb R$-linearity of $L$ we find $Lg=0$.
+The constant $C$ is just the supremum over the continuous remainder. Since we're working inside the ball, $d(a,x)\leq r$. Hence taking a sufficiently small radius so that $\varepsilon Cr<\tfrac 12$ we find $f_\pm$ takes negative values on the *punctured* ball, and equals zero at $x=a$ by construction. Now we can apply the maximum principle to find generator $Lf_\pm\leq 0$. By $\mathbb R$-linearity of $L$ we find $Lg=0$.
 
 As for the positive semidefinite property, I guess we'll leave it as an exercise since we won't need it.
 
@@ -1234,7 +1243,7 @@ $$
 
 Obviously the minimum is attained at $\lambda_i=a_i\frac{\|\rho_Y(Y)\|^2}{\|\rho_{X_i}(X_i)\|^2}$. Plugging this in we obtain the inequality $\frac 1{\|\rho_Y(Y)\|^2}\geq \sum_i \frac{a_i^2}{\|\rho_{X_i}(X_i)\|^2}$ as desired.
 
-For the second inequality, apply Cauchy-Schwarz in $\mathbb R^n$ to the vectors $(\frac{a_i}{\|\rho_{X_i}(X_i)\|})_i,(a_i \|\rho_{X_i}(X_i)\|)_i$.
+For the second inequality, apply Cauchy-Schwarz in $\mathbb R^n$ to the vectors $$(\frac{a_i}{\|\rho_{X_i}(X_i)\|})_i,(a_i \|\rho_{X_i}(X_i)\|)_i$$.
 
 We turn to the score projection formula. Summing up the first assertion over $i$ we find the following equality holds for all compactly supported $\varphi$.
 
@@ -1428,7 +1437,7 @@ We want to globalize over the probability space and quantify the "total" rate of
 
 By the Bayesian interpretation of expectation we anticipate $\mathbb E_{\nu_\theta}\left[\frac{\partial}{\partial \theta^\prime}\;\mid_{\theta}\log \frac{\mathrm d\nu_ {\theta^\prime} }{\mathrm d \mu}\right]=0$. Indeed in a world modeled by $\nu$, the information gain relative to any prior is maximized by $\nu $ itself, and the derivative at this critical point is zero. The proof is simple using properties of the Radon-Nikodym derivative: we know expected information gain is non-negative, so $0\leq \mathbb E_\nu\left[\log \frac{\mathrm d\nu}{\mathrm d\eta} \right]=\mathbb E_\nu\left[\log \frac{\mathrm d\nu}{\mathrm d\mu}\right]-\mathbb E_\nu \left[ \log \frac{\mathrm d\eta}{\mathrm d\mu} \right]$. The result $\mathbb E_{\nu_\theta}\left[\frac{\partial}{\partial \theta^\prime}\;\mid_{\theta}\log \frac{\mathrm d\nu_ {\theta^\prime} }{\mathrm d \mu}\right]=0$ is sometimes referred to as the first Bartlett identity. From it we deduce the $L^2(\nu_\theta)$-norm equals the variance!
 
-**Definition.** Fix a family $(\nu_\theta)_\theta$ of probability distributions. Assume there exists a $\theta$-independent dominating measure $\nu_\theta\ll \mu$. The *Fisher information* of a family $(\nu_\theta)_\theta$ is the real-valued function on the parameter space whose value at $\theta_0$ is the squared $L^2(\nu_{\theta_0})$-norm of the rate of information gain at $\theta_0$.
+**Definition.** Fix a family $\left(\nu_\theta \left)_\theta$ of probability distributions. Assume there exists a $\theta$-independent dominating measure $\nu_\theta\ll \mu$. The *Fisher information* of a family $(\nu_\theta)_\theta$ is the real-valued function on the parameter space whose value at $\theta_0$ is the squared $L^2(\nu_{\theta_0})$-norm of the rate of information gain at $\theta_0$.
 
 $$I[(\nu_\theta)_\theta]=\mathbb E_{\nu_{\theta}}\left[\left( \frac{\partial}{\partial \theta}\log \frac{\mathrm d\nu_ {\theta} }{\mathrm d \mu}\right)^2\right]=\operatorname{Var}_{\nu_{\theta}}\left[ \frac{\partial}{\partial \theta}\log \frac{\mathrm d\nu_ {\theta} }{\mathrm d \mu} \right].$$
 
