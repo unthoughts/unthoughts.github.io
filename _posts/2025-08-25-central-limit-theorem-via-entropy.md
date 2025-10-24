@@ -133,7 +133,7 @@ $$
 
 Note $\log$ is strictly monotone whence injective, so the fibers of information content are precisely equiprobable collections of cells. Hence, the distribution of information content is precisely the distribution of $\mathscr P \overset{P\;\mid_\mathscr{P}}{\longrightarrow}[0,1]$, which we may compute from probability of cells in $\mathscr P$. Geometrically, we start with the histogram for $\mathscr P$ and merge equiprobable columns. Evidently, partitions with more equiprobable cells have more concentrated information distribution. Let's see some examples:
 
-1. A fair coin toss has just two measurements, both equiprobable, so its distribution is $(\tfrac 12, \tfrac 12)$. Hence the information distribution is $\mathbf 1_{\tfrac 12}$. (Indeed the information content fu
+1. A fair coin toss has just two measurements, both equiprobable, so its distribution is $(\tfrac 12, \tfrac 12)$. Hence the information distribution is $\mathbf 1_{\tfrac 12}$.
 2. Consider a biased five-sided die with distribution $(0.1,0.1,0.1,0.1,0.6)$. The information distribution is $0.4\cdot \mathbf{1}_{0.1}+0.6\cdot \mathbf{1}_{0.6}$.
 3. Consider a four-ticket lottery with distribution $(0.1,0.2,0.2,0.5)$. The information distribution is $0.1 \mathbf  \cdot 1_{ 0.1}+0.4\cdot \mathbf 1_{0.2}+0.5\cdot \mathbf 1_{0.5}$.
 4. Consider $(0.2,0.2,0.3,0.15,0.15)$. The information distribution is $0.4\cdot \mathbf 1_{0.2}+0.3\cdot \mathbf 1_{0.3}+0.3 \cdot \mathbf 1_{0.15}$.
