@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Entropy and the Central Limit Theorem"
-date: 2025-08-20
+date: 2025-10-24
 tags: [entropy, central limit theory, Gaussian distribution]
 comments: true
 mathjax: true
