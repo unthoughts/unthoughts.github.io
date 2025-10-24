@@ -164,15 +164,15 @@ Shannon entropy is average information content. More precisely, it is average in
 For a countable measurable space $(\Omega,\mathscr F)$ we define the Shannon entropy of a probability measure $\nu$ as follows:
 
 $$\begin{aligned}
-h(\nu\mid \text{\#}) &=- \mathbb E \left[ \log \frac{\mathrm d\nu}{\mathrm d\text{\#}} \right] \\
-& =-\int_\Omega \frac{\mathrm d\nu}{\mathrm d\text{\#}} \log \frac{\mathrm d\nu}{\mathrm d\text{\#}} \mathrm d\text{\#} \\
+h(\nu\mid \text{\#}) &=- \mathbb E \left[ \log \frac{\mathrm d\nu}{\mathrm d\text{#}} \right] \\
+& =-\int_\Omega \frac{\mathrm d\nu}{\mathrm d\text{#}} \log \frac{\mathrm d\nu}{\mathrm d\text{#}} \mathrm d\text{#} \\
 &= -\sum_\omega \nu \lbrace \omega \rbrace \log \nu\lbrace \omega\rbrace.
 \end{aligned}$$
 
 For an $S$-valued random variable $X$ we therefore have the famous formula
 
 $$\begin{aligned}
-h(X\mid \text{\#}) &=-\int_S \frac{\mathrm dP_X}{\mathrm d\text{\#}} \log \frac{\mathrm dP_X}{\mathrm d\text{\#}} \mathrm d\text{\#} \\
+h(X\mid \text{#}) &=-\int_S \frac{\mathrm dP_X}{\mathrm d\text{#}} \log \frac{\mathrm dP_X}{\mathrm d\text{#}} \mathrm d\text{#} \\
 &= -\sum_{x\in S} P\lbrace X=x\rbrace \log P\lbrace X=x\rbrace
 \end{aligned}.$$
 
@@ -282,7 +282,7 @@ If $\nu,\mu$ are mutually absolutely continuous then they have reciprocal Radon-
 Perhaps the most familiar formula for entropy is $h(\nu\mid \mu)=-\int \frac{\mathrm d\nu}{\mathrm d\mu} \log \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\mu$. Typically, $\nu$ is a probability measure. When $\mu=\text{\#}$ is counting measure then $\frac{\mathrm d\nu}{\mathrm d\text{\#}}(\omega)=\nu \lbrace \omega \rbrace$ is density and we recover Shannon entropy
 
 $$\begin{aligned}
-h(\nu\mid \text{\#}) &=-\int \nu \lbrace \omega \rbrace \log \nu \lbrace \omega \rbrace \mathrm d\text{\#} \\
+h(\nu\mid \text{#}) &=-\int \nu \lbrace \omega \rbrace \log \nu \lbrace \omega \rbrace \mathrm d\text{#} \\
 &= -\sum \nu \lbrace \omega \rbrace \log \nu\lbrace \omega\rbrace.
 \end{aligned}$$
 
@@ -338,7 +338,7 @@ In 1957 Jaynes published his seminal, two part work *Information Theory and Stat
 One is naturally led to relativize this principle with respect to a prior *model*, given by a reference *probability distribution* $\mu$. Here mild care is needed with signs. Shannon entropy and entropy relative to the uniform distribution differ by a constant, so they reach maximum jointly.
 
 $$
-h(\nu \mid U_n)=h(\nu\mid \text{\#}_n)-\log n
+h(\nu \mid U_n)=h(\nu\mid \text{#}_n)-\log n
 $$
 
 More generally, we are maximizing the non-positive $h(\nu\mid \mu)\leq 0$.
@@ -574,7 +574,11 @@ Intuitively, "pure mixing" cannot alter a uniform distribution, since any such e
 
 Since a Markov chain is entirely specified by the $(p_{ij})$, it is equivalently representable by a matrix. We will use the row-stochastic convention, where row $i$ represents outgoing probabilities $i\to \bullet$ (hence row-sums equal one) while column $i$ represents incoming probabilities $i \leftarrow \bullet$. For example the Markov chain $1\underset{q}{\overset{p}{\rightleftarrows}}2$ is represented by the row-stochastic matrix $\begin{pmatrix} 1-p & p \\ q & 1-q \end{pmatrix}$ with the extreme case $1\underset{1}{\rightleftarrows}2$ given by the matrix $\begin{pmatrix} 1 & 0 \\ 1 & 0 \end{pmatrix}$. In the row-stochastic convention, the action on an initial distribution is row-mixing $\nu\mapsto \nu P$, or equivalently $\nu\mapsto P^\top \nu$. Thus Markov chains are *linear* mixing operators. The "pure mixing" condition says $\frac 1n \mathbf 1 P=\frac 1n \mathbf 1$. Unpacking, the LHS adds the rows to each other, and the equation means column-sum equals one. Thus pure mixing operators are represented by doubly-stochastic matrices.
 
-But is that the entire story? Well, no. Permutation matrices are doubly-stochastic, but *all* they do is circulate, without any mixing. Even if we look at a doubly-stochastic perturbation of a permutation matrix $\begin{pmatrix} \varepsilon & 1-\varepsilon & 0 \\ 0 & \varepsilon & 1-\varepsilon \\ 1-\varepsilon & 0 & \varepsilon \end{pmatrix}$ we still see a circulation dynamic $1 \overset{1-\varepsilon}{\longrightarrow} 2 \overset{1-\varepsilon}{\longrightarrow} 3 \overset{1-\varepsilon}{\longrightarrow} 1$. A pure mixing operator should be circulation-free. To capture this, we require zero circulation at equillibrium! Concretely, for a stationary $\pi$, zero circulation asserts the total volume flowing through pipe $i\to j$ equals the total volume through $i\leftarrow j$. In other words, $\pi_i P_{ij}=\pi_j P_{ji}$. In our doubly-stochastic context $\pi$ is the uniform distribution, and the equation is equivalent to symmetry $P=P^\top$, but this is a peculiarity of the uniform distribution! For infinite state spaces, the reference equillibrium $\pi$ will play a very explicit role.
+But is that the entire story? Well, no. Permutation matrices are doubly-stochastic, but *all* they do is circulate, without any mixing. Even if we look at a doubly-stochastic perturbation of a permutation matrix
+$$
+\begin{pmatrix} \varepsilon & 1-\varepsilon & 0 \\ 0 & \varepsilon & 1-\varepsilon \\ 1-\varepsilon & 0 & \varepsilon \end{pmatrix}
+$$
+we still see a circulation dynamic $1 \overset{1-\varepsilon}{\longrightarrow} 2 \overset{1-\varepsilon}{\longrightarrow} 3 \overset{1-\varepsilon}{\longrightarrow} 1$. A pure mixing operator should be circulation-free. To capture this, we require zero circulation at equillibrium! Concretely, for a stationary $\pi$, zero circulation asserts the total volume flowing through pipe $i\to j$ equals the total volume through $i\leftarrow j$. In other words, $\pi_i P_{ij}=\pi_j P_{ji}$. In our doubly-stochastic context $\pi$ is the uniform distribution, and the equation is equivalent to symmetry $P=P^\top$, but this is a peculiarity of the uniform distribution! For infinite state spaces, the reference equillibrium $\pi$ will play a very explicit role.
 
 Every finite Markov chain canonically decomposes into maximal strongly connected components. By collapsing these components into points we obtain a new graph of communication *between components*. By maximality, components are either entirely disconnected from each other, or connected in just one direction. A component disconnected from the others is *closed*, while a component that points outward is *transient*, meaning all the stuff in it will eventually drain out. Components with arrows going into them are *absorbing*. This decomposition reveals highlights the irrelevance of transient components to long-term dynamics: eventually only closed and absorbing components matter.
 
@@ -607,13 +611,20 @@ So far we defined mixing operators as those with stochastic matrix representatio
 Row-mixing notation $\nu\mapsto \nu P=\sum_i \nu_iP_i$ implicitly performs the "canonical" identification of finite distributions with their density relative to counting measure. Extra precision reveals the action on an initial distribution $\nu$ as the $\nu$-expectation of the family of distributions encoded by the transition matrix.
 
 $$\begin{aligned}
-\frac{\mathrm d\nu}{\mathrm d\text{\#}}\frac{\mathrm dP}{\mathrm d\text{\#}}& = \sum_i \frac{\mathrm d\nu}{\mathrm d\text{\#}}(i)\frac{\mathrm dP}{\mathrm d\text{\#}}(i) \\
-& = \int \frac{\mathrm d\nu}{\mathrm d\text{\#}}\frac{\mathrm dP}{\mathrm d\text{\#}}\mathrm d\text{\#} \\
-& =\int \frac{\mathrm dP}{\mathrm d\text{\#}}\mathrm d\nu \\
-& =\mathbb E_\nu \left[\frac{\mathrm dP}{\mathrm d\text{\#}}\right] 
+\frac{\mathrm d\nu}{\mathrm d\text{#}}\frac{\mathrm dP}{\mathrm d\text{#}}& = \sum_i \frac{\mathrm d\nu}{\mathrm d\text{\#}}(i)\frac{\mathrm dP}{\mathrm d\text{#}}(i) \\
+& = \int \frac{\mathrm d\nu}{\mathrm d\text{#}}\frac{\mathrm dP}{\mathrm d\text{#}}\mathrm d\text{#} \\
+& =\int \frac{\mathrm dP}{\mathrm d\text{#}}\mathrm d\nu \\
+& =\mathbb E_\nu \left[\frac{\mathrm dP}{\mathrm d\text{#}}\right] 
 \end{aligned}$$
 
-Thus a stochastic matrix is just a family of densities relative to counting measure, indexed by a finite state space. Removing the word 'finite' and dealing with distributions directly gives rise to *Markov kernels*: linear mixing operators between general spaces. Formally, a Markov kernel between measurable spaces $(X,\mathscr A)\overset{P}{\longrightarrow}(Y,\mathscr B)$ is a measurable function $(X,\mathscr A)\overset{P}{\longrightarrow}\mathcal P(Y,\mathscr B)$ to the space of probability distributions (equipped with the $\sigma$-algebra generated by the set of evaluations $\lbrace\operatorname{ev}_B,B\in \mathscr B\rbrace$). A Markov kernel canonically lifts to act on distributions $\mathcal P(X,\mathscr A)\overset{P}{\longrightarrow} \mathcal P(Y,\mathscr B)$ via $\nu P=\mathbb E_\nu P$, i.e. $P$ mixes $\nu$ into the $\nu$-expectation of the family. (Formally, the expectation is a Bochner integral, but I'm in favor of disregarding pedantry in our context.)
+Thus a stochastic matrix is just a family of densities relative to counting measure, indexed by a finite state space. Removing the word 'finite' and dealing with distributions directly gives rise to *Markov kernels*: linear mixing operators between general spaces. Formally, a Markov kernel between measurable spaces $(X,\mathscr A)\overset{P}{\longrightarrow}(Y,\mathscr B)$ is a measurable function
+$$
+(X,\mathscr A)\overset{P}{\longrightarrow}\mathcal P(Y,\mathscr B)
+$$
+to the space of probability distributions (equipped with the $\sigma$-algebra generated by the set of evaluations $\lbrace\operatorname{ev}_B,B\in \mathscr B\rbrace$). A Markov kernel canonically lifts to act on distributions
+$$\mathcal P(X,\mathscr A)\overset{P}{\longrightarrow} \mathcal P(Y,\mathscr B)$ via $\nu P=\mathbb E_\nu P,
+$$
+i.e. $P$ mixes $\nu$ into the $\nu$-expectation of the family. (Formally, the expectation is a Bochner integral, but I'm in favor of disregarding pedantry in our context.)
 
 Now we come to generalize "pure mixing" operators from *doubly*-stochastic matrices. As discussed above, the additional requirement $\mathbf 1P=\mathbf 1$ means the uniform distribution is stationary, and mild connectedness assumptions give uniqueness, giving a globally attractive fixed point for the flow. Intuitively, this means doubly-stochastic matrices represent mixing operators whose "most mixed" or "most spread out" state is uniform. In general state spaces we follow the same principle and work relative to a chosen stationary reference $\pi$, which is unique under similarly mild connectedness assumptions. Note $\pi$-invariance is equivalent to "$\pi$-sum of the $y$-column equals one". Indeed $\pi P=\pi \iff \frac{\mathrm d\pi P}{\mathrm d\pi}\overset{\text{a.s}}{=}1$ and compute the LHS to discover $\frac{\mathrm d\pi P}{\mathrm d\pi}(y)=\int_\Omega \frac{\mathrm dP_x}{\mathrm d\pi}(y)\mathrm d\mu(x)$.
 
@@ -677,7 +688,15 @@ P^\dagger[\nu]_{ji}=\frac{\nu_i P_{ij}}{(\nu P)_j}.
 $$
 Geometrically, this *posterior kernel* is measuring *incoming* probabilities instead of outgoing ones.
 
-⚠️ $P_{ij}$ are independent of the initial distribution $\nu$, but the posterior probabilities depend on it very strongly. Specifically, if $\nu$ was concentrated at $i$, meaning most of the stuff started in cup $i$, then the posterior probability $\frac{\nu_i P_{ij}}{(\nu P)_j}$ will be high. Since $P^\dagger[\nu]_{ji}=\frac{\nu_i P_{ij}}{(\nu P)_j}$, posterior dynamics behaves "reversely":
+⚠️ $P_{ij}$ are independent of the initial distribution $\nu$, but the posterior probabilities depend on it very strongly. Specifically, if $\nu$ was concentrated at $i$, meaning most of the stuff started in cup $i$, then the posterior probability 
+$$
+\frac{\nu_i P_{ij}}{(\nu P)_j}
+$$
+will be high. Since
+$$
+P^\dagger[\nu]_{ji}=\frac{\nu_i P_{ij}}{(\nu P)_j},
+$$
+posterior dynamics behaves "reversely":
 
 > The fraction of stuff in cup $j$ that will flow by the posterior kernel $P^\dagger[\nu]$ through pipe $i\leftarrow j$ equals the volume flowing by $P$ through $i\to j$ divided by the total volume flowing by $P$ into $j$.
 
@@ -725,7 +744,14 @@ Pf(x)=\int f\mathrm dP_x=\mathbb E_{P_x}f.
 \end{gathered}
 $$
 
-In the discrete case $P$ is a row-stochastic matrix and $f$ a column vector, interpretted as a function on the state space. Write $X_n$ for the random variable whose value is the observed state at time $n$. Then $Pf(i)=\sum_{j}P_{ij}f_j$ is the conditional expectation $\mathbb E[f(X_{n+1})\mid X_n=i]$ of $f$ evaluated on the next state given current value $i$. Taking $f=\mathbf 1_{j}$ recovers the conditional probability $P_{ij}=\mathbb P[X_{n+1}=j\mid X_n=i]$. Similarly for continuous time $Pf(x)=\mathbb E[f(X_{s+t})\mid X_s=x]$.
+In the discrete case $P$ is a row-stochastic matrix and $f$ a column vector, interpretted as a function on the state space. Write $X_n$ for the random variable whose value is the observed state at time $n$. Then $Pf(i)=\sum_{j}P_{ij}f_j$ is the conditional expectation $\mathbb E[f(X_{n+1})\mid X_n=i]$ of $f$ evaluated on the next state given current value $i$. Taking $f=\mathbf 1_{j}$ recovers the conditional probability
+$$
+P_{ij}=\mathbb P[X_{n+1}=j\mid X_n=i].
+$$
+Similarly for continuous time
+$$
+Pf(x)=\mathbb E[f(X_{s+t})\mid X_s=x].
+$$
 
 The following square commutes by Fubini
 
@@ -746,11 +772,27 @@ $$
 \end{gathered}
 $$
 
-Now come posterior kernels. Recall a pair $(\nu,P)$ defines a posterior kernel $P^\dagger[\nu]_{ji}=\frac{\nu_i P_{ij}}{(\nu P)_j}$ with "reverse dynamics":
+Now come posterior kernels. Recall a pair $(\nu,P)$ defines a posterior kernel
+$$
+P^\dagger[\nu]_{ji}=\frac{\nu_i P_{ij}}{(\nu P)_j}
+$$
+with "reverse dynamics":
 
 > The total volume flowing by $P$ through $i\to j$ starting from $\nu$, equals the total volume flowing by $P^\dagger[\nu]$ through $i\leftarrow j$ starting from $\nu P$.
 
-Every pair $(\nu,P)$ induces a Hilbert adjunction $L^2(\nu)\leftrightarrows L^2(\nu P)$ with top arrow given by pullback $P^\ast$ and bottom arrow given by the pullback along the adjoint $P^\dagger[\nu]^\ast$. When $\nu=\pi$ is an equillibrium $\pi=P\pi$ the posterior kernel simplifies drastically $P^\dagger[\pi]_{ji}=\frac{\pi_i}{\pi_j}P_{ij}$. In this case $\pi$ is an equillibrium for the posterior kernel too, and the posterior chain is also autonomous, resulting in adjoint *endomorphisms* on $L^2(\pi)$. The defining equation of $P^\dagger[\pi]$ in the discrete case is also equivalent to equality of conditional densities $\frac{P^\dagger[\nu]_{ji}}{\pi_i}=\frac{P_{ij}}{\pi_j}$. For general state space, this equation says $\frac{\mathrm dP^\dagger_y[\pi]}{\mathrm d\pi}(x)=\frac{\mathrm dP_x}{\mathrm d\pi}(y)$, again encoding "reverse dynamics".
+Every pair $(\nu,P)$ induces a Hilbert adjunction $L^2(\nu)\leftrightarrows L^2(\nu P)$ with top arrow given by pullback $P^\ast$ and bottom arrow given by the pullback along the adjoint $P^\dagger[\nu]^\ast$. When $\nu=\pi$ is an equillibrium $\pi=P\pi$ the posterior kernel simplifies drastically 
+$$
+P^\dagger[\pi]_{ji}=\frac{\pi_i}{\pi_j}P_{ij}.
+$$
+In this case $\pi$ is an equillibrium for the posterior kernel too, and the posterior chain is also autonomous, resulting in adjoint *endomorphisms* on $L^2(\pi)$. The defining equation of $P^\dagger[\pi]$ in the discrete case is also equivalent to equality of conditional densities 
+$$
+\frac{P^\dagger[\nu]_{ji}}{\pi_i}=\frac{P_{ij}}{\pi_j}.
+$$
+For general state space, this equation says
+$$
+\frac{\mathrm dP^\dagger_y[\pi]}{\mathrm d\pi}(x)=\frac{\mathrm dP_x}{\mathrm d\pi}(y),
+$$
+again encoding "reverse dynamics".
 
 Finally we come to action on densities. The key is commutativity of the following square,
 
