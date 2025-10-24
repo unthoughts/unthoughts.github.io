@@ -91,7 +91,7 @@ In this section we'll define information content, first for events, then for par
 Here's an overview of what follows.
 
 1. The information content of an event $A$ is $\iota(A)=-\log P(A)$. This defines a function $\mathscr F \overset{\iota}{\longrightarrow} [0,\infty]$ on all events.
-2. Fix a probability space $(\Omega,\mathscr F,P)$. A partition $\Omega \overset{\pi}{\twoheadrightarrow}\mathscr P$ defines by pushforward a probability space $(\mathscr P,\pi _\ast \mathscr F,\pi_\ast P)$. The measure $\pi_\ast P$ is called the *distribution of the partition*. The information content of the partition is the random variable taking a cell to its information content $\mathscr P\overset{\iota|_\mathscr{P}}{\longrightarrow}[0,\infty]$.
+2. Fix a probability space $(\Omega,\mathscr F,P)$. A partition $\Omega \overset{\pi}{\twoheadrightarrow}\mathscr P$ defines by pushforward a probability space $(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$. The measure $\pi_\ast P$ is called the *distribution of the partition*. The information content of the partition is the random variable taking a cell to its information content $\mathscr P\overset{\iota|_\mathscr{P}}{\longrightarrow}[0,\infty]$.
 3. The information content of a probability space $(\Omega,\mathscr F,\nu)$ is the information content of its partition into singletons.
 
 The third notion is not merely a special case of the second but rather equivalent to it: the information content of a partition $\Omega \overset{\pi}{\twoheadrightarrow}\mathscr P$ equals the information content of its distribution $\nu=\pi_\ast P$. In particular the information content of a partition depends only on its distribution.
@@ -179,7 +179,7 @@ h(X\mid \#) &=-\int_S \frac{\mathrm dP_X}{\mathrm d\#} \log \frac{\mathrm dP_X}{
 &= -\sum _{x\in S} P\lbrace X=x\rbrace \log P\lbrace X=x\rbrace
 \end{aligned}.$$
 
-**Remark.** The determined reader may try to avoid countability assumptions by using the function $P_\mathscr{P}$ without assuming it realizes the derivative $\frac{\mathrm d\nu}{\mathrm d\#}$. This does allow for a general definition, but it suffers from the same issue: continuous random variables would still have infinite information content whence infinite Shannon entropy.
+**Remark.** The determined reader may try to avoid countability assumptions by using the function $P_\mathscr{P}$ without assuming it realizes the derivative $\frac{\mathrm d\nu}{\mathrm d \#}$. This does allow for a general definition, but it suffers from the same issue: continuous random variables would still have infinite information content whence infinite Shannon entropy.
 
 We previously remarked that partitions with many equiprobable sets have more concentrated information distributions. Nevertheless, concentration of the information distribution holds no bearing on entropy.
 
