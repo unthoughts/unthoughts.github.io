@@ -134,9 +134,9 @@ $$
 Note $\log$ is strictly monotone whence injective, so the fibers of information content are precisely equiprobable collections of cells. Hence, the distribution of information content is precisely the distribution of $\mathscr P \overset{P\;\mid_\mathscr{P}}{\longrightarrow}[0,1]$, which we may compute from probability of cells in $\mathscr P$. Geometrically, we start with the histogram for $\mathscr P$ and merge equiprobable columns. Evidently, partitions with more equiprobable cells have more concentrated information distribution. Let's see some examples:
 
 1. A fair coin toss has just two measurements, both equiprobable, so its distribution is $(\tfrac 12, \tfrac 12)$. Hence the information distribution is $\mathbf 1_{\tfrac 12}$.
-2. Consider a biased five-sided die with distribution $(0.1,0.1,0.1,0.1,0.6).$ The information distribution is $\;0.4\cdot \mathbf{1}_{0.1}+0.6\cdot \mathbf{1}_{0.6}$.
-3. Consider a four-ticket lottery with distribution $(0.1,0.2,0.2,0.5)$. The information distribution is $0.1 \mathbf  \cdot 1_{ 0.1}+0.4\cdot \mathbf 1_{0.2}+0.5\cdot \mathbf 1_{0.5}$.
-4. Consider $(0.2,0.2,0.3,0.15,0.15)$. The information distribution is $0.4\cdot \mathbf 1_{0.2}+0.3\cdot \mathbf 1_{0.3}+0.3 \cdot \mathbf 1_{0.15}$.
+2. Consider a biased five-sided die with distribution $$(0.1,0.1,0.1,0.1,0.6)$$. The information distribution is $\;0.4\cdot \mathbf{1}_{0.1}+0.6\cdot \mathbf{1}_{0.6}$.
+3. Consider a four-ticket lottery with distribution $(0.1,0.2,0.2,0.5)$. The information distribution is $$0.1 \mathbf  \cdot 1_{ 0.1}+0.4\cdot \mathbf 1_{0.2}+0.5\cdot \mathbf 1_{0.5}$$.
+4. Consider $(0.2,0.2,0.3,0.15,0.15)$. The information distribution is $$0.4\cdot \mathbf 1_{0.2}+0.3\cdot \mathbf 1_{0.3}+0.3 \cdot \mathbf 1_{0.15}$$.
 
 ### Of a measure
 
@@ -989,7 +989,7 @@ In practice we're saying that for a local maximum of $f$ attained at $x_0$ we mu
 
 **A local differential operator that satisfies the maximum principle has order $\leq 2$, with positive semidefinite second order component.**
 
-*Proof.* Take $g$ with trivial 2-jet $$j^2_ag(x)=0$$. We shall show $Lg=0$. Consider the functions $f_\pm=-d(a,x)^2\pm \varepsilon g(x)$, where $d$ is Euclidean distance. The first crucial point is the *square* of Euclidean distance is smooth, unlike $d(a,x)$ itself. Hence $f_\pm$ have smooth germs at $x=a$ and are therefore valid inputs for any differential operator. The second crucial point is that we can control $\varepsilon$ and the ball $B_r(a)$ enough so *both* $f_\pm$ have a local maximum at $x=a$. First, using the integral form of Taylor series remainder we know $g(x)-j^2_a(x)=g(x)$ is a smooth multiple of $(x-a)^3$. Next, working inside our small compact ball $B_r(a)$ we have the bound
+*Proof.* Take $g$ with trivial 2-jet. We shall show $Lg=0$. Consider the functions $f_\pm=-d(a,x)^2\pm \varepsilon g(x)$, where $d$ is Euclidean distance. The first crucial point is the *square* of Euclidean distance is smooth, unlike $d(a,x)$ itself. Hence $f_\pm$ have smooth germs at $x=a$ and are therefore valid inputs for any differential operator. The second crucial point is that we can control $\varepsilon$ and the ball $B_r(a)$ enough so *both* $f_\pm$ have a local maximum at $x=a$. First, using the integral form of Taylor series remainder we know $g(x)-j^2_a(x)=g(x)$ is a smooth multiple of $(x-a)^3$. Next, working inside our small compact ball $B_r(a)$ we have the bound
 
 $$
 f_\pm (x) \leq -|x-a|^2\pm \varepsilon g(x)\leq -|x-a|^2+\varepsilon C|x-a|^3.
@@ -1327,7 +1327,7 @@ For $\theta\in \frac{\pi}{2}\mathbb Z$ this is a tautology. Otherwise, some extr
 
 ### Normalized averages
 
-**Subadditivity and monotonicity-along multiples.** Let $$(X_i)_{i\mathbb N}$$ be a sequence of independent random variables. Write $$S_n=\frac{X_1+\cdots +X_n}{\sqrt n}$$. The sequence $$n\mapsto \|\rho_{S_n}(S_n)\|^2$$ converges. Moreover, it is weakly decreasing along every subsequence of multiples.
+**Subadditivity and monotonicity-along multiples.** Let $$(X_i)_{i\in\mathbb N}$$ be a sequence of independent random variables. Write $$S_n=\frac{X_1+\cdots +X_n}{\sqrt n}$$. The sequence $$n\mapsto \|\rho_{S_n}(S_n)\|^2$$ converges. Moreover, it is weakly decreasing along every subsequence of multiples.
 
 *Proof.* Use the consequence of weighted Stam's inequality for two summands with $a_1=\sqrt{\frac m{m+n}}$ and $a_2=\sqrt{\frac n{m+n}}$, and multiply by $m+n$ to obtain:
 
