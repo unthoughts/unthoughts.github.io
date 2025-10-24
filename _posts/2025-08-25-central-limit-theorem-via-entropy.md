@@ -1437,7 +1437,7 @@ We want to globalize over the probability space and quantify the "total" rate of
 
 By the Bayesian interpretation of expectation we anticipate $\mathbb E_{\nu_\theta}\left[\frac{\partial}{\partial \theta^\prime}\;\mid_{\theta}\log \frac{\mathrm d\nu_ {\theta^\prime} }{\mathrm d \mu}\right]=0$. Indeed in a world modeled by $\nu$, the information gain relative to any prior is maximized by $\nu $ itself, and the derivative at this critical point is zero. The proof is simple using properties of the Radon-Nikodym derivative: we know expected information gain is non-negative, so $0\leq \mathbb E_\nu\left[\log \frac{\mathrm d\nu}{\mathrm d\eta} \right]=\mathbb E_\nu\left[\log \frac{\mathrm d\nu}{\mathrm d\mu}\right]-\mathbb E_\nu \left[ \log \frac{\mathrm d\eta}{\mathrm d\mu} \right]$. The result $\mathbb E_{\nu_\theta}\left[\frac{\partial}{\partial \theta^\prime}\;\mid_{\theta}\log \frac{\mathrm d\nu_ {\theta^\prime} }{\mathrm d \mu}\right]=0$ is sometimes referred to as the first Bartlett identity. From it we deduce the $L^2(\nu_\theta)$-norm equals the variance!
 
-**Definition.** Fix a family $$\left(\nu_\theta \left)_\theta$$ of probability distributions. Assume there exists a $\theta$-independent dominating measure $\nu_\theta\ll \mu$. The *Fisher information* of a family $$(\nu_\theta)_\theta$$ is the real-valued function on the parameter space whose value at $\theta_0$ is the squared $$L^2(\nu_{\theta_0})$$-norm of the rate of information gain at $$\theta_0$$.
+**Definition.** Fix a family $$\left(\nu_\theta \right)_\theta$$ of probability distributions. Assume there exists a $\theta$-independent dominating measure $\nu_\theta\ll \mu$. The *Fisher information* of a family $$(\nu_\theta)_\theta$$ is the real-valued function on the parameter space whose value at $\theta_0$ is the squared $$L^2(\nu_{\theta_0})$$-norm of the rate of information gain at $$\theta_0$$.
 
 $$I[(\nu_\theta)_\theta]=\mathbb E_{\nu_{\theta}}\left[\left( \frac{\partial}{\partial \theta}\log \frac{\mathrm d\nu_ {\theta} }{\mathrm d \mu}\right)^2\right]=\operatorname{Var}_{\nu_{\theta}}\left[ \frac{\partial}{\partial \theta}\log \frac{\mathrm d\nu_ {\theta} }{\mathrm d \mu} \right].$$
 
@@ -1491,7 +1491,7 @@ ____
 
 With a convincing outline in mind, let's tell the story a bit more formally.
 
-Fix a single distribution $\nu$. If our probability space has semigroup structure we can define the family of translation operators $T_\theta(x)=x+\theta$ and consider the pushforwards $(T_{\theta\ast}\nu)_\theta$. If our structure has the property of being a group then $T_{\theta\ast}\nu (A)=\nu(A-\theta)$. If there's a translation-invariant dominating $\nu_\theta\ll \mu$ (typically $\mu=\lambda$ is Lebesgue/Haar measure) then good things happen. First,
+Fix a single distribution $\nu$. If our probability space has semigroup structure we can define the family of translation operators $T_\theta(x)=x+\theta$ and consider the pushforwards $$(T_{\theta\ast}\nu)_\theta$$. If our structure has the property of being a group then $T_{\theta\ast}\nu (A)=\nu(A-\theta)$. If there's a translation-invariant dominating $\nu_\theta\ll \mu$ (typically $\mu=\lambda$ is Lebesgue/Haar measure) then good things happen. First,
 $$
 \frac{\mathrm dT_{\theta\ast}\nu}{\mathrm d\mu}(x)=\frac{\mathrm dT_{\theta\ast}\nu}{\mathrm dT_{\theta\ast}\mu}(x)=\frac{\mathrm d\nu}{\mathrm d\mu}(x-\theta).
 $$
@@ -1544,7 +1544,15 @@ The key properties of our dynamic setting are thus:
 * Measures $\nu,\pi$ on $X$ such that $\pi$ is dominating $T_{t\ast}\nu\ll \pi$ and invariant $T_{t\ast}\pi=\pi$.
 * A (parametric) vector field $\vec v$ whose integral curves are given flowing along the $T_t$.
 
-So when does such a vector field exist? It must satisfy $$\vec v(p)=\left.\frac{\mathrm d}{\mathrm dt}\right|_{t=0}T_t(p)\in \mathrm T_pX$$. Now we'll show how the abelian group structure ensures the latter equation defines an autonomous (!) ODE $u^\prime(t)=\vec v\circ u(t)$ where $u(t)=T_t$ is a diffeomorphism and $$u^\prime(t)\in \mathrm T_{ut}X$$ is its tangent. In earthlier terms, this is a parametric autonomous ODE $$\frac{\partial u(t,p)}{\partial t}=\vec v\circ u(t,p)$$ with parameter given by the basepoint $p$. After we do this, we can apply the fundamental theorem about autonomous parametric flows, which is satisfied with Lipschitz $\vec v$. (Generally, $$\vec v\in C^k\implies u\in C^{k+1}$$ essentially by definition of the ODE.)
+So when does such a vector field exist? It must satisfy
+$$
+\vec v(p)=\left.\frac{\mathrm d}{\mathrm dt}\right|_{t=0}T_t(p)\in \mathrm T_pX.
+$$
+Now we'll show how the abelian group structure ensures the latter equation defines an autonomous (!) ODE $u^\prime(t)=\vec v\circ u(t)$ where $u(t)=T_t$ is a diffeomorphism and
+$$
+u^\prime(t)\in \mathrm T_{ut}
+$$
+is its tangent. In earthlier terms, this is a parametric autonomous ODE $$\frac{\partial u(t,p)}{\partial t}=\vec v\circ u(t,p)$$ with parameter given by the basepoint $p$. After we do this, we can apply the fundamental theorem about autonomous parametric flows, which is satisfied with Lipschitz $\vec v$. (Generally, $$\vec v\in C^k\implies u\in C^{k+1}$$ essentially by definition of the ODE.)
 
 The point behind autonomy is $$\left. \frac{\mathrm d}{\mathrm dt} \right|_t \gamma(t) = \left. \frac{\mathrm d}{\mathrm dt} \right|_0 \gamma(t+s)$$. Indeed:
 
@@ -1555,7 +1563,14 @@ $$
 \end{aligned}
 $$
 
-An equivalent spatial perspective on autonomy is given by the commutation identity $$\left. \frac{\partial}{\partial t} \right|_t T_{t}p=\vec v\circ T_tp=\mathrm T_p T_t \circ \vec v (p)$$, proven by a similar computation but using commutativty of the group structure. In particular $$\left. \frac{\partial}{\partial t} \right|_t T_{-t}p=-\mathrm T_p T_t \circ \vec v (p)$$.
+An equivalent spatial perspective on autonomy is given by the commutation identity
+$$
+\left. \frac{\partial}{\partial t} \right|_t T_{t}p=\vec v\circ T_tp=\mathrm T_p T_t \circ \vec v (p),
+$$
+proven by a similar computation but using commutativty of the group structure. In particular
+$$
+\left. \frac{\partial}{\partial t} \right|_t T_{-t}p=-\mathrm T_p T_t \circ \vec v (p).
+$$
 
 **Group action: density and information gain both satisfy pure transport PDE.** In our setting, the family of densities and associated information gains $$(\frac{\mathrm dT_{t\ast}\nu}{\mathrm d\pi})_t,(\log\frac{\mathrm dT_{t\ast}\nu}{\mathrm d\pi})_t$$ both satisfy the following directional pure transport PDE:
 
