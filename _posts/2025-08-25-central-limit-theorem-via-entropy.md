@@ -670,7 +670,7 @@ The table below summarizes the key probabilities in play and their generalizatio
 
 $P_{ij}$ is the fraction of stuff currently in state $i$ that will flow through the pipe $i\to j$. This is the probability of the next state $j$ conditioned on the *prior* of present state $i$. (Is it strange to call the present a prior? The mere thought of this makes it past...) The conditional generalizes to a Markov kernel $P$, with $P_x$ the fraction of stuff at state $x$ that will flow into $A$.
 
-$(\nu P)_{j}$ is the fraction of the total stuff that will sit inside cup $j$ in the next phase. It depends on $\nu$ because it pertains to the total amount of stuff. It generalizes to the action $\nu P=\mathbb E_\nu P$.
+$$(\nu P)_{j}$$ is the fraction of the total stuff that will sit inside cup $j$ in the next phase. It depends on $\nu$ because it pertains to the total amount of stuff. It generalizes to the action $\nu P=\mathbb E_\nu P$.
 
 $\nu_i P_{ij}$ is the fraction of the total stuff flowing through $i\to j$. It is the *joint* probability of both present state $i$ *and* next state $j$. The pointwise multiplication should therefore generalize to a joint distribution of "now" and "next" on the product space. Let's think how to compute it on $A\times B$. The second variable appears only in $P$ and won't pose an issue. For the first, we want to integrate $\nu \lbrace x\rbrace P_x$ over $x\in A$. This is the probability measure $\int_A P_x\mathrm d\nu(x) $, which can be evaluated at $B$. That's all there is to it. As for notation, we'll adopt $\nu\otimes P$ following Kallenberg (if I recall correctly). To be honest the moral choice of notation would be asymmetric semidirect product notation $\nu \rtimes P$, but ah well.
 
