@@ -144,13 +144,13 @@ Every set has a canonical partition into its constituent singletons. The structu
 
 **Definition/Lemma.** The information content of a probability measure $P$ equals the composite
 $$
-\Omega \overset{\frac{\mathrm dP}{\mathrm d\text{\#}}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty].
+\Omega \overset{\frac{\mathrm dP}{\mathrm d\text{#}}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty].
 $$
 
 Fix a partition $\Omega\overset{\pi}{\twoheadrightarrow}\mathscr P$. The information content of $(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$ is then $A\mapsto -\log P(A)$, equal to the definition of the information content of the partition $\mathscr P$. Moreover, we observe that the restriction of $P$ to the partition is itself the Radon-Nikodym derivative of its pushforward with respect to counting measure.
 
 $$
-\mathscr P \overset{P\;\mid_\mathscr{P}=\frac{\mathrm d\pi_\ast P}{\mathrm d\text{\#}}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty].
+\mathscr P \overset{P\;\mid_\mathscr{P}=\frac{\mathrm d\pi_\ast P}{\mathrm d\text{#}}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty].
 $$
 
 Thus the information content of a partition $\mathscr P$ of a probability space $(\Omega,\mathscr F,P)$ equals the information content of the probability space $(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$.
@@ -164,7 +164,7 @@ Shannon entropy is average information content. More precisely, it is average in
 For a countable measurable space $(\Omega,\mathscr F)$ we define the Shannon entropy of a probability measure $\nu$ as follows:
 
 $$\begin{aligned}
-h(\nu\mid \text{\#}) &=- \mathbb E \left[ \log \frac{\mathrm d\nu}{\mathrm d\text{#}} \right] \\
+h(\nu\mid \text{#}) &=- \mathbb E \left[ \log \frac{\mathrm d\nu}{\mathrm d\text{#}} \right] \\
 & =-\int_\Omega \frac{\mathrm d\nu}{\mathrm d\text{#}} \log \frac{\mathrm d\nu}{\mathrm d\text{#}} \mathrm d\text{#} \\
 &= -\sum_\omega \nu \lbrace \omega \rbrace \log \nu\lbrace \omega\rbrace.
 \end{aligned}$$
@@ -587,11 +587,23 @@ The topological decomposition above defines the Frobenius normal form of a row-s
 Given a stochastic matrix, one typically studies its action on the space of initial distributions. Finite distributions can identified with their density relative to counting measure: $n$-tuples of numbers summing to one. Hence we are studying the action of stochastic matrices on the standard $n$-simplex $\Delta^{n-1}=\lbrace x\geq 0:\sum_i x_i=1 \rbrace\subseteq \mathbb R^n$. Classical theory studies the *semigroup* (!) $P^\mathbb N$, and specifically the limit points of the flow. Even for invertible stochastic $P$, its inverse is generally not stochastic whence not a mixing operator. This is intuitive: unmixing things does not resemble mixing whatsoever, whence *semi*group. Thankfully, *doubly*-stochastic matrices *are* closed under multiplication (intuitively clear), so a "pure-mixing" generator $P$ induces a "pure-mixing" semigroup $P^\mathbb N$.
 
 Since stochastic matrices are $L^1$-contractions and the simplex is compact (!), limit points of the flow are either fixed points (stationary distributions) or cycles. Stationary distributions are attractive iff there are no cycles. Some examples with two states:
-* $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ describes disjoint static states. There is no flow.
-* $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ describes a 2-cycle $1\underset{1}{\overset{1}{\rightleftarrows}}2$. The flow $P^n$ switches at odd $n$ and does nothing at even $n$. The uniform distribution is stationary but not attractive.
-* $\begin{pmatrix} \frac 12 & \frac 12 \\ \frac 12  & \frac 12 \end{pmatrix}$ describes $1\underset{1/2}{\overset{1/2}{\rightleftarrows}}2$. There is no flow. 
-* $\begin{pmatrix} 1-p & p \\ p  & 1-p \end{pmatrix}$ describes $1\underset{p}{\overset{p}{\rightleftarrows}}2$. This is $p$-mixing: each side shares a $p$-fraction of their "stuff". For $p>\frac 12$ most of the "stuff" wants to move over, so the convergence from any initial distribution will be oscillatory. (Imagine Alice has a million dollars and Bob has nothing, and start the game for $p=1-\varepsilon$. After one turn, Bob will have almost everything and Alice almost nothing, after two turns, Alice will be richer again, but by a smaller wealth gap, and so on: converging oscillations.) For $p<\frac 12$ convergence will be monotone. No matter the initial distribution, we even out toward a uniform distribution.
-* $\begin{pmatrix} 1-p & p \\ q  & 1-q \end{pmatrix}$ describes $1\underset{q}{\overset{p}{\rightleftarrows}}2$. So $p$ of the stuff flows right and $q$ flows left. Hence we have a unique attractive stationary distribution given by the expected fraction of stuff $(\frac q{p+q},\frac p{p+q})$. If $p+q> 1$ then most of the stuff is moving, so convergence is oscillatory due to back-and-forth. If $p+q<1$ most stuff stays in place, and convergence is monotone.
+* $$
+\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}
+$$
+describes disjoint static states. There is no flow.
+* $$
+\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+$$
+describes a 2-cycle $1\underset{1}{\overset{1}{\rightleftarrows}}2$. The flow $P^n$ switches at odd $n$ and does nothing at even $n$. The uniform distribution is stationary but not attractive.
+* $$\begin{pmatrix} \frac 12 & \frac 12 \\ \frac 12  & \frac 12 \end{pmatrix}$$
+describes $1\underset{1/2}{\overset{1/2}{\rightleftarrows}}2$. There is no flow. 
+* $$
+\begin{pmatrix} 1-p & p \\ p  & 1-p \end{pmatrix}$$
+describes $1\underset{p}{\overset{p}{\rightleftarrows}}2$. This is $p$-mixing: each side shares a $p$-fraction of their "stuff". For $p>\frac 12$ most of the "stuff" wants to move over, so the convergence from any initial distribution will be oscillatory. (Imagine Alice has a million dollars and Bob has nothing, and start the game for $p=1-\varepsilon$. After one turn, Bob will have almost everything and Alice almost nothing, after two turns, Alice will be richer again, but by a smaller wealth gap, and so on: converging oscillations.) For $p<\frac 12$ convergence will be monotone. No matter the initial distribution, we even out toward a uniform distribution.
+* $$
+\begin{pmatrix} 1-p & p \\ q  & 1-q \end{pmatrix}
+$$
+describes $1\underset{q}{\overset{p}{\rightleftarrows}}2$. So $p$ of the stuff flows right and $q$ flows left. Hence we have a unique attractive stationary distribution given by the expected fraction of stuff $(\frac q{p+q},\frac p{p+q})$. If $p+q> 1$ then most of the stuff is moving, so convergence is oscillatory due to back-and-forth. If $p+q<1$ most stuff stays in place, and convergence is monotone.
 
 For a doubly-stochastic chain with positive entries we therefore anticipate very simple limit dynamics: a single attractive fixed point given by the uniform distribution. Intuitively: "pure mixing" approaches the distribution with maximal Shannon entropy, regardless of circulation. In the disconnected case, we expect componentwise convergence to uniform distributions (think of a block-diagonal doubly-stochastic matrix as separate collections of cups with stuff). Moreover, we expect monotone convergence and monotone entropy increase: every mixing step increases entropy. In discrete time, monotonicty of entropy for arbitrary state spaces is actually an easy consequence of Jensen's inequality via the so-called data-processing inequality. We will revisit this soon.
 
@@ -610,19 +622,22 @@ So far we defined mixing operators as those with stochastic matrix representatio
 
 Row-mixing notation $\nu\mapsto \nu P=\sum_i \nu_iP_i$ implicitly performs the "canonical" identification of finite distributions with their density relative to counting measure. Extra precision reveals the action on an initial distribution $\nu$ as the $\nu$-expectation of the family of distributions encoded by the transition matrix.
 
-$$\begin{aligned}
-\frac{\mathrm d\nu}{\mathrm d\text{#}}\frac{\mathrm dP}{\mathrm d\text{#}}& = \sum_i \frac{\mathrm d\nu}{\mathrm d\text{\#}}(i)\frac{\mathrm dP}{\mathrm d\text{#}}(i) \\
+$$
+\begin{aligned}
+\frac{\mathrm d\nu}{\mathrm d\text{#}}\frac{\mathrm dP}{\mathrm d\text{#}}& = \sum_i \frac{\mathrm d\nu}{\mathrm d\text{#}}(i)\frac{\mathrm dP}{\mathrm d\text{#}}(i) \\
 & = \int \frac{\mathrm d\nu}{\mathrm d\text{#}}\frac{\mathrm dP}{\mathrm d\text{#}}\mathrm d\text{#} \\
 & =\int \frac{\mathrm dP}{\mathrm d\text{#}}\mathrm d\nu \\
 & =\mathbb E_\nu \left[\frac{\mathrm dP}{\mathrm d\text{#}}\right] 
-\end{aligned}$$
+\end{aligned}
+$$
 
 Thus a stochastic matrix is just a family of densities relative to counting measure, indexed by a finite state space. Removing the word 'finite' and dealing with distributions directly gives rise to *Markov kernels*: linear mixing operators between general spaces. Formally, a Markov kernel between measurable spaces $(X,\mathscr A)\overset{P}{\longrightarrow}(Y,\mathscr B)$ is a measurable function
 $$
 (X,\mathscr A)\overset{P}{\longrightarrow}\mathcal P(Y,\mathscr B)
 $$
 to the space of probability distributions (equipped with the $\sigma$-algebra generated by the set of evaluations $\lbrace\operatorname{ev}_B,B\in \mathscr B\rbrace$). A Markov kernel canonically lifts to act on distributions
-$$\mathcal P(X,\mathscr A)\overset{P}{\longrightarrow} \mathcal P(Y,\mathscr B)$ via $\nu P=\mathbb E_\nu P,
+$$
+\mathcal P(X,\mathscr A)\overset{P}{\longrightarrow} \mathcal P(Y,\mathscr B)$ via $\nu P=\mathbb E_\nu P,
 $$
 i.e. $P$ mixes $\nu$ into the $\nu$-expectation of the family. (Formally, the expectation is a Bochner integral, but I'm in favor of disregarding pedantry in our context.)
 
@@ -646,7 +661,7 @@ The table below summarizes the key probabilities in play and their generalizatio
 
 $P_{ij}$ is the fraction of stuff currently in state $i$ that will flow through the pipe $i\to j$. This is the probability of the next state $j$ conditioned on the *prior* of present state $i$. (Is it strange to call the present a prior? The mere thought of this makes it past...) The conditional generalizes to a Markov kernel $P$, with $P_x$ the fraction of stuff at state $x$ that will flow into $A$.
 
-$(\nu P)_j$ is the fraction of the total stuff that will sit inside cup $j$ in the next phase. It depends on $\nu$ because it pertains to the total amount of stuff. It generalizes to the action $\nu P=\mathbb E_\nu P$.
+$\left(\nu P\right)_j$ is the fraction of the total stuff that will sit inside cup $j$ in the next phase. It depends on $\nu$ because it pertains to the total amount of stuff. It generalizes to the action $\nu P=\mathbb E_\nu P$.
 
 $\nu_i P_{ij}$ is the fraction of the total stuff flowing through $i\to j$. It is the *joint* probability of both present state $i$ *and* next state $j$. The pointwise multiplication should therefore generalize to a joint distribution of "now" and "next" on the product space. Let's think how to compute it on $A\times B$. The second variable appears only in $P$ and won't pose an issue. For the first, we want to integrate $\nu \lbrace x\rbrace P_x$ over $x\in A$. This is the probability measure $\int_A P_x\mathrm d\nu(x) $, which can be evaluated at $B$. That's all there is to it. As for notation, we'll adopt $\nu\otimes P$ following Kallenberg (if I recall correctly). To be honest the moral choice of notation would be asymmetric semidirect product notation $\nu \rtimes P$, but ah well.
 
