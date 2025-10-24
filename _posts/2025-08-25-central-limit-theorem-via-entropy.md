@@ -1566,7 +1566,8 @@ with parameter given by the basepoint $p$. After we do this, we can apply the fu
 
 The point behind autonomy is
 
-$$\left. \frac{\mathrm d}{\mathrm dt} \right|_t \gamma(t) = \left. \frac{\mathrm d}{\mathrm dt} \right|_0 \gamma(t+s).
+$$
+\left. \frac{\mathrm d}{\mathrm dt} \right|_t \gamma(t) = \left. \frac{\mathrm d}{\mathrm dt} \right|_0 \gamma(t+s).
 $$
 
 Indeed:
