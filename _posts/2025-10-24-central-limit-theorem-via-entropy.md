@@ -26,9 +26,9 @@ While CLT was my original motivation for learning this stuff, there's a beautifu
 
 ## CLT
 
-Let $$(X_i)_{i\geq 1}$$ be i.i.d and consider its $n$-average $\overline X_n=\frac{X_1+\cdots+X_n}{n}$. Note $\operatorname{Var}\overline X_n=\|\overline X_n-\mu\|^2_2=\frac{\sigma^2}{n}\overset{n\to \infty}{\longrightarrow}0$ - the variance vanishes in the limit. This is a weak version of the law of large numbers. The strong law is the satisfying but still unsurprising assertion that as $n\to \infty$, the $n$-average converges almost surely to the mean $\overline X_n\underset{\mathrm{a.s}}{\overset{n\to \infty}{\longrightarrow}}\mu$. It is a special case of Birkhoff's ergodic theorem relating space and time averages, and we won't pursue it further in this post.
+Let $$(X_i)_{i\geq 1}$$ be i.i.d and consider its $$n$$-average $$\overline X_n=\frac{X_1+\cdots+X_n}{n}$$. Note $$\operatorname{Var}\overline X_n=\|\overline X_n-\mu\|^2_2=\frac{\sigma^2}{n}\overset{n\to \infty}{\longrightarrow}0$$ - the variance vanishes in the limit. This is a weak version of the law of large numbers. The strong law is the satisfying but still unsurprising assertion that as $$n\to \infty$$, the $$n$$-average converges almost surely to the mean $$\overline X_n\underset{\mathrm{a.s}}{\overset{n\to \infty}{\longrightarrow}}\mu$$. It is a special case of Birkhoff's ergodic theorem relating space and time averages, and we won't pursue it further in this post.
 
-Upon scaling we see $\|\sqrt n(\overline X_n-\mu)\|_2=\sigma$: the standard deviation becomes constant and there is stability at the limit. Thus we arrive at a more delicate question: is there perhaps a limiting distribution?
+Upon scaling we see $$\|\sqrt n(\overline X_n-\mu)\|_2=\sigma$$: the standard deviation becomes constant and there is stability at the limit. Thus we arrive at a more delicate question: is there perhaps a limiting distribution?
 
 $$
 \frac{\overline X_n-\mu}{\sigma/\sqrt n}=\frac{\overline X_n-\mu}{\|\overline X_n\|_2}\overset{?}{\underset{n\to\infty}{\Longrightarrow}} L.
@@ -36,13 +36,13 @@ $$
 
 Let us phrase our question more geometrically:
 
-1. Suppose we scale the real line by the standard deviation of the average $\|\overline X_n\|_2=\sigma/\sqrt n$.
-2. Now we look at scaled (!) histograms of the deviation of the $n$-average $\overline X_n$ from the mean $\mu$.
+1. Suppose we scale the real line by the standard deviation of the average $$\|\overline X_n\|_2=\sigma/\sqrt n$$.
+2. Now we look at scaled (!) histograms of the deviation of the $$n$$-average $$\overline X_n$$ from the mean $$\mu$$.
 3. *Question.* In the limit $n\to \infty$, do these histograms have a shape?
 
-Incredibly, the answer is yes when the $X_i$ have finite variance. Even more incredibly, the limit distribution is Gaussian, and completely independent of the distribution of the $X_i$.
+Incredibly, the answer is yes when the $$X_i$$ have finite variance. Even more incredibly, the limit distribution is Gaussian, and completely independent of the distribution of the $X_i$.
 
-**Central Limit Theorem.** Let $(X_i)_{i\geq 1}$ be i.i.d with mean $\mu$ and variance $\sigma^2<\infty$. Consider $n$-average $\overline X_n=\frac{X_1+\cdots+X_n}{n}$. As $n\to \infty$, the deviation of the average from the mean *in units of its standard deviation* converges to a standard Gaussian distribution:
+**Central Limit Theorem.** Let $$(X_i)_{i\geq 1}$$ be i.i.d with mean $$\mu$$ and variance $$\sigma^2<\infty$$. Consider $$n$$-average $$\overline X_n=\frac{X_1+\cdots+X_n}{n}$$. As $$n\to \infty$$, the deviation of the average from the mean *in units of its standard deviation* converges to a standard Gaussian distribution:
 
 $$
 \frac{\overline X_n-\mu}{\sigma/\sqrt n}=\frac{\overline X_n-\mu}{\|\overline X_n\|_2}\overset{n\to\infty}{\Longrightarrow} N(0,1).
@@ -50,9 +50,9 @@ $$
 
 But... *why?*
 
-*Why* is there a limit distribution? *Why* is it independent of the distribution of the $X_i$?
+*Why* is there a limit distribution? *Why* is it independent of the distribution of the $$X_i$$?
 
-A first step toward some intuition is to examine the case of $X_i$ Bernoulli, i.e. (potentially biased) coin tosses. The [3Blue1Brown video](https://www.youtube.com/watch?v=zeJD6dqJ5lo&ab_channel=3Blue1Brown) features great Galton board simulations that hint at what's going on: for a ball to end up on the far left/right it must hit a long stream of heads/tails, which is less probable than a mixed stream (that would place it closer to the middle). There are more mixed streams and so the distributions are concentrated near the middle. Sufficiently thorough analysis of this example leads to the limit distribution, and is carried out by Jaynes in his immortal monograph, but we will not pursue it here. Instead, we will shift to the "information PoV".
+A first step toward some intuition is to examine the case of $$X_i$$ Bernoulli, i.e. (potentially biased) coin tosses. The [3Blue1Brown video](https://www.youtube.com/watch?v=zeJD6dqJ5lo&ab_channel=3Blue1Brown) features great Galton board simulations that hint at what's going on: for a ball to end up on the far left/right it must hit a long stream of heads/tails, which is less probable than a mixed stream (that would place it closer to the middle). There are more mixed streams and so the distributions are concentrated near the middle. Sufficiently thorough analysis of this example leads to the limit distribution, and is carried out by Jaynes in his immortal monograph, but we will not pursue it here. Instead, we will shift to the "information PoV".
 
 A second step toward some intuition, which points directly at Gaussians, is founded on the conjunction of two core principles:
 1. The Gaussian has a universal characterization in terms of differential entropy: in a formal sense, it has minimal structure relative to Lebesgue measure among all distributions with a fixed variance.
@@ -74,7 +74,7 @@ Key takeaways:
 
 Despite the emphasis on the relative point of view, we shall nevertheless start with what is, in some sense, absolute entropy: Shannon entropy. It's absolute in the sense that it assume absence of any prior beliefs. Indeed by the maximum entropy principle itself applied to a finite (!) space, the reference distribution realizing a total absence of priors is the uniform distribution. Shannon entropy is defined a bit more generally - with respect to the counting measure on countable spaces - but that is immaterial. It is very interesting however that only finite spaces feature a distribution which models complete absence of priors - no analogue is available on infinite spaces (even countably infinite). Infinity imposes priors!
 
-Formally, we define entropy of a probability measure relative to a reference measure $h(\nu\mid \mu)=\mathbb E_\nu \left[\log \frac{\mathrm d\mu}{\mathrm d\nu} \right]$. When the reference is also a probability measure, $h(\nu\mid \mu)$ is the expected information gained by shifting our model $\nu \rightarrow \mu$. According to the Bayesian interpretation, $\nu$-expectation of information in other distributions should be maximized by $\nu$ itself. Hence entropy relative to other probability distributions should be non-positive, and zero precisely at $\nu$. For convenience we introduce also expected *relative information gain*: $\nu$-expectation of moving $\nu\leftarrow \mu$, just by adding a minus sign.
+Formally, we define entropy of a probability measure relative to a reference measure $$h(\nu\mid \mu)=\mathbb E_\nu \left[\log \frac{\mathrm d\mu}{\mathrm d\nu} \right]$$. When the reference is also a probability measure, $$h(\nu\mid \mu)$$ is the expected information gained by shifting our model $$\nu \rightarrow \mu$$. According to the Bayesian interpretation, $$\nu$$-expectation of information in other distributions should be maximized by $$\nu$$ itself. Hence entropy relative to other probability distributions should be non-positive, and zero precisely at $$\nu$$. For convenience we introduce also expected *relative information gain*: $$\nu$$-expectation of moving $$\nu\leftarrow \mu$$, just by adding a minus sign.
 $$
 D(\nu\mid\mu)=-h(\nu\mid \mu)=\mathbb E_\nu \left[\log \frac{\mathrm d\nu}{\mathrm d\mu} \right]
 $$
@@ -90,11 +90,11 @@ In this section we'll define information content, first for events, then for par
 
 Here's an overview of what follows.
 
-1. The information content of an event $A$ is $\iota(A)=-\log P(A)$. This defines a function $\mathscr F \overset{\iota}{\longrightarrow} [0,\infty]$ on all events.
-2. Fix a probability space $(\Omega,\mathscr F,P)$. A partition $\Omega \overset{\pi}{\twoheadrightarrow}\mathscr P$ defines by pushforward a probability space $(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$. The measure $\pi_\ast P$ is called the *distribution of the partition*. The information content of the partition is the random variable taking a cell to its information content $\mathscr P\overset{\iota_\mathscr{P}}{\longrightarrow}[0,\infty]$.
-3. The information content of a probability space $(\Omega,\mathscr F,\nu)$ is the information content of its partition into singletons.
+1. The information content of an event $$A$$ is $$\iota(A)=-\log P(A)$$. This defines a function $$\mathscr F \overset{\iota}{\longrightarrow} [0,\infty]$$ on all events.
+2. Fix a probability space $$(\Omega,\mathscr F,P)$$. A partition $$\Omega \overset{\pi}{\twoheadrightarrow}\mathscr P$$ defines by pushforward a probability space $$(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$$. The measure $$\pi_\ast P$$ is called the *distribution of the partition*. The information content of the partition is the random variable taking a cell to its information content $$\mathscr P\overset{\iota_\mathscr{P}}{\longrightarrow}[0,\infty]$$.
+3. The information content of a probability space $$(\Omega,\mathscr F,\nu)$$ is the information content of its partition into singletons.
 
-The third notion is not merely a special case of the second but rather equivalent to it: the information content of a partition $\Omega \overset{\pi}{\twoheadrightarrow}\mathscr P$ equals the information content of its distribution $\nu=\pi_\ast P$. In particular the information content of a partition depends only on its distribution.
+The third notion is not merely a special case of the second but rather equivalent to it: the information content of a partition $$\Omega \overset{\pi}{\twoheadrightarrow}\mathscr P$$ equals the information content of its distribution $$\nu=\pi_\ast P$$. In particular the information content of a partition depends only on its distribution.
 
 ### Of an event
 
@@ -106,7 +106,7 @@ $$
 A\perp\negthickspace \negthickspace \perp B\implies \iota(A\cap B)=\iota (A)+\iota (B). 
 $$
 
-Moreover, an almost certain event should have zero surprisal. Thus we are led, following Shannon, to take $\iota (A)=\log\frac{1}{P(A)}=-\log P(A)$. Additivity on independent events follows from the product-to-sum functional equation satisfied by the logarithm. Note information content is a function defined on all events of a probability space $(\Omega,\mathscr F,P)$.
+Moreover, an almost certain event should have zero surprisal. Thus we are led, following Shannon, to take $$\iota (A)=\log\frac{1}{P(A)}=-\log P(A)$$. Additivity on independent events follows from the product-to-sum functional equation satisfied by the logarithm. Note information content is a function defined on all events of a probability space $$(\Omega,\mathscr F,P)$$.
 $$
 \iota: \mathscr F \overset{P}{\longrightarrow} [0,1]\overset{-\log}{\longrightarrow} [0,\infty].
 $$
@@ -117,43 +117,43 @@ Probable events are less informative than improbable events. The generalization:
 
 In this section we will formally define the information content of a discrete distribution. We'll go through partitions to appeal to geometric intuition.
 
-Fix a set $X$. Recall functions from $X$ are in canonical bijection with indexed (!) partitions of $X$, where fibers correspond to cells. A random variable is but a measurable function from a probability space, so it has an associated *indexed* measurable partition. But probability distributions are defined for partitions and do not require indexing. The point is that a partition $\mathscr P$ of $X$ always comes with a canonical function $X\overset{\pi}{\longrightarrow}\mathscr P$ sending a point to the unique cell containing it.
+Fix a set $$X$$. Recall functions from $$X$$ are in canonical bijection with indexed (!) partitions of $$X$$, where fibers correspond to cells. A random variable is but a measurable function from a probability space, so it has an associated *indexed* measurable partition. But probability distributions are defined for partitions and do not require indexing. The point is that a partition $$\mathscr P$$ of $$X$$ always comes with a canonical function $$X\overset{\pi}{\longrightarrow}\mathscr P$$ sending a point to the unique cell containing it.
 
-**Definition.** The distribution of a measurable partition $\mathscr P$ of a measure space $(X,\mathscr A,\mu)$ is the pushforward of $\mu$ along the projection onto the space of cells $\Omega \overset{\pi}{\twoheadrightarrow}  \mathscr P$. Note an element of $\pi_\ast\mathscr A$ is a collection of cells with measurable union, and its measure $\pi_\ast \mu$ is just the measure of their union.
+**Definition.** The distribution of a measurable partition $\mathscr P$ of a measure space $$(X,\mathscr A,\mu)$$ is the pushforward of $$\mu$$ along the projection onto the space of cells $$\Omega \overset{\pi}{\twoheadrightarrow}  \mathscr P$$. Note an element of $$\pi_\ast\mathscr A$$ is a collection of cells with measurable union, and its measure $$\pi_\ast \mu$$ is just the measure of their union.
 
-In more earthly terms, the distribution is the multiset of cell masses (multiset because different cells can have equal mass). Upon indexing/labeling a partition we arrive at the common visualization of distributions as histograms, where the $x$-axis ticks are labels of cells, the $y$-axis denotes probability, and the rectangle areas sum to the total measure of the space. Partitions $\mathscr P_i$ of measure spaces $(X_i,\mathscr A_i,\mu_i)$ have isomorphic distributions precisely iff the induced measure spaces are isomorphic $(\mathscr P_i,\pi_{i\ast}\mathscr A_i,\pi_{i\ast}\mu_i)$, iff the restrictions $\mathscr P_i\overset{\mu\;\mid_{\mathscr{P_i}}}{\longrightarrow}[0,\infty]$ are isomorphic iff they have equals multisets of cell masses. This means both partitions can be represented by the same histogram.
+In more earthly terms, the distribution is the multiset of cell masses (multiset because different cells can have equal mass). Upon indexing/labeling a partition we arrive at the common visualization of distributions as histograms, where the $x$-axis ticks are labels of cells, the $y$-axis denotes probability, and the rectangle areas sum to the total measure of the space. Partitions $\mathscr P_i$ of measure spaces $$(X_i,\mathscr A_i,\mu_i)$$ have isomorphic distributions precisely iff the induced measure spaces are isomorphic $$(\mathscr P_i,\pi_{i\ast}\mathscr A_i,\pi_{i\ast}\mu_i)$$, iff the restrictions $$\mathscr P_i\overset{\mu\;\mid_{\mathscr{P_i}}}{\longrightarrow}[0,\infty]$$ are isomorphic iff they have equals multisets of cell masses. This means both partitions can be represented by the same histogram.
 
-**Remark.** The astute reader may have noticed the restriction of the measure to partition cells is actually the Radon-Nikodym derivative of the pushforward with respect to the counting measure on $\mathscr P$, i.e. $\mu \;\mid_\mathscr{P}=\frac{\mathrm d\pi_\ast \mu}{\mathrm d \text{\#}}$. While every measure is absolutely continuous w.r.t the counting measure, the derivative only exists when the atomic support of $\pi_\ast \mu$ is countable. This observation, and the key role played by the counting measure, will be explored later.
+**Remark.** The astute reader may have noticed the restriction of the measure to partition cells is actually the Radon-Nikodym derivative of the pushforward with respect to the counting measure on $$\mathscr P$$, i.e. $$\mu \;\mid_\mathscr{P}=\frac{\mathrm d\pi_\ast \mu}{\mathrm d \text{\#}}$$. While every measure is absolutely continuous w.r.t the counting measure, the derivative only exists when the atomic support of $$\pi_\ast \mu$$ is countable. This observation, and the key role played by the counting measure, will be explored later.
 
-**Definition.** Fix a probability space $(\Omega,\mathscr F,P)$. The information content of a partition $\Omega \overset{\pi}{\twoheadrightarrow} \mathscr P$ is the random variable on $(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$ given by information content of the cells:
+**Definition.** Fix a probability space $$(\Omega,\mathscr F,P)$$. The information content of a partition $$\Omega \overset{\pi}{\twoheadrightarrow} \mathscr P$$ is the random variable on $$(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$$ given by information content of the cells:
 
 $$
 \mathscr P \overset{P\;\mid_\mathscr{P}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty],\quad \iota (A)=-\log P(A).
 $$
 
-Note $\log$ is strictly monotone whence injective, so the fibers of information content are precisely equiprobable collections of cells. Hence, the distribution of information content is precisely the distribution of $\mathscr P \overset{P\;\mid_\mathscr{P}}{\longrightarrow}[0,1]$, which we may compute from probability of cells in $\mathscr P$. Geometrically, we start with the histogram for $\mathscr P$ and merge equiprobable columns. Evidently, partitions with more equiprobable cells have more concentrated information distribution. Let's see some examples:
+Note $$\log$$ is strictly monotone whence injective, so the fibers of information content are precisely equiprobable collections of cells. Hence, the distribution of information content is precisely the distribution of $$\mathscr P \overset{P\;\mid_\mathscr{P}}{\longrightarrow}[0,1]$$, which we may compute from probability of cells in $\mathscr P$. Geometrically, we start with the histogram for $\mathscr P$ and merge equiprobable columns. Evidently, partitions with more equiprobable cells have more concentrated information distribution. Let's see some examples:
 
-1. A fair coin toss has just two measurements, both equiprobable, so its distribution is $(\tfrac 12, \tfrac 12)$. Hence the information distribution is $\mathbf 1_{\tfrac 12}$.
-2. Consider a biased five-sided die with distribution $(0.1,0.1,0.1,0.1,0.6)$. The information distribution is $$0.4\cdot \mathbf{1}_{0.1}+0.6\cdot \mathbf{1}_{0.6}$$.
-3. Consider a four-ticket lottery with distribution $(0.1,0.2,0.2,0.5)$. The information distribution is $$0.1 \mathbf  \cdot 1_{ 0.1}+0.4\cdot \mathbf 1_{0.2}+0.5\cdot \mathbf 1_{0.5}$$.
-4. Consider $(0.2,0.2,0.3,0.15,0.15)$. The information distribution is $$0.4\cdot \mathbf 1_{0.2}+0.3\cdot \mathbf 1_{0.3}+0.3 \cdot \mathbf 1_{0.15}$$.
+1. A fair coin toss has just two measurements, both equiprobable, so its distribution is $$(\tfrac 12, \tfrac 12)$$. Hence the information distribution is $$\mathbf 1_{\tfrac 12}$$.
+2. Consider a biased five-sided die with distribution $$(0.1,0.1,0.1,0.1,0.6)$$. The information distribution is $$0.4\cdot \mathbf{1}_{0.1}+0.6\cdot \mathbf{1}_{0.6}$$.
+3. Consider a four-ticket lottery with distribution $$(0.1,0.2,0.2,0.5)$$. The information distribution is $$0.1 \mathbf  \cdot 1_{ 0.1}+0.4\cdot \mathbf 1_{0.2}+0.5\cdot \mathbf 1_{0.5}$$.
+4. Consider $$(0.2,0.2,0.3,0.15,0.15)$$. The information distribution is $$0.4\cdot \mathbf 1_{0.2}+0.3\cdot \mathbf 1_{0.3}+0.3 \cdot \mathbf 1_{0.15}$$.
 
 ### Of a measure
 
-Every set has a canonical partition into its constituent singletons. The structure map $X\overset{x\mapsto \lbrace x\rbrace}{\longrightarrow} \lbrace \lbrace x\rbrace:x\in X\rbrace $ is canonically isomorphic to the identity by omitting curly braces. Hence the information content of a probability space $(\Omega,\mathscr F,P)$ is the random variable given by information content of points. As previously remarked, if $P$ has countable atomic support then the density function $\omega\mapsto P\lbrace \omega \rbrace$ is none other than the Radon-Nikodym derivative with respect to counting measure $\frac{\mathrm dP}{\mathrm d\text{\#}}$:
+Every set has a canonical partition into its constituent singletons. The structure map $$X\overset{x\mapsto \lbrace x\rbrace}{\longrightarrow} \lbrace \lbrace x\rbrace:x\in X\rbrace $$ is canonically isomorphic to the identity by omitting curly braces. Hence the information content of a probability space $$(\Omega,\mathscr F,P)$$ is the random variable given by information content of points. As previously remarked, if $$P$$ has countable atomic support then the density function $$\omega\mapsto P\lbrace \omega \rbrace$$ is none other than the Radon-Nikodym derivative with respect to counting measure $$\frac{\mathrm dP}{\mathrm d\text{\#}}$$:
 
-**Definition/Lemma.** The information content of a probability measure $P$ equals the composite
+**Definition/Lemma.** The information content of a probability measure $$P$$ equals the composite
 $$
 \Omega \overset{\frac{\mathrm dP}{\mathrm d\text{#}}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty].
 $$
 
-Fix a partition $\Omega\overset{\pi}{\twoheadrightarrow}\mathscr P$. The information content of $(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$ is then $A\mapsto -\log P(A)$, equal to the definition of the information content of the partition $\mathscr P$. Moreover, we observe that the restriction of $P$ to the partition is itself the Radon-Nikodym derivative of its pushforward with respect to counting measure.
+Fix a partition $$\Omega\overset{\pi}{\twoheadrightarrow}\mathscr P$$. The information content of $$(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$$ is then $$A\mapsto -\log P(A)$$, equal to the definition of the information content of the partition $$\mathscr P$$. Moreover, we observe that the restriction of $$P$$ to the partition is itself the Radon-Nikodym derivative of its pushforward with respect to counting measure.
 
 $$
 \mathscr P \overset{P\;\mid_\mathscr{P}=\frac{\mathrm d\pi_\ast P}{\mathrm d\text{#}}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty].
 $$
 
-Thus the information content of a partition $\mathscr P$ of a probability space $(\Omega,\mathscr F,P)$ equals the information content of the probability space $(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$.
+Thus the information content of a partition $$\mathscr P$$ of a probability space $$(\Omega,\mathscr F,P)$$ equals the information content of the probability space $$(\mathscr P,\pi_\ast \mathscr F,\pi_\ast P)$$.
 
 ⚠️ **Remark.** The explicit appearance of counting measure suggests our definition misses out on the continuous part of a measure. Indeed, the information content of a continuous measure is infinite: points have zero probability and are therefore infinitely surprising events. This can be remedied by considering information content *relative to other measures*, namely more continuous ones. We shall explore this after defining Shannon entropy.
 
@@ -161,7 +161,7 @@ Thus the information content of a partition $\mathscr P$ of a probability space 
 
 Shannon entropy is average information content. More precisely, it is average information content *relative to the counting measure*.
 
-For a countable measurable space $(\Omega,\mathscr F)$ we define the Shannon entropy of a probability measure $\nu$ as follows:
+For a countable measurable space $$(\Omega,\mathscr F)$$ we define the Shannon entropy of a probability measure $$\nu$$ as follows:
 
 $$\begin{aligned}
 h(\nu\mid \text{#}) &=- \mathbb E \left[ \log \frac{\mathrm d\nu}{\mathrm d\text{#}} \right] \\
@@ -169,33 +169,33 @@ h(\nu\mid \text{#}) &=- \mathbb E \left[ \log \frac{\mathrm d\nu}{\mathrm d\text
 &= -\sum_\omega \nu \lbrace \omega \rbrace \log \nu\lbrace \omega\rbrace.
 \end{aligned}$$
 
-For an $S$-valued random variable $X$ we therefore have the famous formula
+For an $$S$$-valued random variable $$X$$ we therefore have the famous formula
 
 $$\begin{aligned}
 h(X\mid \text{#}) &=-\int_S \frac{\mathrm dP_X}{\mathrm d\text{#}} \log \frac{\mathrm dP_X}{\mathrm d\text{#}} \mathrm d\text{#} \\
 &= -\sum_{x\in S} P\lbrace X=x\rbrace \log P\lbrace X=x\rbrace
 \end{aligned}.$$
 
-**Remark.** The determined reader may try to avoid countability assumptions by using the function $P_\mathscr{P}$ without assuming it realizes the derivative $\frac{\mathrm d\nu}{\mathrm d \text{\#}}$. This does allow for a general definition, but it suffers from the same issue: continuous random variables would still have infinite information content whence infinite Shannon entropy.
+**Remark.** The determined reader may try to avoid countability assumptions by using the function $$P_\mathscr{P}$$ without assuming it realizes the derivative $$\frac{\mathrm d\nu}{\mathrm d \text{\#}}$$. This does allow for a general definition, but it suffers from the same issue: continuous random variables would still have infinite information content whence infinite Shannon entropy.
 
 We previously remarked that partitions with many equiprobable sets have more concentrated information distributions. Nevertheless, concentration of the information distribution holds no bearing on entropy.
 
-**Example.** Let $X\sim \operatorname{Bern}(1)$ be a "one-sided coin" and $Z\sim \operatorname{Bern}(\frac 12)$. These distributions have equally concentrated information contents, both constant functions. However, the values are different: $X$ has zero bits of information while $Z$ has one bit. Any coin toss $Y\sim \operatorname{Bern}(p)$ with $0<p<\frac 12$ has entropy strictly between zero and one bits.
+**Example.** Let $$X\sim \operatorname{Bern}(1)$$ be a "one-sided coin" and $$Z\sim \operatorname{Bern}(\frac 12)$$. These distributions have equally concentrated information contents, both constant functions. However, the values are different: $$X$$ has zero bits of information while $$Z$$ has one bit. Any coin toss $$Y\sim \operatorname{Bern}(p)$$ with $$0<p<\frac 12$$ has entropy strictly between zero and one bits.
 
 There is ample literature concerning characterizations of Shannon entropy from first principles, similar to our hasty "derivation" of information content. See e.g. Leinster's book [Entropy and Diversity](https://arxiv.org/abs/2012.02113). We'll avoid these and focus on intuition.
 
 ## Relative information content
 
-The information content of a probability measure $\nu$ relative to the counting measure is $\Omega \overset{\frac{\mathrm d\nu}{\mathrm d\text{\#}}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty]$, acting by $\omega\mapsto -\log \nu\lbrace \omega\rbrace $. It captures the information content of the points of $\Omega$.
+The information content of a probability measure $$\nu$$ relative to the counting measure is $$\Omega \overset{\frac{\mathrm d\nu}{\mathrm d\text{\#}}}{\longrightarrow}[0,1]\overset{-\log}{\longrightarrow} [0,\infty]$$, acting by $$\omega\mapsto -\log \nu\lbrace \omega\rbrace $$. It captures the information content of the points of $$\Omega$$.
 
-The presence of the counting measure suggests relativizing with respect to other measures $\nu \ll \mu$. In this section we will try to clarify the epistemology in two morally distinct cases:
+The presence of the counting measure suggests relativizing with respect to other measures $$\nu \ll \mu$$. In this section we will try to clarify the epistemology in two morally distinct cases:
 
-1. $\mu$ is a "microstate-counter" measure, e.g. counting, Lebesgue, Haar, Riemann, Liouville, and weighted variants.
-2. $\mu$ is a probability measure, serving as an assumed prior model of reality.
+1. $$\mu$$ is a "microstate-counter" measure, e.g. counting, Lebesgue, Haar, Riemann, Liouville, and weighted variants.
+2. $$\mu$$ is a probability measure, serving as an assumed prior model of reality.
 
 Our objective is to provide some intuition for the upcoming notions of relative entropy and expected information gain.
 
-First, the mental model. A measurable space $(\Omega,\mathscr F)$ consists of *microstates*. We can observe random variables, i.e. partitions of $\Omega$, whose cells we refer to as *macrostates*.
+First, the mental model. A measurable space $$(\Omega,\mathscr F)$$ consists of *microstates*. We can observe random variables, i.e. partitions of $$\Omega$$, whose cells we refer to as *macrostates*.
 
 1. A "microstate counter" measures how many microstates exist within a region.
 2. A probability measures belief that reality is in a particular region of microstates.
@@ -204,63 +204,63 @@ Let's go over each.
 
 ### Relative to a microstate-counter
 
-Consider the set $\lbrace 1, \lbrace 2,3\rbrace \rbrace$. It has just two points, but one of them feels a little fat: it really consists of two points. What is the natural counting measure to assign this set? Is it just the counting measure, which gives equal weight to both? Or should the fat point receive twice the weight? In a nutshell, this is the dilemma underlying the choice of a microstate-counter measure.
+Consider the set $$\lbrace 1, \lbrace 2,3\rbrace \rbrace$$. It has just two points, but one of them feels a little fat: it really consists of two points. What is the natural counting measure to assign this set? Is it just the counting measure, which gives equal weight to both? Or should the fat point receive twice the weight? In a nutshell, this is the dilemma underlying the choice of a microstate-counter measure.
 
-Often we assume the microstate space $\Omega$ is "fully refined" in the sense that its points are the most primitive microstates of our system. Thus it is typical for the microstate-counters to be "uniform" measures such as the counting measure, Lebesgue measure, Haar measure, etc.
+Often we assume the microstate space $$\Omega$$ is "fully refined" in the sense that its points are the most primitive microstates of our system. Thus it is typical for the microstate-counters to be "uniform" measures such as the counting measure, Lebesgue measure, Haar measure, etc.
 
 So when do we need to add weights for observing macrostates?
 * If we have the distribution of the random variable, just use it.
-* If we want our macro distribution to honor the ambient micro priors, we need to add weights so the macro distribution is a suitable pushforward of the microstate prior $\mu_\mathrm{ma}=w_\ast\mu_\mathrm{mi}$.
+* If we want our macro distribution to honor the ambient micro priors, we need to add weights so the macro distribution is a suitable pushforward of the microstate prior $$\mu_\mathrm{ma}=w_\ast\mu_\mathrm{mi}$$.
 * If our model involves only macrostates without finer microstate information, just use the "uniform" measure (counting, Lebesgue, Haar, etc.).
 
-**Example: colored dice.** Consider a fair die whose faces are colored black, gray, and white. $\Omega$ consists of the six equiprobable microstates.
-* If there are two faces of each color, the information content gets an additive factor of $\log 2$: just an offset.
+**Example: colored dice.** Consider a fair die whose faces are colored black, gray, and white. $$\Omega$$ consists of the six equiprobable microstates.
+* If there are two faces of each color, the information content gets an additive factor of $$\log 2$$: just an offset.
 * If faces are colored one black, two gray, three white, then the weights should explicitly reflect this, to preserve the extra information probabilities and avoid an (incorrect) uniform distribution on the colors.
 
 
-Evidently $-\log \frac{\mathrm d\nu}{c\cdot\mathrm d\text{\#}}=-\log \frac{\mathrm d\nu}{\mathrm d\text{\#}}+\log c$. This function increases with $c$. For positive integer $c$ it's always a positive quantity, which represents precisely the information that would have been lost upon coarse-graining by identifying the $c$ microstates comprising each macrostate. A similar but more delicate phenomenon occurs with non-uniform weights.
+Evidently $$-\log \frac{\mathrm d\nu}{c\cdot\mathrm d\text{\#}}=-\log \frac{\mathrm d\nu}{\mathrm d\text{\#}}+\log c$$. This function increases with $c$. For positive integer $c$ it's always a positive quantity, which represents precisely the information that would have been lost upon coarse-graining by identifying the $c$ microstates comprising each macrostate. A similar but more delicate phenomenon occurs with non-uniform weights.
 
 The case of a finite microstate-counting measure can be normalized to a probability measure, causing just a constant offset. For an infinite microstate-counting measure e.g. counting on infinite spaces or Lebesgue on Euclidean space, normalization is unavailable.
 
 Information content relative to continuous microstate-counting measures can be negative. This counter-intuitive fact may seem disconcerting at first, so let us clarify.
 
-Firstly note $-\log \frac{\mathrm d\nu}{\mathrm d\mu}<0\iff \frac{\mathrm d\nu}{\mathrm d\mu}>1$ so the whole discussion is about densities take on values greater than one. 
+Firstly note $$-\log \frac{\mathrm d\nu}{\mathrm d\mu}<0\iff \frac{\mathrm d\nu}{\mathrm d\mu}>1$$ so the whole discussion is about densities take on values greater than one. 
 
-In the discrete case it's natural to compute entropy relative to a microstate-counter that takes positive integral values. Hence the quotient $\frac{\mathrm d\nu}{\mathrm d\mu}(\omega)=\frac{\nu\lbrace \omega \rbrace}{\mu \lbrace \omega\rbrace}\leq \nu \lbrace \omega\rbrace \leq 1$ always takes values in the unit interval. In such cases, information content is always non-negative. Note we could artificially take $\frac{\mathrm d\nu}{\varepsilon\cdot \mathrm d\text{\#}}$ for some tiny $\varepsilon \ll1$ and find ourselves with negative information content, but this is very contrived.
+In the discrete case it's natural to compute entropy relative to a microstate-counter that takes positive integral values. Hence the quotient $$\frac{\mathrm d\nu}{\mathrm d\mu}(\omega)=\frac{\nu\lbrace \omega \rbrace}{\mu \lbrace \omega\rbrace}\leq \nu \lbrace \omega\rbrace \leq 1$$ always takes values in the unit interval. In such cases, information content is always non-negative. Note we could artificially take $$\frac{\mathrm d\nu}{\varepsilon\cdot \mathrm d\text{\#}}$$ for some tiny $$\varepsilon \ll1$$ and find ourselves with negative information content, but this is very contrived.
 
-In the continuous case, this without contrivance because densities naturally take values higher than one. Our simplest example involves a probability distribution $\nu$ over the real lines and its density relative to Lebesgue measure. If $\nu$ is highly concentrated in a small region then the density $\frac{\mathrm d\nu}{\mathrm d\lambda}$  relative to Lebesgue measure within this region will be higher than one. For instance consider the uniform distribution on an interval $[a,b]$. The density is $\frac{\mathrm d\nu}{\mathrm d\lambda}=\frac{1}{b-a}\mathbf 1_{[a,b]}$, which blows up for small intervals. For another example consider a very concentrated (low variance) Gaussian: the peak of the bell blows up as it narrows down, to preserve unit integral.
+In the continuous case, this without contrivance because densities naturally take values higher than one. Our simplest example involves a probability distribution $$\nu$$ over the real lines and its density relative to Lebesgue measure. If $$\nu$$ is highly concentrated in a small region then the density $$\frac{\mathrm d\nu}{\mathrm d\lambda}$$ relative to Lebesgue measure within this region will be higher than one. For instance consider the uniform distribution on an interval $$[a,b]$$. The density is $$\frac{\mathrm d\nu}{\mathrm d\lambda}=\frac{1}{b-a}\mathbf 1_{[a,b]}$$, which blows up for small intervals. For another example consider a very concentrated (low variance) Gaussian: the peak of the bell blows up as it narrows down, to preserve unit integral.
 
 **Sign meaning relative to a microstate-counter.**
-* Positive - happens iff $\frac{\mathrm d\nu}{\mathrm d\mu}(\omega)<1$, iff microstate lies in a low-density region.
-* Negative - happens iff $\frac{\mathrm d\nu}{\mathrm d\mu}(\omega)>1$, iff microstate lies in a low-density region.
+* Positive - happens iff $$\frac{\mathrm d\nu}{\mathrm d\mu}(\omega)<1$$, iff microstate lies in a low-density region.
+* Negative - happens iff $$\frac{\mathrm d\nu}{\mathrm d\mu}(\omega)>1$$, iff microstate lies in a low-density region.
 
 Generally speaking, we can weigh our microstate-counting measure to suit our positivity needs; there is no epistemological meaning to unravel here (as far as I can see at least).
 
 ### Relative to a prior: information gain
 
-Suppose we have probability distributions $\nu,\mu$ on the same measurable space $(\Omega,\mathscr F)$, modelling our beliefs. For each event we observe, we want to compare both models' predictions. For an event we consider the ratio of probabilities $0\leq \frac{\nu A}{\mu A}\leq \infty$. Note $\frac{\nu A}{\mu A}>1$ means $\nu$ predicted $A$ better than $\mu$, while the reverse inequality $\frac{\nu A}{\mu A}<1$ means the reverse.
+Suppose we have probability distributions $$\nu,\mu$$ on the same measurable space $$(\Omega,\mathscr F)$$, modelling our beliefs. For each event we observe, we want to compare both models' predictions. For an event we consider the ratio of probabilities $$0\leq \frac{\nu A}{\mu A}\leq \infty$$. Note $$\frac{\nu A}{\mu A}>1$$ means $$\nu$$ predicted $$A$$ better than $$\mu$$, while the reverse inequality $$\frac{\nu A}{\mu A}<1$$ means the reverse.
 
 ⚠️ Sign conventions result in a slight headache, but the bottom line is this: when both measures are probability distributions, we will only use the notion of information gain, whose expectation is *minus* entropy. Hence we define:
 
-**Definition.** The information gain of $\nu \ll \mu$ (read $\nu$ relative to $\mu$ or $\nu$ over $\mu$) is defined as $\log \frac{\mathrm d\nu}{\mathrm d\mu}$.
+**Definition.** The information gain of $$\nu \ll \mu$$ (read $$\nu$$ relative to $$\mu$$ or $$\nu$$ over $$\mu$$) is defined as $$\log \frac{\mathrm d\nu}{\mathrm d\mu}$$.
 
 **Sign meaning relative to a prior.**
-* Positive - happens iff $\frac{\mathrm d\nu}{\mathrm d\mu}(\omega)>1$, iff $\nu$ is a superior predictor to $\mu$ at $\omega$.
-* Negative - happens iff $\frac{\mathrm d\nu}{\mathrm d\mu}(\omega)<1$, iff $\nu$ is an inferior predictor to $\mu$ at $\omega$.
+* Positive - happens iff $$\frac{\mathrm d\nu}{\mathrm d\mu}(\omega)>1$$, iff $$\nu$$ is a superior predictor to $$\mu$$ at $$\omega$$.
+* Negative - happens iff $$\frac{\mathrm d\nu}{\mathrm d\mu}(\omega)<1$$, iff $$\nu$$ is an inferior predictor to $$\mu$$ at $$\omega$$.
 
-Note the sign of information gain may fluctuate: either model can get lucky sometimes. The simplest example is perhaps the most illustrative: a fair coin and a very biased coin. Taking $\nu$ to be biased toward heads $\nu\lbrace\mathrm H\rbrace=(1-\varepsilon)$ vs tails $\nu\lbrace\mathrm T\rbrace=\varepsilon$, we find:
-* $\log \frac{\nu\lbrace\mathrm H\rbrace}{\mu\lbrace\mathrm H\rbrace}=\log 2(1-\varepsilon)\approx \log 2>0$, witnessing the heads-biased distribution as a better predictor of heads (obviously).
-* For tails we have $\approx \log \varepsilon \overset{\varepsilon\to 0}{\longrightarrow}-\infty$, witnessing $\nu$ as a worse predictor of tails.
+Note the sign of information gain may fluctuate: either model can get lucky sometimes. The simplest example is perhaps the most illustrative: a fair coin and a very biased coin. Taking $$\nu$$ to be biased toward heads $$\nu\lbrace\mathrm H\rbrace=(1-\varepsilon)$$ vs tails $$\nu\lbrace\mathrm T\rbrace=\varepsilon$$, we find:
+* $$\log \frac{\nu\lbrace\mathrm H\rbrace}{\mu\lbrace\mathrm H\rbrace}=\log 2(1-\varepsilon)\approx \log 2>0$$, witnessing the heads-biased distribution as a better predictor of heads (obviously).
+* For tails we have $$\approx \log \varepsilon \overset{\varepsilon\to 0}{\longrightarrow}-\infty$$, witnessing $$\nu$$ as a worse predictor of tails.
 
-The interesting question is: what is the information gain expected by $\nu$ and by $\mu$? We will answer this below.
+The interesting question is: what is the information gain expected by $$\nu$$ and by $$\mu$$? We will answer this below.
 
 ## Relative entropy
 
 ### Entropy of a measure relative to another measure; expected information gain
 
-Fix measures $\mu,\nu$. Recall $\nu$ is *absolutely continuous* w.r.t $\mu$ (denoted $\nu \ll \mu$) if $\nu A=0\impliedby \mu A=0$. When $\mu$ is $\sigma$-finite this is equivalent to existence of the Radon-Nikodym derivative $\frac{\mathrm d\nu}{\mathrm d\mu}$.
+Fix measures $$\mu,\nu$$. Recall $$\nu$$ is *absolutely continuous* w.r.t $$\mu$$ (denoted $$\nu \ll \mu$$) if $$\nu A=0\impliedby \mu A=0$$. When $$\mu$$ is $$\sigma$$-finite this is equivalent to existence of the Radon-Nikodym derivative $$\frac{\mathrm d\nu}{\mathrm d\mu}$$.
 
-**Definition.** Let $\nu\ll \mu$. The entropy of $\nu$ relative to $\mu$ is minus the $\nu$-expectation of the log density.
+**Definition.** Let $$\nu\ll \mu$$. The entropy of $$\nu$$ relative to $$\mu$$ is minus the $$\nu$$-expectation of the log density.
 
 $$
 h(\nu \mid \mu)=\begin{cases}\displaystyle -\int\log \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\nu =- \int \frac{\mathrm d\nu}{\mathrm d\mu} \log \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\mu & \nu \ll \mu \\
@@ -269,7 +269,7 @@ h(\nu \mid \mu)=\begin{cases}\displaystyle -\int\log \frac{\mathrm d\nu}{\mathrm
 \end{cases}
 $$
 
-When $\nu,\mu$ are both probability measures, define the *expected information gain of $\nu$ relative to $\mu$* as minus the relative entropy. In the literature this quantity is often refered to as Kullback–Leibler divergence, or KL divergence in short. We'll stick to the more informative name.
+When $$\nu,\mu$$ are both probability measures, define the *expected information gain of $$\nu$$ relative to $$\mu$$* as minus the relative entropy. In the literature this quantity is often refered to as Kullback–Leibler divergence, or KL divergence in short. We'll stick to the more informative name.
 
 $$
 D(\nu\mid\mu)=-h(\nu\mid\mu)=\int\log\frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\nu
@@ -277,9 +277,9 @@ $$
 
 ⚠️ **Remark.** Our sign convention for relative entropy differs from some sources in the literature. Our choice makes it so that relative entropy with respect to counting/Lebesgue measure recovers Shannon/differential entropy respectively. Thankfully, our definition of KL divergence is standard across the literature.
 
-If $\nu,\mu$ are mutually absolutely continuous then they have reciprocal Radon-Nikodym derivatives, so the definition is consistent.
+If $$\nu,\mu$$ are mutually absolutely continuous then they have reciprocal Radon-Nikodym derivatives, so the definition is consistent.
 
-Perhaps the most familiar formula for entropy is $h(\nu\mid \mu)=-\int \frac{\mathrm d\nu}{\mathrm d\mu} \log \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\mu$. Typically, $\nu$ is a probability measure. When $\mu=\text{\#}$ is counting measure then $\frac{\mathrm d\nu}{\mathrm d\text{\#}}(\omega)=\nu \lbrace \omega \rbrace$ is density and we recover Shannon entropy
+Perhaps the most familiar formula for entropy is $$h(\nu\mid \mu)=-\int \frac{\mathrm d\nu}{\mathrm d\mu} \log \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\mu$$. Typically, $$\nu$$ is a probability measure. When $$\mu=\text{\#}$$ is counting measure then $$\frac{\mathrm d\nu}{\mathrm d\text{\#}}(\omega)=\nu \lbrace \omega \rbrace$$ is density and we recover Shannon entropy
 
 $$\begin{aligned}
 h(\nu\mid \text{#}) &=-\int \nu \lbrace \omega \rbrace \log \nu \lbrace \omega \rbrace \mathrm d\text{#} \\
@@ -288,15 +288,15 @@ h(\nu\mid \text{#}) &=-\int \nu \lbrace \omega \rbrace \log \nu \lbrace \omega \
 
 Now back to some epistemology. The key one-liner:
 
-> Suppose you believe in a model $\nu$. The quantity $D(\nu \mid \mu)$ is your expectation of information gained by following your model $\nu$ instead of an alternative model $\mu$.
+> Suppose you believe in a model $$\nu$$. The quantity $$D(\nu \mid \mu)$$ is your expectation of information gained by following your model $$\nu$$ instead of an alternative model $$\mu$$.
 
-* The log density $\log \frac{\mathrm d\nu}{\mathrm d\mu}(\omega)$ is positive precisely when $\nu$ is a superior predictor of $\omega$ compared to $\mu$.
-* The Bayesian interpretation of expectation with respect to $\nu$ is the prediction assuming the world truly follows $\nu$.
-* If the world truly follows $\nu$, then $\nu$ should be the unique best predictor among all distributions.
+* The log density $$\log \frac{\mathrm d\nu}{\mathrm d\mu}(\omega)$$ is positive precisely when $$\nu$$ is a superior predictor of $$\omega$$ compared to $$\mu$$.
+* The Bayesian interpretation of expectation with respect to $$\nu$$ is the prediction assuming the world truly follows $$\nu$$.
+* If the world truly follows $$\nu$$, then $$\nu$$ should be the unique best predictor among all distributions.
 
-Combining these, we anticipate expected information gain $D(\nu\mid \mu)$ to be non-negative, since it is precisely the $\nu$-expectation of the log density $\log \frac{\mathrm d\nu}{\mathrm d\mu}$. This is indeed so.
+Combining these, we anticipate expected information gain $$D(\nu\mid \mu)$$ to be non-negative, since it is precisely the $$\nu$$-expectation of the log density $$\log \frac{\mathrm d\nu}{\mathrm d\mu}$$. This is indeed so.
 
-**Non-negativity.** Fix probability (!) measures $\nu\ll\mu$. Then $D(\nu\mid \mu)\geq 0$ with equality iff $\nu=\mu$.
+**Non-negativity.** Fix probability (!) measures $$\nu\ll\mu$$. Then $$D(\nu\mid \mu)\geq 0$$ with equality iff $$\nu=\mu$$.
 
 *Proof.* Recall
 
@@ -304,16 +304,16 @@ $$
 D(\nu\mid\mu)= \int \frac{\mathrm d\nu}{\mathrm d\mu} \log \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\mu.
 $$
 
-The function $\varphi(x)=x\log x$ is convex for $x>0$ by the second derivative test. $\mu$ is a probability measure so Jensen's inequality facilitates the following computation, where the penultimate equality is due to $\nu$ being a probability measure.
+The function $$\varphi(x)=x\log x$$ is convex for $$x>0$$ by the second derivative test. $$\mu$$ is a probability measure so Jensen's inequality facilitates the following computation, where the penultimate equality is due to $$\nu$$ being a probability measure.
 
 $$\begin{aligned}
 \int \varphi \left( \frac{\mathrm d\nu}{\mathrm d\mu} \right) \mathrm d\mu & \geq \varphi \int \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\mu \\
 &= \varphi \int \mathrm d\nu = \varphi(1)=0.
 \end{aligned}$$
 
-**Intuition: heavy penalty for underestimation.** Before taking another step, let us present the simplest and most illuminating example of expected information gain and its asymmetry: a biased coin $\nu$ and a fair coin $\mu$.
+**Intuition: heavy penalty for underestimation.** Before taking another step, let us present the simplest and most illuminating example of expected information gain and its asymmetry: a biased coin $$\nu$$ and a fair coin $$\mu$$.
 
-* Biased expectation of information gain by moving from "neutral" (fair coin) to biased attains moderate values because $x\log x\overset{x\to 0}{\longrightarrow}0$, causing low probability estimates "cancel out".
+* Biased expectation of information gain by moving from "neutral" (fair coin) to biased attains moderate values because $$x\log x\overset{x\to 0}{\longrightarrow}0$$, causing low probability estimates "cancel out".
 
 $$\begin{aligned}
 D(\nu \mid \mu) &=\nu \lbrace \mathrm H \rbrace \log \frac{\nu\lbrace \mathrm H \rbrace}{\mu\lbrace \mathrm H \rbrace}+\nu \lbrace \mathrm T \rbrace \log \frac{\nu\lbrace \mathrm T \rbrace}{\mu\lbrace \mathrm T \rbrace} \\
@@ -327,42 +327,42 @@ D(\mu \mid \nu) &=\mu \lbrace \mathrm H \rbrace \log \frac{\mu\lbrace \mathrm H 
 & = \underbrace{\frac 12 \log \frac{1}{2(1-\varepsilon)}}_{\searrow \tfrac 12\log\tfrac 12}+\underbrace{\frac 12 \log \frac{1}{2\varepsilon}}_{\nearrow \infty}.
 \end{aligned}$$
 
-> $D(\nu\mid\mu)$ explodes when the prior $\mu$ severely underestimates probabilities compared to $\nu$.
+> $$D(\nu\mid\mu)$$ explodes when the prior $$\mu$$ severely underestimates probabilities compared to $$\nu$$.
 
-The dependence of $D(\nu\mid\mu)$ on $\nu,\mu$ is of interest and we will study it (partly) later on.
+The dependence of $$D(\nu\mid\mu)$$ on $$\nu,\mu$$ is of interest and we will study it (partly) later on.
 
 ### The principle of minimum expected information gain (maximum relative entropy)
 
 In 1957 Jaynes published his seminal, two part work *Information Theory and Statistical Mechanics*, relating statistical mechanics and probabilistic inference. In the first paper he formulates his *principle of maximum entropy*: given some prior observations about moments (expectation, variance, etc.), we should model nature with the distribution that maximizes Shannon entropy subject to our data. Intuitively, principles like Occam's razor suggest our model should minimize unjustified assumptions; Jaynes alludes to an equivalence between minizing assumptions and maximizing *unknown* information which can be learned by observation.
 
-One is naturally led to relativize this principle with respect to a prior *model*, given by a reference *probability distribution* $\mu$. Here mild care is needed with signs. Shannon entropy and entropy relative to the uniform distribution differ by a constant, so they reach maximum jointly.
+One is naturally led to relativize this principle with respect to a prior *model*, given by a reference *probability distribution* $$\mu$$. Here mild care is needed with signs. Shannon entropy and entropy relative to the uniform distribution differ by a constant, so they reach maximum jointly.
 
 $$
 h(\nu \mid U_n)=h(\nu\mid \text{#}_n)-\log n
 $$
 
-More generally, we are maximizing the non-positive $h(\nu\mid \mu)\leq 0$.
+More generally, we are maximizing the non-positive $$h(\nu\mid \mu)\leq 0$$.
 
-Thus we are lead to an alternative formulation that I personally find more intuitive: the *principle of minimal expected information gain*. Given a prior model $\mu$ and some observed constraints (e.g. moments), we should choose a model $\nu$ that minimizes expected information gain $D(\nu\mid \mu)$ relative to $\mu$. Intuitively, minimizing expected information gain amounts to minimizing extraneous assumptions.
+Thus we are lead to an alternative formulation that I personally find more intuitive: the *principle of minimal expected information gain*. Given a prior model $$\mu$$ and some observed constraints (e.g. moments), we should choose a model $$\nu$$ that minimizes expected information gain $$D(\nu\mid \mu)$$ relative to $$\mu$$. Intuitively, minimizing expected information gain amounts to minimizing extraneous assumptions.
 
 ### Differential entropy and the role of the Gaussian
 
-Entropy relative to Lebesgue measure $\lambda$ is called *differential entropy*. If $X$ has density $\frac{\mathrm dP_X}{\mathrm d\lambda}=f$ then its differential entropy is given by the familiar formula $h(P_X\mid \lambda)=-\int f \log f \mathrm d\lambda$.
+Entropy relative to Lebesgue measure $$\lambda$$ is called *differential entropy*. If $X$ has density $$\frac{\mathrm dP_X}{\mathrm d\lambda}=f$$ then its differential entropy is given by the familiar formula $$h(P_X\mid \lambda)=-\int f \log f \mathrm d\lambda$$.
 
 **Differential entropy of Gaussian density.** The differential entropy of the Gaussian density
 $$
 \Gamma_{\mu,\sigma^2}=\frac{1}{\sqrt{2\pi} \sigma}\exp \left( -\frac 12\left( \frac{x-\mu}{\sigma} \right)^2 \right)
 $$
 
-is independent of mean $\mu$ and equals
+is independent of mean $$\mu$$ and equals
 
 $$
 h(N(\mu,\sigma^2)\mid \lambda)=\tfrac 12(1+\log(2\pi\sigma^2)).
 $$
 
-**Remark.** Observe the entropy of a Gaussian is negative for sufficiently small $\sigma$. This is fine - see the discussion under information content relative to a microstate-counting measure.
+**Remark.** Observe the entropy of a Gaussian is negative for sufficiently small $$\sigma$$. This is fine - see the discussion under information content relative to a microstate-counting measure.
 
-*Proof.* This is a computation. The last equality is due to the general formula $\operatorname{Var}X=\int (x-\mu)^2f_X\mathrm dx$.
+*Proof.* This is a computation. The last equality is due to the general formula $$\operatorname{Var}X=\int (x-\mu)^2f_X\mathrm dx$$.
 
 $$\begin{aligned}
 h(N(\mu,\sigma^2)\mid \lambda) & = -\int \Gamma_{\mu,\sigma^2}\log \Gamma_{\mu,\sigma^2}\mathrm dx \\
@@ -371,14 +371,14 @@ h(N(\mu,\sigma^2)\mid \lambda) & = -\int \Gamma_{\mu,\sigma^2}\log \Gamma_{\mu,\
 & =\frac 12\log(2\pi\sigma^2)+\frac 12\frac 1{\sigma^2}\sigma^2.
 \end{aligned}$$
 
-**Entropy relative to matching Gaussian.** Write $\Gamma_{\mu,\sigma^2}$ for the probability density of the Gaussian distribution $N(\mu,\sigma^2)$. For any probability density $f$ with matching mean $\mu$ and variance $\sigma^2$, the relative entropy w.r.t the Gaussian is the difference of entropies (w.r.t Lebesgue measure).
+**Entropy relative to matching Gaussian.** Write $$\Gamma_{\mu,\sigma^2}$$ for the probability density of the Gaussian distribution $$N(\mu,\sigma^2)$$. For any probability density $$f$$ with matching mean $$\mu$$ and variance $$\sigma^2$$, the relative entropy w.r.t the Gaussian is the difference of entropies (w.r.t Lebesgue measure).
 
 $$\begin{aligned}
 h(f\mid N(\mu,\sigma^2)) & =h(f\mid \lambda)-h(N(\mu,\sigma^2)\mid \lambda) \\
 &= h(f\mid \lambda) - \tfrac 12(1+\log(2\pi\sigma^2)).
 \end{aligned}$$
 
-*Proof.* This is just a computation. We use the formula $h(\nu\mid\mu)=\int \log \frac{\mathrm d\mu}{\mathrm d\nu} \mathrm d\nu$.
+*Proof.* This is just a computation. We use the formula $$h(\nu\mid\mu)=\int \log \frac{\mathrm d\mu}{\mathrm d\nu} \mathrm d\nu$$.
 
 $$\begin{aligned}
 h(f\mid N(\mu,\sigma^2)) &= \int \log(\Gamma_{\mu,\sigma^2}/f) f\mathrm dx \\
@@ -388,15 +388,15 @@ h(f\mid N(\mu,\sigma^2)) &= \int \log(\Gamma_{\mu,\sigma^2}/f) f\mathrm dx \\
 & = h(f\mid \lambda)-\frac 12\log(2\pi\sigma^2)-\frac 12 \frac{\operatorname{Var}X}{\sigma^2}.
 \end{aligned}$$
 
-The fact $\operatorname{Var}X=\int(x-\mu)^2f\mathrm dx$ uses $\mu=\mathbb EX$. Finish by applying $\operatorname{Var}X=\sigma^2$.
+The fact $$\operatorname{Var}X=\int(x-\mu)^2f\mathrm dx$$ uses $$\mu=\mathbb EX$$. Finish by applying $$\operatorname{Var}X=\sigma^2$$.
 
 We can now use non-negativity of expected information gain to deduce Gaussian density maximizes differential entropy per fixed variance.
 
-**Gaussian maximizes differential entropy per fixed variance.** If $f$ is a probability density on $\mathbb R$ with variance $\sigma^2$, its entropy (relative to Lebesgue measure) is at most that of the Gaussian $N(0,\sigma^2)$, with equality iff $f$ is itself Gaussian with variance $\sigma^2$ (the mean doesn't matter).
+**Gaussian maximizes differential entropy per fixed variance.** If $$f$$ is a probability density on $\mathbb R$ with variance $$\sigma^2$$, its entropy (relative to Lebesgue measure) is at most that of the Gaussian $$N(0,\sigma^2)$$, with equality iff $f$ is itself Gaussian with variance $$\sigma^2$$ (the mean doesn't matter).
 
-*Proof.* Let $\mathbb EX=\mu$. Combining the above proposition with $h(\nu\mid\mu)\leq 0$ we find $h(f\mid \lambda)\leq h(N(\mu,\sigma^2) \mid \lambda)$, as desired.
+*Proof.* Let $$\mathbb EX=\mu$$. Combining the above proposition with $$h(\nu\mid\mu)\leq 0$$ we find $$h(f\mid \lambda)\leq h(N(\mu,\sigma^2) \mid \lambda)$$, as desired.
 
-This result is of paramount epistemic importance: it means Gaussian distributions satisfy the principle of maximum differential entropy given prior belief that variance equals $\sigma ^2$. More geometrically, the Gaussian of variance $\sigma^2$ is the most "spread out" of all distributions with variance $\sigma ^2$. Geometric intuition should also make it clear why the maximum only makes sense upon fixing variance: you can spread out more as you increase it (and indeed the differential entropy of the Gaussian increases monotonically in $\sigma^2$).
+This result is of paramount epistemic importance: it means Gaussian distributions satisfy the principle of maximum differential entropy given prior belief that variance equals $$\sigma ^2$$. More geometrically, the Gaussian of variance $$\sigma^2$$ is the most "spread out" of all distributions with variance $$\sigma ^2$$. Geometric intuition should also make it clear why the maximum only makes sense upon fixing variance: you can spread out more as you increase it (and indeed the differential entropy of the Gaussian increases monotonically in $$\sigma^2$$).
 
 I attach the following excerpt from Jaynes for good measure.
 
@@ -408,80 +408,80 @@ I attach the following excerpt from Jaynes for good measure.
 >
 > Thus we shall find in studying maximum entropy below that, when we use a Gaussian sampling distribution for the noise, we are in effect telling the robot: ‘The only thing I know about the noise is its first two moments, so please take that into account in assigning your probability distribution, but be careful not to assume anything else about the noise.’
 
-Recall the (local, not expected) information gain $\log\frac{\mathrm d\nu}{\mathrm d\mu}$. When $\mu=\lambda$ is Lebesgue measure we call this differential information gain.
+Recall the (local, not expected) information gain $$\log\frac{\mathrm d\nu}{\mathrm d\mu}$$. When $$\mu=\lambda$$ is Lebesgue measure we call this differential information gain.
 
-**Gaussian iff affine differential information gain.** The differential information gain of a Gaussian density $\Gamma_{\mu,\sigma^2}=\frac{1}{\sqrt{2\pi} \sigma}\exp \left( -\frac 12\left( \frac{x-\mu}{\sigma} \right)^2 \right)$ is $\log^\prime(\Gamma_{\mu,\sigma^2})(x)=-\frac{x-\mu}{\sigma^2}$. Conversely, a density with affine differential gain $\rho(x)=ax+b$ is Gaussian $N(-\frac ba,-\frac 1a)$ (in particular $a<0$).
+**Gaussian iff affine differential information gain.** The differential information gain of a Gaussian density $$\Gamma_{\mu,\sigma^2}=\frac{1}{\sqrt{2\pi} \sigma}\exp \left( -\frac 12\left( \frac{x-\mu}{\sigma} \right)^2 \right)$$ is $$\log^\prime(\Gamma_{\mu,\sigma^2})(x)=-\frac{x-\mu}{\sigma^2}$$. Conversely, a density with affine differential gain $$\rho(x)=ax+b$$ is Gaussian $$N(-\frac ba,-\frac 1a)$$ (in particular $$a<0$$).
 
-*Proof.* Given a Gaussian, just compute. Move the constant $\frac 1{\sqrt {2\pi}\sigma}$ into the exponent. Upon taking $\log$ it disappears under differentiation and we're left with the result. Conversely, taking $\log$ outputs a quadratic whence the density is Gaussian. $a<0$ is required for integrability.
+*Proof.* Given a Gaussian, just compute. Move the constant $$\frac 1{\sqrt {2\pi}\sigma}$$ into the exponent. Upon taking $$\log$$ it disappears under differentiation and we're left with the result. Conversely, taking $$\log$$ outputs a quadratic whence the density is Gaussian. $$a<0$$ is required for integrability.
 
 ## Expected information gain: semicontinuity and compactness
 
 ### Lower semicontinuity
 
-This section will culminate in a proof that $\nu\mapsto D(\nu\mid \mu)$ is lower semicontinuous. However, I want to take the scenic route to clarify the intuition (which is also the proof strategy).
+This section will culminate in a proof that $$\nu\mapsto D(\nu\mid \mu)$$ is lower semicontinuous. However, I want to take the scenic route to clarify the intuition (which is also the proof strategy).
 
-Fix a measure space $X$ with measure $\lambda$ and consider a non-negative function $X\to \mathbb R$, thinking of it as mass-density with respect to $\lambda$ (formally as the Radon-Nikodym derivative of some finite measure relative to $\lambda$). The integral is the total mass. When $f$ takes finitely many values it is a simple sum, which can be further decomposed when $X$ itself is finite.
+Fix a measure space $$X$$ with measure $$\lambda$$ and consider a non-negative function $$X\to \mathbb R$$, thinking of it as mass-density with respect to $$\lambda$$ (formally as the Radon-Nikodym derivative of some finite measure relative to $$\lambda$$). The integral is the total mass. When $$f$$ takes finitely many values it is a simple sum, which can be further decomposed when $$X$$ itself is finite.
 
 $$\begin{aligned}
 \int f\mathrm d\lambda & =\sum_y y_i\lambda ( f^\leftarrow (y))\\
 & = \sum_x f_i(x)\lambda\lbrace x\rbrace  \\
 \end{aligned}$$
 
-What can be said about action of the integration operator $f\mapsto \int f \mathrm d\lambda$ on non-negative functions?
+What can be said about action of the integration operator $$f\mapsto \int f \mathrm d\lambda$$ on non-negative functions?
 
-* When $X$ is finite, we expect continuity: no matter what sequence $f_n\to f$ we take, mass has nowhere to go in the limit, and $\int f_n\to \int f$.
-* When $X$ is infinite, mass can drift off to infinity and disappear at limit. In the discrete case - a wandering sequence of deltas. In the continuous case - a wandering sequence of bumps. Nevertheless, mass cannot *appear* at the limit because it has nowhere to come from. This is the statement of Fatou's lemma.
+* When $$X$$ is finite, we expect continuity: no matter what sequence $$f_n\to f$$ we take, mass has nowhere to go in the limit, and $$\int f_n\to \int f$$.
+* When $$X$$ is infinite, mass can drift off to infinity and disappear at limit. In the discrete case - a wandering sequence of deltas. In the continuous case - a wandering sequence of bumps. Nevertheless, mass cannot *appear* at the limit because it has nowhere to come from. This is the statement of Fatou's lemma.
 
-For a lucid phrasing of Fatou's lemma, recall a real-valued function $f$ is *lower semicontinuous* when its sublevel sets are closed $\lbrace x:f(x) \leq c\rbrace$. Such a function *cannot jump up at the limit*, i.e. stuff cannot appear at the limit. Stuff can *instantly* jump up - from the boundary of the sublevel set - but not down, since superlevel sets are open. Fatou's lemma says integration of non-negative functions is lower semicontinuous. The proof builds on the finite case and is underlain by a simple and important fact.
+For a lucid phrasing of Fatou's lemma, recall a real-valued function $$f$$ is *lower semicontinuous* when its sublevel sets are closed $$\lbrace x:f(x) \leq c\rbrace$$. Such a function *cannot jump up at the limit*, i.e. stuff cannot appear at the limit. Stuff can *instantly* jump up - from the boundary of the sublevel set - but not down, since superlevel sets are open. Fatou's lemma says integration of non-negative functions is lower semicontinuous. The proof builds on the finite case and is underlain by a simple and important fact.
 
-**Suprema of continuous functions are lower semicontinuous.** Let $f_i$ be a sequence of continuous maps. The pointwise supremum $\sup_i f_i$ is lower semicontinuous.
+**Suprema of continuous functions are lower semicontinuous.** Let $$f_i$$ be a sequence of continuous maps. The pointwise supremum $$\sup_i f_i$$ is lower semicontinuous.
 
-*Proof.* By the universal property of $\sup$ we have $\lbrace \sup_i f_i \leq c\rbrace = \bigcap_i f_i^\leftarrow (-\infty, c]$.
+*Proof.* By the universal property of $$\sup$ we have $\lbrace \sup_i f_i \leq c\rbrace = \bigcap_i f_i^\leftarrow (-\infty, c]$$.
 
-**Fatou's lemma.** Integration is continuous on finite spaces. Integration of non-negative functions is lower semicontinuous. Moreover, integration of bounded-from-below functions is also lower semicontinuous. Finally, if $\varphi$ is lower semicontinuous and bounded-from-below then the composite $\int \circ \varphi_\ast$ is also lower semicontinuous, i.e. the sublevel sets $\lbrace f\in \mathbb R^X:\int \varphi\circ f \leq c \rbrace$ are closed.
+**Fatou's lemma.** Integration is continuous on finite spaces. Integration of non-negative functions is lower semicontinuous. Moreover, integration of bounded-from-below functions is also lower semicontinuous. Finally, if $$\varphi$$ is lower semicontinuous and bounded-from-below then the composite $$\int \circ \varphi_\ast$$ is also lower semicontinuous, i.e. the sublevel sets $$\lbrace f\in \mathbb R^X:\int \varphi\circ f \leq c \rbrace$$ are closed.
 
-*Proof.* In the finite case, pick a uniform bound on the tail and use it to control the difference between $\int f_n,\int f$. For the infinite case, first fix a finite (measurable) partition $\mathcal P$ of $X$. Define the simple lower approximation $L_\mathcal{P}$ by 
+*Proof.* In the finite case, pick a uniform bound on the tail and use it to control the difference between $$\int f_n,\int f$$. For the infinite case, first fix a finite (measurable) partition $$\mathcal P$$ of $$X$$. Define the simple lower approximation $$L_\mathcal{P}$$ by 
 $$
 L_\mathcal{P}f=\sum_{A\in \mathcal P} \mathbf 1_A \inf_A f.
 $$
-By definition of integration of non-negative functions $\int f=\sup_\mathcal{P}\int L_\mathcal{P}f$. By the lemma it suffices to prove each $L_\mathcal{P}$ is lower semicontinuous. Now we'll reduce to the (continuous) finite case. To this end define
+By definition of integration of non-negative functions $$\int f=\sup_\mathcal{P}\int L_\mathcal{P}f$$. By the lemma it suffices to prove each $$L_\mathcal{P}$$ is lower semicontinuous. Now we'll reduce to the (continuous) finite case. To this end define
 $$
 L_{\mathcal F \preceq P} f=\sum_{F\in \mathcal F}\mathbf 1_F\min_Ff,
 $$
-where $\mathcal F\preceq \mathcal P$ denotes a choice of finite subset of each cell in $P$. These operators are continuous due to the *finite* minima. A straightforward verification shows
+where $$\mathcal F\preceq \mathcal P$$ denotes a choice of finite subset of each cell in $$P$$. These operators are continuous due to the *finite* minima. A straightforward verification shows
 $$
 L_\mathcal{P}= \sup_{\mathcal F\preceq \mathcal P}L_{\mathcal F\preceq \mathcal P}.
 $$
-Thus $\int = \sup_\mathcal{P}\sup_{\mathcal F\preceq \mathcal P}L_{\mathcal F\preceq \mathcal P}$,
-establishing lower semicontinuity. Now suppose the sequence $f_n$ is merely bounded-from-below by $M$. Then we can apply Fatou's lemma to $f_n+M\geq 0$. The result follows by linearity of the integral. To be a bit more explicit, consider the commutative square starting at the subset of functions bounded-from-below by $-M$. The horizontal edges are translations by $M$ while the vertical edges are integration, and commutativity is by linearity of integration. For the last assertion, lower semicontinuity is closed under composition.
+Thus $$\int = \sup_\mathcal{P}\sup_{\mathcal F\preceq \mathcal P}L_{\mathcal F\preceq \mathcal P}$$,
+establishing lower semicontinuity. Now suppose the sequence $$f_n$$ is merely bounded-from-below by $$M$$. Then we can apply Fatou's lemma to $$f_n+M\geq 0$$. The result follows by linearity of the integral. To be a bit more explicit, consider the commutative square starting at the subset of functions bounded-from-below by $$-M$$. The horizontal edges are translations by $$M$$ while the vertical edges are integration, and commutativity is by linearity of integration. For the last assertion, lower semicontinuity is closed under composition.
 
-Led by Fatou-style intuition that mass can only drift off in the limit (but not appear), intuition suggests similar behavior of expected information gain $D(\nu\mid\mu)=\int \frac{\mathrm d\nu}{\mathrm d\mu}\log \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\mu$. Upon inspection we implicitly consider densities (the standard visualiation of histograms) and not the distributions themselves.
+Led by Fatou-style intuition that mass can only drift off in the limit (but not appear), intuition suggests similar behavior of expected information gain $$D(\nu\mid\mu)=\int \frac{\mathrm d\nu}{\mathrm d\mu}\log \frac{\mathrm d\nu}{\mathrm d\mu}\mathrm d\mu$$. Upon inspection we implicitly consider densities (the standard visualiation of histograms) and not the distributions themselves.
 
-**Corollary.** If $\frac{\mathrm d\nu_k}{\mathrm d\mu}\overset{\text{a.e}}{\longrightarrow} \frac{\mathrm d\nu}{\mathrm d\mu}$ and $D(\nu_k\mid\mu)\leq d$ for all $k$ then $D(\nu\mid\mu)\leq d$.
+**Corollary.** If $$\frac{\mathrm d\nu_k}{\mathrm d\mu}\overset{\text{a.e}}{\longrightarrow} \frac{\mathrm d\nu}{\mathrm d\mu}$$ and $$D(\nu_k\mid\mu)\leq d$$ for all $$k$$ then $$D(\nu\mid\mu)\leq d$$.
 
-*Proof.* Apply Fatou to $\varphi(x)=x\log x$.
+*Proof.* Apply Fatou to $$\varphi(x)=x\log x$$.
 
 Since pointwise convergence of densities is extremely stringent, it's natural to wonder about lower semicontinuity with respect to coarser topologies. The following theorem gives a geometric characterization of the *weak topology* on the space of measures. We will adopt it as a definition.
 
-**Portmanteau theorem.** A sequence of measures converges in the weak topology $\mu_n\Rightarrow \mu$ iff for all measurable $A$ satisfying $\mu (\partial A)=0$ we have $\mu_nA\to \mu A$.
+**Portmanteau theorem.** A sequence of measures converges in the weak topology $$\mu_n\Rightarrow \mu$$ iff for all measurable $$A$$ satisfying $$\mu (\partial A)=0$$ we have $$\mu_nA\to \mu A$$.
 
-Intuitively, the condition $\mu(\partial A)=0$ prevents measure from leaking out into the boundary. Thus the weak topology is oblivious to behavior of $\mu_n A$ if there is concentration at the boundary $\mu (\partial A)>0$.
+Intuitively, the condition $$\mu(\partial A)=0$$ prevents measure from leaking out into the boundary. Thus the weak topology is oblivious to behavior of $$\mu_n A$$ if there is concentration at the boundary $$\mu (\partial A)>0$$.
 
 The takeaway:
 
-**Continuity for a fixed continuity partition.** Assume $\mathscr P$ is a finite partition satisfying $A\in \mathscr P\implies \mu(\partial A)=0$. Then $\nu \mapsto D_\mathscr{P}(\nu\mid\mu)$ is continuous with respect to the weak topology, i.e.
+**Continuity for a fixed continuity partition.** Assume $$\mathscr P$$ is a finite partition satisfying $$A\in \mathscr P\implies \mu(\partial A)=0$$. Then $$\nu \mapsto D_\mathscr{P}(\nu\mid\mu)$$ is continuous with respect to the weak topology, i.e.
 
 $$
 \nu_n\Rightarrow \nu \implies D_\mathscr{P}(\nu_n\mid \mu)\to D_\mathscr{P}(\nu\mid \mu).
 $$
 
-*Proof.* By Portmanteau $\nu_n\Rightarrow \nu$ implies set-wise convergence over $\mathscr P$. For each summand of $D_\mathscr{P}(\nu\mid\mu)=\sum_{A\in \mathscr P}\nu A \log \frac{\nu A}{\mu A}$, $\mu A$ is fixed and the map $x\log \frac x{\mu A}$ is continuous. Hence set-wise convergence gives the desired result.
+*Proof.* By Portmanteau $$\nu_n\Rightarrow \nu$$ implies set-wise convergence over $$\mathscr P$$. For each summand of $$D_\mathscr{P}(\nu\mid\mu)=\sum_{A\in \mathscr P}\nu A \log \frac{\nu A}{\mu A}$$, $$\mu A$$ is fixed and the map $$x\log \frac x{\mu A}$$ is continuous. Hence set-wise convergence gives the desired result.
 
-Now we anticipate lower semicontinuity $\nu\mapsto D(\nu\mid\mu)$ if we can only compute $D(\nu\mid\mu)$ as a supremum over continuity partitions. First we'll prove the supremum formula and then explain why it suffices to use continuity partitions.
+Now we anticipate lower semicontinuity $$\nu\mapsto D(\nu\mid\mu)$$ if we can only compute $$D(\nu\mid\mu)$$ as a supremum over continuity partitions. First we'll prove the supremum formula and then explain why it suffices to use continuity partitions.
 
-**Partition-supremum formula.** Let $\mathscr P$ be a finite measurable partition of the probability space. Define $D_\mathscr{P}(\nu\mid\mu)=\sum_{A\in \mathscr P}\nu A \log \frac{\nu A}{\mu A}$. Then we have the *coarse-graining inequality* $D_\mathscr{P}(\nu\mid\mu)\leq D(\nu\mid\mu)$, and we can compute on finite partitions $$D(\nu\mid\mu)=\sup_\mathscr{P}D_\mathscr{P}(\nu\mid\mu).$$
+**Partition-supremum formula.** Let $$\mathscr P$$ be a finite measurable partition of the probability space. Define $$D_\mathscr{P}(\nu\mid\mu)=\sum_{A\in \mathscr P}\nu A \log \frac{\nu A}{\mu A}$$. Then we have the *coarse-graining inequality* $$D_\mathscr{P}(\nu\mid\mu)\leq D(\nu\mid\mu)$$, and we can compute on finite partitions $$D(\nu\mid\mu)=\sup_\mathscr{P}D_\mathscr{P}(\nu\mid\mu).$$
 
-*Proof.* Write $f=\frac{\mathrm d\nu}{\mathrm d\mu}$. By using Jensen on each cell $A$ w.r.t the induced probability measure $\mu\;\mid_A=\tfrac 1{\mu A}\mathbf 1_{A}\mu$ we have:
+*Proof.* Write $$f=\frac{\mathrm d\nu}{\mathrm d\mu}$$. By using Jensen on each cell $$A$$ w.r.t the induced probability measure $$\mu\;\mid_A=\tfrac 1{\mu A}\mathbf 1_{A}\mu$$ we have:
 
 $$\begin{aligned}
 D_\mathscr{P}(\nu\mid \mu) & =\sum_{A\in \mathscr P}\nu A \log \frac{\nu A}{\mu A} \\
@@ -491,7 +491,7 @@ D_\mathscr{P}(\nu\mid \mu) & =\sum_{A\in \mathscr P}\nu A \log \frac{\nu A}{\mu 
 & = \int f\log f\mathrm d\mu= D(\nu\mid \mu).
 \end{aligned}$$
 
-For the reverse inequality, some notation. Write $f_\mathscr{P}=\mathbb E_\mu\left[ \frac{\mathrm d\nu}{\mathrm d\mu} \mid \sigma(\mathscr P)\right]$. This function is constant on each cell of $A\in \mathscr P$, taking the value $\frac{\nu A}{\mu A}$. Write shorthand $f_n$ for $f_{\mathscr{P}_n}$ where $\mathscr P_n=\sigma(s_n)$ is generated by increasingly accurate $L^1$ approximations of $f$ by simple functions. Now compute using the fact conditional expectation is an $L^1$ contraction.
+For the reverse inequality, some notation. Write $$f_\mathscr{P}=\mathbb E_\mu\left[ \frac{\mathrm d\nu}{\mathrm d\mu} \mid \sigma(\mathscr P)\right]$$. This function is constant on each cell of $A\in \mathscr P$, taking the value $$\frac{\nu A}{\mu A}$$. Write shorthand $f_n$ for $$f_{\mathscr{P}_n}$$ where $$\mathscr P_n=\sigma(s_n)$$ is generated by increasingly accurate $$L^1$$ approximations of $$f$$ by simple functions. Now compute using the fact conditional expectation is an $$L^1$$ contraction.
 
 $$\begin{aligned}
 \| f_n-f \|_1 &= \| \mathbb E[f\mid \sigma(s_n)]-f \|_1 \\
@@ -500,35 +500,35 @@ $$\begin{aligned}
 & \leq 2\| f - s_n \|_1\overset{n\to \infty}{\longrightarrow}0.
 \end{aligned}$$
 
-Since $D_{\mathscr P_n}(\nu\mid\mu)=\int f_n\log f_n\mathrm d\mu$ we can combine coarse-graining with generalized $L^1$-Fatou for $\varphi(x)=x\log x$ to obtain the following inequalities, which give equality at the limit.
+Since $$D_{\mathscr P_n}(\nu\mid\mu)=\int f_n\log f_n\mathrm d\mu$$ we can combine coarse-graining with generalized $$L^1$$-Fatou for $$\varphi(x)=x\log x$$ to obtain the following inequalities, which give equality at the limit.
 
 $$
 \int f_n\log f_n\mathrm d\mu\leq \int f\log f\mathrm d\mu \leq \liminf \int f_n\log f_n\mathrm d\mu.
 $$
 
-**Lower semicontinuity.** Suppose we live in a separable metric space. Expected information gain $\nu \mapsto D(\nu\mid\mu)$ is lower semicontinuous with respect to the weak topology on the space of probability distributions.
+**Lower semicontinuity.** Suppose we live in a separable metric space. Expected information gain $$\nu \mapsto D(\nu\mid\mu)$$ is lower semicontinuous with respect to the weak topology on the space of probability distributions.
 
 *Proof.* We want to use the supremum formula for partitions alongside closedness under suprema. For this we must show the supremum can be computed with continuity partitions. Here we use the separable metric assumption to filter out balls with measure on the boundary. The proof is a straightforward hassle and we omit it.
 
 **Corollary.** (Continuity.)
-1. Differential entropy $\nu\mapsto h(\nu\mid \lambda)$, when restricted to a subspace of measures $\nu \ll \lambda$ with prescribed mean and variance, is upper semicontinuous.
-2. Moreover, if $f_n\overset{\text{a.e}}{\longrightarrow} f$ is a pointwise convergent and uniformly bounded sequence then $h(f_n\mid \lambda)\to h(f\mid \lambda)$ and $D(f_n\mid N(\mu,\sigma^2))\to D(f\mid N(\mu,\sigma^2))$.
+1. Differential entropy $$\nu\mapsto h(\nu\mid \lambda)$$, when restricted to a subspace of measures $$\nu \ll \lambda$$ with prescribed mean and variance, is upper semicontinuous.
+2. Moreover, if $$f_n\overset{\text{a.e}}{\longrightarrow} f$$ is a pointwise convergent and uniformly bounded sequence then $$h(f_n\mid \lambda)\to h(f\mid \lambda)$$ and $$D(f_n\mid N(\mu,\sigma^2))\to D(f\mid N(\mu,\sigma^2))$$.
 
-*Proof.* Recall the formula for entropy relative to the matching Gaussian $h(f\mid N(\mu,\sigma^2))=h(f\mid \lambda)-h(N(\mu,\sigma^2)\mid \lambda)$. The LHS is upper semicontinuous in the distribution with density $f$, whence so is the left summand in the RHS. For the second assertion we use uniform boundedness to apply Fatou's lemma, which gives lower semicontinuity and therefore convergence. Specifically, set $c=\sup_{n,x}f_n(x)$ and observe $h(f_n\mid \lambda)=c\int(-\frac{f_n}{c}\log\frac{f_n}{c})\mathrm d\lambda -\log c$ with the RHS integrand non-negative. The relative entropy formula ensures differential entropy and the expected information gain converge together.
+*Proof.* Recall the formula for entropy relative to the matching Gaussian $$h(f\mid N(\mu,\sigma^2))=h(f\mid \lambda)-h(N(\mu,\sigma^2)\mid \lambda)$$. The LHS is upper semicontinuous in the distribution with density $$f$$, whence so is the left summand in the RHS. For the second assertion we use uniform boundedness to apply Fatou's lemma, which gives lower semicontinuity and therefore convergence. Specifically, set $$c=\sup_{n,x}f_n(x)$$ and observe $$h(f_n\mid \lambda)=c\int(-\frac{f_n}{c}\log\frac{f_n}{c})\mathrm d\lambda -\log c$$ with the RHS integrand non-negative. The relative entropy formula ensures differential entropy and the expected information gain converge together.
 
 ### Compactness
 
 We'll need the following theorem.
 
-**Prokhorov theorem.** In the weak topology, a sequence $(\mu_n)_{n\geq 1}$ has a convergent subsequence iff $\forall \varepsilon >0$ there's a compact $K$ such that $\sup_n\mu_n (X\setminus K)<\varepsilon$.
+**Prokhorov theorem.** In the weak topology, a sequence $$(\mu_n)_{n\geq 1}$$ has a convergent subsequence iff $$\forall \varepsilon >0$$ there's a compact $$K$$ such that $$\sup_n\mu_n (X\setminus K)<\varepsilon$$.
 
-Intuitively, existence of compact sets uniformly  containing most of each measure $\mu_n$ prevents measure from leaking into infinity on our space (at the limit).
+Intuitively, existence of compact sets uniformly  containing most of each measure $$\mu_n$$ prevents measure from leaking into infinity on our space (at the limit).
 
-**Sequentially compact sublevel sets.** Fix a probability measure $\mu$ (inner regular - automatic for Borel measures on nice spaces). When restricted to probability measures, expected information gain $\nu\mapsto D(\nu\mid \mu)$ has sequentially compact sublevel sets. That is, every sequence in $\lbrace \nu : D(\nu\mid\mu)\leq d \rbrace, d\in \mathbb R$ has a convergent subsequence. By lower semicontinuity, the limit also lies in $\lbrace \nu : D(\nu\mid\mu)\leq d \rbrace$.
+**Sequentially compact sublevel sets.** Fix a probability measure $$\mu$$ (inner regular - automatic for Borel measures on nice spaces). When restricted to probability measures, expected information gain $$\nu\mapsto D(\nu\mid \mu)$$ has sequentially compact sublevel sets. That is, every sequence in $$\lbrace \nu : D(\nu\mid\mu)\leq d \rbrace, d\in \mathbb R$$ has a convergent subsequence. By lower semicontinuity, the limit also lies in $$\lbrace \nu : D(\nu\mid\mu)\leq d \rbrace$$.
 
-*Proof.* We use Prokhorov. Let $\lbrace \nu_ n\rbrace_{n\geq 1} \subseteq \lbrace \nu : D(\nu \mid \mu \leq d\rbrace)$. Given $\varepsilon > 0$ we must find a compact $K$ such that $\sup_n\nu_n (X\setminus K)<\varepsilon$.
+*Proof.* We use Prokhorov. Let $$\lbrace \nu_ n\rbrace_{n\geq 1} \subseteq \lbrace \nu : D(\nu \mid \mu \leq d\rbrace)$$. Given $$\varepsilon > 0$$ we must find a compact $$K$$ such that $$\sup_n\nu_n (X\setminus K)<\varepsilon$$.
 
-The supremum characterization of entropy ensures $D_\mathscr{P}(\nu\mid\mu)\leq D(\nu\mid\mu)$ for a partition $\mathscr P$. Taking a binary partition we have (using $x\log x\geq -\frac 1e$) the following inequality for any $\nu $.
+The supremum characterization of entropy ensures $$D_\mathscr{P}(\nu\mid\mu)\leq D(\nu\mid\mu)$$ for a partition $$\mathscr P$$. Taking a binary partition we have (using $$x\log x\geq -\frac 1e$$) the following inequality for any $$\nu $$.
 
 $$\begin{aligned}
 D(\nu\mid\mu) &\geq \nu A\log \frac{\nu A}{\mu A} + (1-\nu A)\log \frac{1-\nu A}{1-\mu A} \\
@@ -538,7 +538,7 @@ D(\nu\mid\mu) &\geq \nu A\log \frac{\nu A}{\mu A} + (1-\nu A)\log \frac{1-\nu A}
 & \geq \nu A\log \frac{1}{\mu A} - \frac 1e.
 \end{aligned}$$
 
-Hence every $\nu $ in the sublevel set satisfies $\nu  A\leq \frac{d+\frac 1e}{\log 1/\mu A}$. Since we're working over a nice space, $\mu$ is inner regular. Hence we can find a compact $K$ such that $\mu (X\setminus K)$ is arbitrarily small. Given $\varepsilon$, take $\mu(X\setminus K)$ sufficiently small so as to satisfy $\frac{d+\frac 1e}{\log 1/\mu A}<\varepsilon$.
+Hence every $$\nu $$ in the sublevel set satisfies $$\nu  A\leq \frac{d+\frac 1e}{\log 1/\mu A}$$. Since we're working over a nice space, $$\mu$$ is inner regular. Hence we can find a compact $$K$$ such that $$\mu (X\setminus K)$$ is arbitrarily small. Given $$\varepsilon$$, take $$\mu(X\setminus K)$$ sufficiently small so as to satisfy $$\frac{d+\frac 1e}{\log 1/\mu A}<\varepsilon$$.
 
 # Information and Dynamics
 
