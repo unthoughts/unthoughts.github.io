@@ -26,7 +26,7 @@ While CLT was my original motivation for learning this stuff, there's a beautifu
 
 ## CLT
 
-Let $(X_i)_{i\geq 1}$ be i.i.d and consider its $n$-average $\overline X_n=\frac{X_1+\cdots+X_n}{n}$. Note $\operatorname{Var}\overline X_n=\|\overline X_n-\mu\|^2_2=\frac{\sigma^2}{n}\overset{n\to \infty}{\longrightarrow}0$ - the variance vanishes in the limit. This is a weak version of the law of large numbers. The strong law is the satisfying but still unsurprising assertion that as $n\to \infty$, the $n$-average converges almost surely to the mean $\overline X_n\underset{\mathrm{a.s}}{\overset{n\to \infty}{\longrightarrow}}\mu$. It is a special case of Birkhoff's ergodic theorem relating space and time averages, and we won't pursue it further in this post.
+Let $$(X_i)_{i\geq 1}$$ be i.i.d and consider its $n$-average $\overline X_n=\frac{X_1+\cdots+X_n}{n}$. Note $\operatorname{Var}\overline X_n=\|\overline X_n-\mu\|^2_2=\frac{\sigma^2}{n}\overset{n\to \infty}{\longrightarrow}0$ - the variance vanishes in the limit. This is a weak version of the law of large numbers. The strong law is the satisfying but still unsurprising assertion that as $n\to \infty$, the $n$-average converges almost surely to the mean $\overline X_n\underset{\mathrm{a.s}}{\overset{n\to \infty}{\longrightarrow}}\mu$. It is a special case of Birkhoff's ergodic theorem relating space and time averages, and we won't pursue it further in this post.
 
 Upon scaling we see $\|\sqrt n(\overline X_n-\mu)\|_2=\sigma$: the standard deviation becomes constant and there is stability at the limit. Thus we arrive at a more delicate question: is there perhaps a limiting distribution?
 
